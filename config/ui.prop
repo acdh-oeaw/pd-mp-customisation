@@ -1,0 +1,2 @@
+templateIncludeQuery = SELECT ?type WHERE {?? a ?specific_type. ?specific_type rdfs:subClassOf* ?type. }
+deploymentTitle = Parthenos Discovery (MP3.0)

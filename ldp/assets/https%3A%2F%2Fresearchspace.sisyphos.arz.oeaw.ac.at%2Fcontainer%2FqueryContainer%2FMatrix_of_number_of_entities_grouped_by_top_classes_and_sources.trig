@@ -1,0 +1,63 @@
+
+<https://researchspace.sisyphos.arz.oeaw.ac.at/container/queryContainer/Matrix_of_number_of_entities_grouped_by_top_classes_and_sources/context> {
+  <https://researchspace.sisyphos.arz.oeaw.ac.at/container/queryContainer/Matrix_of_number_of_entities_grouped_by_top_classes_and_sources>
+    a <http://spinrdf.org/sp#Query>, <http://spinrdf.org/sp#Select>;
+    <http://www.w3.org/2000/01/rdf-schema#label> "Matrix of number of entities grouped by top classes and sources";
+    <http://spinrdf.org/sp#text> """PREFIX acdh: <http://acdh.oeaw.ac.at/>
+SELECT ?src ?key ?actorcnt ?datacnt ?servicecnt ?softwarecnt ?placecnt ?projectcnt WHERE  { 
+  {SELECT DISTINCT ?src WHERE {[] acdh:hasSource ?src. bind (?pKey as ?key)} }
+                                   OPTIONAL {             
+                                       ?aggactor a acdh:Aggregate;
+                                           acdh:hasClass <http://www.cidoc-crm.org/cidoc-crm/E39_Actor>;
+                                           acdh:hasSource ?src;
+                                           acdh:hasKey ?key;
+                                           acdh:hasValue ?actorcnt.
+                                    }
+                                   OPTIONAL {
+                                     ?aggdata a acdh:Aggregate;
+                                           acdh:hasClass <http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE18_Dataset>;
+                                           acdh:hasSource ?src;
+                                           acdh:hasKey ?key;
+                                           acdh:hasValue ?datacnt.
+                                            }
+                                   OPTIONAL {
+                                     ?aggservice a acdh:Aggregate;
+                                           acdh:hasClass <http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE1_Service>;
+                                           acdh:hasSource ?src;
+                                           acdh:hasKey ?key;
+                                           acdh:hasValue ?servicecnt.
+                                            }
+                                                        OPTIONAL {
+                                     ?aggsoftware a acdh:Aggregate;
+                                           acdh:hasClass <http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs/D14_Software>;
+                                           acdh:hasSource ?src;
+                                           acdh:hasKey ?key;
+                                           acdh:hasValue ?softwarecnt.
+                                            }
+                                   
+                                   OPTIONAL {
+                                     ?aggplace a acdh:Aggregate;
+                                           acdh:hasClass <http://www.cidoc-crm.org/cidoc-crm/E53_Place>;
+                                           acdh:hasSource ?src;
+                                           acdh:hasKey ?key;
+                                           acdh:hasValue ?placecnt.
+                                            }
+                                         OPTIONAL {
+                                     ?aggproject a acdh:Aggregate;
+                                           acdh:hasClass <http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE35_Project>;
+                                           acdh:hasSource ?src;
+                                           acdh:hasKey ?key;
+                                           acdh:hasValue ?projectcnt.
+                                            } 
+}
+ORDER BY ?src""";
+    a <http://www.w3.org/ns/prov#Entity>;
+    <http://www.w3.org/ns/prov#wasAttributedTo> <http://www.metaphacts.com/resource/user/admin>;
+    <http://www.w3.org/ns/prov#generatedAtTime> "2019-07-12T23:03:37.629Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+  
+  <http://www.metaphacts.com/ontologies/platform#queryContainer> <http://www.w3.org/ns/ldp#contains>
+      <https://researchspace.sisyphos.arz.oeaw.ac.at/container/queryContainer/Matrix_of_number_of_entities_grouped_by_top_classes_and_sources> .
+  
+  <https://researchspace.sisyphos.arz.oeaw.ac.at/container/queryContainer/Matrix_of_number_of_entities_grouped_by_top_classes_and_sources>
+    a <http://www.w3.org/ns/ldp#Resource> .
+}
