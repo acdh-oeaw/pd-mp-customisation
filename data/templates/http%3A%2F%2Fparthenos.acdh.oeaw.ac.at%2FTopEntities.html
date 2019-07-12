@@ -1,0 +1,61 @@
+  <ol class="page-breadcrumb">
+  <li>
+    <mp-link title="Home" url="/">Home</mp-link>
+  </li>
+  <li class="active">Parthenos Top Entities</li>
+</ol>
+
+
+<div class="page">
+
+
+  
+  <div class="page__body">
+    <h1> Parthenos Top Entities</h1>
+ <p>This page offers direct access to the handcrafted part of the dataset, aiming to capture top-level entities, which where not explicitly registered in any of the sources.</p>
+  
+<h2>Actors</h2>
+    <semantic-table 
+    query='SELECT ?s ?l ?t   WHERE {
+  GRAPH <http://www.d-net.research-infrastructures.eu/provenance/graph> {
+    ?record <http://www.d-net.research-infrastructures.eu/provenance/collectedFrom> ?api.
+    ?api <http://www.d-net.research-infrastructures.eu/provenance/isApiOf> ?source.
+  }
+  FILTER(STRSTARTS(?source, "PARTHENOS"))
+   ?t rdfs:subClassOf* crm:E39_Actor.
+  GRAPH ?record { ?s rdf:type ?t. ?s rdfs:label ?l }
+}'
+></semantic-table>
+    
+<h2>Services</h2>
+    <semantic-table 
+    query='SELECT ?s ?l ?url ?t  WHERE {
+  GRAPH <http://www.d-net.research-infrastructures.eu/provenance/graph> {
+    ?record <http://www.d-net.research-infrastructures.eu/provenance/collectedFrom> ?api.
+    ?api <http://www.d-net.research-infrastructures.eu/provenance/isApiOf> ?source.
+  }
+  FILTER(STRSTARTS(?source, "PARTHENOS"))
+   ?t rdfs:subClassOf* pe:PE1_Service.
+  GRAPH ?record { ?s rdf:type ?t.  ?s rdfs:label ?l. }
+  OPTIONAL {?s pe:PP28_has_designated_access_point ?url }
+}'
+></semantic-table>
+
+    
+<h2>Datasets</h2>
+    <semantic-table 
+    query='SELECT ?s ?t  ?l WHERE {
+  GRAPH <http://www.d-net.research-infrastructures.eu/provenance/graph> {
+    ?record <http://www.d-net.research-infrastructures.eu/provenance/collectedFrom> ?api.
+    ?api <http://www.d-net.research-infrastructures.eu/provenance/isApiOf> ?source.
+  }
+  FILTER(STRSTARTS(?source, "PARTHENOS"))
+   ?t rdfs:subClassOf* pe:PE18_Dataset.
+  GRAPH ?record { ?s rdf:type ?t.  ?s rdfs:label ?l.}
+}'
+></semantic-table>
+
+  </div>
+  
+</div>
+
