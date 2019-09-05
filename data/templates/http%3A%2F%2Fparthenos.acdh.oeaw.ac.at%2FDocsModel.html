@@ -1,0 +1,52 @@
+<ol class="page-breadcrumb">
+  <li>
+    <semantic-link title="Home" uri='[[resolvePrefix "p:Start"]]'>Home</semantic-link>
+  </li>
+  <li>
+    <mp-link title="Documentation - Main Page" url="p:Docs">Docs</mp-link>
+  </li>          
+   <li class="active">
+    <mp-label iri='[[this]]'></mp-label>
+  </li>
+</ol>
+
+<div class="page">
+
+	<div class="page__body">
+
+    <bs-row>
+      <bs-col sm="1" style="padding-top:10px">    
+        <i class="fa fa-book fa-4x"></i>
+      </bs-col>
+      <bs-col sm="6" >
+        <div >
+          <h1>Parthenos Entities Model</h1>
+          <bs-alert bs-style="warning"><strong>Being worked on. See <a href="https://docs.google.com/document/d/14hbh9kWKQAaBk7QMg1aG66wH5i9b8KVJmwQzjl8rFoM/edit#" >PD User Texts gdoc</a>.</strong></bs-alert>
+          <p>These pages informs about the data model underlying the application</p>
+        </div>
+      </bs-col>
+    </bs-row>
+    
+    <p>The PARTHENOS Entities Model (PEM) is a common semantic model developed in the PARTHENOS project which extends the CIDOC CRM. The PEM is described in further depth in the following document: <a href="https://doi.org/10.5281/zenodo.2575465">PARTHENOS D5.5 Report on the Common Semantic Framework</a>. It is designed to be flexible enough to map the many different types of metadata schemas used throughout the Humanities uniformly.</p>
+
+		<p>Even though altogether many specific classes are introduced in the overall model, these can be largely categorised under the following main entities:</p>
+		<ul>
+      <li>Actor</li>
+      <li>Dataset</li>
+      <li>Software</li>
+      <li>Service</li>
+      <li>Project</li>
+      <li>(Place)</li>
+    </ul>
+    <p>Within the PEM a subset of properties has been identified as so called ‘minimal metadata’. “Such minimal metadata requirements are not meant as a ‘core’ standard but are rather specified precisely to demand the least possible data from aggregated sources while still being able to guarantee a functional management of the data being aggregated.” [D5.5]  It is collected with regards to the entities referred to in the PEM for the <a href="https://services.d4science.org/group/parthenos_registry/catalogue">PARTHENOS Joint Resource Registry (JRR)</a> and allows the identification of distinct datasets, software and services.</p>
+    <p>Also, it is vital that datasets can be attributed to the appropriate actors responsible for these objects. The metadata set is kept as light as possible with the goal that all objects represented in the registry are traceable and that their provenance is accounted for.</p>
+    <p>In the overall dataset more information about the described entities is available and can be accessed via the search facilities described here.</p>
+
+    <h2>Application</h2>
+    <p>PARTHENOS Discovery is a customisation of the semantic knowledge management platform <a href="https://www.metaphacts.com/product">Metaphactory</a>. It operates solely on top of a SPARQL endpoint and allows end users to visualize and explore the data in a user-friendly, highly customisable manner. PARTHENOS Discovery is considered complementary to the Joint Resource Registry, in that both operate on - and give access to - the same dataspace.</p>
+		<p>Further information: “metaphactory: A Platform for Knowledge Graph Management” <a href="http://www.semantic-web-journal.net/system/files/swj1950.pdf">http://www.semantic-web-journal.net/system/files/swj1950.pdf</a></p>
+    <p><i>Read about the main features of the application:</i> A comprehensive description about the customisations of Metaphactory and considerations/findings about the tools for resource discovery in general can be found in the deliverable <a href="https://doi.org/10.5281/zenodo.2607212">PARTHENOS D6.4 Report on services and tools (final)</a>. There is also a <a href="https://help.metaphacts.com/resource/Help:Start">comprehensive documentation</a> of the functionality Metaphactory provides.</p>
+
+  </div>
+
+</div>

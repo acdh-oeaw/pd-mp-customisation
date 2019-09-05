@@ -1,95 +1,100 @@
 <div class="page">
 
+  <div class="page__body">
 
-<div class="page__body">
-  <bs-row>
-  <bs-col sm="1" >
-    <img width="80" style="margin:10px" src="/images/parthenos_logo.png" /> 
-    </bs-col>
-  <bs-col sm="6" >
-    <div >
-    <h1>Parthenos Discovery </h1>
-		<p>Your gateway to the Parthenos Entities Dataspace. <semantic-link iri="http://parthenos.acdh.oeaw.ac.at/Docs">Read more</semantic-link> about the application and the dataset</p>
-    </div>
-    </bs-col>
+    <bs-row>
+    	<bs-col sm="1" >
+      	<img width="80" style="margin:10px" src="https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" /> 
+      </bs-col>
+    	<bs-col sm="6" >
+      	<div >
+      		<h1>PARTHENOS Discovery </h1>
+      		<p>Your gateway to the PARTHENOS Entities Dataspace. <semantic-link iri="http://parthenos.acdh.oeaw.ac.at/Docs">Read more</semantic-link> about the application and the dataset</p>
+      	</div>
+      </bs-col>
     </bs-row>
-    
-  
-  <div>
-    <div style="text-align:center" ><i class="fa fa-search fa-4x"></i></div>
-    <h2  style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Search">Search</semantic-link></h2> 
-			<p>
-        Various options to search over the main entities.<br/>
-        - Full-text search <br/>
-        - Facetted search<br/>
-        - Search based on relations between entities (Query builder)
-  		</p>
+
+    <div style="clear:both" />
+    <br/>
+
+    <bs-row>  
+    	<bs-col sm="6" >
+    		<h2>Explore/Search</h2>  
+    		<p>PARTHENOS Discovery offers multiple alternative options to explore the data.</p>
+      	<p>Following overview lists the main types of the data model.</p> 
+      	<p>The links lead to customized pages that allows you to restrict the full-text <strong>search</strong> by one of the main types, or learn about the main types as defined in the <strong>model</strong>:</p>
+      	<p>The numbers indicate how many instances of given type (including subclasses) are there, distinguishing between explicitely created instances and all instances.</p>
+    	</bs-col>
+
+      <bs-col sm="6" >
+        <h3><semantic-link iri="http://parthenos.acdh.oeaw.ac.at/Search">by keyword</semantic-link></h3> 
+       	<p>Full-text search with facetting</p>
+        <h3><semantic-link iri="http://parthenos.acdh.oeaw.ac.at/Search">by semantic relations</semantic-link></h3> 
+       	<p>Advanced semantic search using query builder</p>
+        <h3><semantic-link iri="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity">by model/ontology</semantic-link></h3>
+       	<p>Explore the data based on the underlying ontology the <semantic-link title="PARTHENOS Entities Model" uri='[[resolvePrefix "p:DocsModel"]]'>PARTHENOS Entities Model</semantic-link></p>
+      </bs-col>
+    </bs-row>
+
+    [[> p:MaintypeOverview]]
+
+   	<div style="clear:both" />
+    <br/>
+    <br/>
+
+    <h2>Highlights</h2>  
+    <bs-row>
+      <bs-col sm="3" >
+      	<div style="text-align:center" >
+        <img width="40" style="margin:10px" src="https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" /> </div>
+      	<h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/TopEntities">PARTHENOS Top Entities</semantic-link></h2>  
+      	<p>Browse through the manually crafted dataset of top-level entities, such as software and services, which were created within the project (since this data did not previously exist).</p>
+    	</bs-col>
+    	<bs-col sm="3" >
+      	<div style="text-align:center" ><i class="fa fa-star fa-4x"></i></div>
+      	<h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Examples">Showcases</semantic-link></h2>  
+      	<p>This is a hand curated list of entities-detail views and other specialized pages to highlight specific aspects of the application or the dataset.</p>
+    	</bs-col>
+    	<bs-col sm="3" >
+      	<div style="text-align:center" ><i class="fa fa-image fa-4x"></i></div>
+      	<h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Images">Images</semantic-link></h2>  
+      	<p>Browse through records featuring an image representation.</p>
+    	</bs-col>
+    	<bs-col sm="3" >
+      	<div style="text-align:center" ><i class="fa fa-map-marker fa-4x"></i></div>
+      	<h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/maps_testing">Places</semantic-link></h2>  
+      	<p>Browse through geo-referenced records. (Only available for records with geo-coordinates).</p>
+    	</bs-col>
+    </bs-row>
+
+    <div style="clear:both" />
+    <br/>
+
+    <h2>PARTHENOS Discovery Lab</h2>
+    <p>This is where you can experiment with the dataset.</p>
+    <bs-row>
+      <bs-col sm="3" >
+        <div style="text-align:center" ><i class="fa fa-search fa-4x"></i></div>
+        <h2 style="text-align:center"><mp-link url="/sparql">SPARQL</mp-link></h2>  
+        <p>User interface to run any SPARQL query on the underlying dataset.</p>
+      </bs-col>
+      <bs-col sm="3">
+        <div style="text-align:center" ><i class="fa fa-table fa-4x"></i></div>
+        <h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Statistics">Statistics</semantic-link></h2>  
+        <p>A suite of aggregation queries offering an overview over various aspects of the dataspace.</p>
+      </bs-col>
+      <bs-col sm="3">
+        <div style="text-align:center" ><i class="fa fa-flask fa-4x"></i></div>
+        <h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Docs/Notebooks">Data Notebooks</semantic-link></h2>
+        <p>Connect to the dataset via a Jupyter Notebook and do your own processing.</p>
+      </bs-col>
+      <bs-col sm="3">
+        <div style="text-align:center" ><i class="fa fa-asterisk fa-4x"></i></div>
+        <h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Curation">Curation</semantic-link></h2>
+        <p>Collection of custom pages to run experiments on or to showcase data quality aspects of the dataset.</p>
+      </bs-col>
+    </bs-row> 
+
   </div>
-  
-  [[> p:MaintypeOverview]]
-  
-  
- <div style="clear:both" />
-  <br/>
-  <h2>Highlights</h2>  
-  <bs-row>
-    <bs-col sm="3" >
-       <div style="text-align:center" >
-      <img width="40" style="margin:10px" src="/images/parthenos_logo.png" /> </div>
-    <h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/TopEntities">Parthenos Top Entities</semantic-link></h2>  
-    <p>Browse through the manually crafted dataset of top-level entities </p>
-  </bs-col>
-  <bs-col sm="3" >
-     <div style="text-align:center" ><i class="fa fa-star fa-4x"></i></div>
-    <h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Examples">Nice examples</semantic-link></h2>  
-    <p>Hand curated list of entities-detail views and other specialized pages to highlight specific aspects of the application or the dataset.</p>
-  </bs-col>
-  <bs-col sm="3" >
-       <div style="text-align:center" ><i class="fa fa-image fa-4x"></i></div>
-    <h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Images">Images</semantic-link></h2>  
-    <p>Browse through records featuring an image representation.</p>
-  
-  </bs-col>
-  <bs-col sm="3" >
-       <div style="text-align:center" ><i class="fa fa-map-marker fa-4x"></i></div>
-    <h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/maps_testing">Places</semantic-link></h2>  
-    <p>Browse through spatial dimension. (not available for all records!)</p>
-  
-  </bs-col>
-          
-    
-    </bs-row>
- 
-  <div style="clear:both" />
-  <br/>
-  <h2>Lab / Experimental space</h2>
-  <bs-row>
-    <bs-col sm="3" >
-     <div style="text-align:center" ><i class="fa fa-search fa-4x"></i></div>
-    <h2 style="text-align:center"><mp-link url="/sparql">SPARQL</mp-link></h2>  
-    <p>User interface to run any SPARQL query on the underlying dataset.</p>
-  </bs-col>
-    <bs-col sm="3">
-    <div style="text-align:center" ><i class="fa fa-table fa-4x"></i></div>
-    <h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Statistics">Statistics</semantic-link></h2>  
-    <p>A suite of aggregation queries offering overview over various aspects of the dataspace </p>
-  </bs-col>
-   <bs-col sm="3">
-    	<div style="text-align:center" ><i class="fa fa-flask fa-4x"></i></div>
-			<h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Docs/Notebooks">Data Notebooks</semantic-link></h2>
-    <p>Connect to the dataset via a Jupyter Notebook and do your own processing.</p>
-  </bs-col>
-  <bs-col sm="3">
-    	<div style="text-align:center" ><i class="fa fa-asterisk fa-4x"></i></div>
-			<h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Curation">Curation</semantic-link></h2>
-    <p><em>Hic sunt Leones!</em> Collection of custom pages for exploring, or showcasing data quality aspects of the dataset as based for curation.</p>
-  </bs-col>
-    
-</bs-row> 
-  
-
-  
-</div>
-
 
 </div>
