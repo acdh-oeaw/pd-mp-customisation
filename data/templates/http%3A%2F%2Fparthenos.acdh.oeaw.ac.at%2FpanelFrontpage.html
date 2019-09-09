@@ -1,0 +1,16 @@
+        <bs-col sm="3" >
+        <div class="panel panel-default" style="height:270px">
+         <div class="panel-body">
+      	<div style="text-align:center" >
+          {{#ifCond image.value "==" ""}}
+          	<i class="fa fa-{{icon.value}} fa-4x"></i>
+          {{else}}
+          	<img width="40" style="margin:10px" src="{{image.value}}" /> 
+          {{/ifCond}}
+         </div>
+      	<h2 style="text-align:center"><semantic-link  iri="{{link.value}}">{{title.value}}</semantic-link></h2>  
+      	<p>{{text.value}}</p>
+          </div>
+        </div>
+    	</bs-col>
+  

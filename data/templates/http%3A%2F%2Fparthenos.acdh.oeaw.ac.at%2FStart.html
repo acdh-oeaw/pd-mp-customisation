@@ -25,14 +25,24 @@
       	<p>Below, you can <strong>search</strong> for actors, datasets, services, software, projects and places full-text or learn about the main types as defined in the <strong>model</strong>:</p>
       	<p>The numbers indicate how many instances of given type (including subclasses) are there, distinguishing between explicitly created instances and all instances.</p>
     	</bs-col>
-
       <bs-col sm="6" >
+        <div class="panel panel-default" style="width:400px">
+         <div class="panel-body">
         <h3><semantic-link iri="http://parthenos.acdh.oeaw.ac.at/Search">by keyword</semantic-link></h3> 
        	<p>Full-text search with facetting</p>
+          </div></div>
+      
+        <div class="panel panel-default" style="width:400px">        
+         <div class="panel-body">
         <h3><semantic-link iri="http://parthenos.acdh.oeaw.ac.at/Search">by semantic relations</semantic-link></h3> 
        	<p>Advanced semantic search using query builder</p>
+           </div></div>
+     
+        <div class="panel panel-default" style="width:400px">        
+         <div class="panel-body">
         <h3><semantic-link iri="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity">by model/ontology</semantic-link></h3>
        	<p>Explore the data based on the underlying ontology the <semantic-link title="PARTHENOS Entities Model" uri='[[resolvePrefix "p:DocsModel"]]'>PARTHENOS Entities Model</semantic-link></p>
+          </div></div>
       </bs-col>
     </bs-row>
 
@@ -42,58 +52,70 @@
     <br/>
     <br/>
 
+       <template id="panelFrontpage" >
+        <bs-col sm="3" >
+        <div class="panel panel-default" style="height:270px">
+         <div class="panel-body">
+      	<div style="text-align:center" >
+          {{#ifCond image.value "==" ""}}
+          	<i class="fa fa-{{icon.value}} fa-4x"></i>
+          {{else}}
+          	<img width="40" style="margin:10px" src="{{image.value}}" /> 
+          {{/ifCond}}
+         </div>
+      	<h2 style="text-align:center"><semantic-link  iri="{{link.value}}">{{title.value}}</semantic-link></h2>  
+      	<p>{{text.value}}</p>
+          </div>
+        </div>
+    	</bs-col>
+      </template>
+   
+    
     <h2>Highlights</h2>  
     <bs-row>
-      <bs-col sm="3" >
-      	<div style="text-align:center" >
-        <img width="40" style="margin:10px" src="https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" /> </div>
-      	<h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/TopEntities">PARTHENOS Top Entities</semantic-link></h2>  
-      	<p>Browse through the manually crafted dataset of top-level entities, such as software and services, which were created within the project (since this data did not previously exist).</p>
-    	</bs-col>
-    	<bs-col sm="3" >
-      	<div style="text-align:center" ><i class="fa fa-star fa-4x"></i></div>
-      	<h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Examples">Showcases</semantic-link></h2>  
-      	<p>This is a hand curated list of entities-detail views and other specialized pages to highlight specific aspects of the application or the dataset.</p>
-    	</bs-col>
-    	<bs-col sm="3" >
-      	<div style="text-align:center" ><i class="fa fa-image fa-4x"></i></div>
-      	<h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Images">Images</semantic-link></h2>  
-      	<p>Browse through records featuring an image representation.</p>
-    	</bs-col>
-    	<bs-col sm="3" >
-      	<div style="text-align:center" ><i class="fa fa-map-marker fa-4x"></i></div>
-      	<h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/maps_testing">Places</semantic-link></h2>  
-      	<p>Browse through geo-referenced records. (Only available for records with geo-coordinates).</p>
-    	</bs-col>
+    <semantic-table query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {
+       ("Main Entities" "http://parthenos.acdh.oeaw.ac.at/TopEntities" "https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" "" "Browse through the manually crafted dataset of top-level entities, such as software and services, which were created within the project (since this data did not previously exist).")
+  ("Showcases" "http://parthenos.acdh.oeaw.ac.at/Examples" "" "star" "This is a hand curated list of entities-detail views and other specialized pages to highlight specific aspects of the application or the dataset.")
+  ("Images" "http://parthenos.acdh.oeaw.ac.at/Images" "" "image" "Browse through records featuring an image representation.")
+  ("Places" "http://parthenos.acdh.oeaw.ac.at/maps_testing" "" "map-marker" "Browse through geo-referenced records. (Only available for records with geo-coordinates). [TODO: check link]")
+       } } '        
+                    tuple-template='{{>p:panelFrontpage}}'
+           options='{"showFilter": false}'          >
+      
+      </semantic-table>
     </bs-row>
-
+ 
     <div style="clear:both" />
     <br/>
 
     <h2>PARTHENOS Discovery Lab</h2>
     <p>This is where you can experiment with the dataset.</p>
+    
+   
+    
     <bs-row>
       <bs-col sm="3" >
+        <div class="panel panel-default" style="height:270px">
+         <div class="panel-body">
+      	
         <div style="text-align:center" ><i class="fa fa-search fa-4x"></i></div>
         <h2 style="text-align:center"><mp-link url="/sparql">SPARQL</mp-link></h2>  
         <p>User interface to run any SPARQL query on the underlying dataset.</p>
+          </div></div>
       </bs-col>
-      <bs-col sm="3">
-        <div style="text-align:center" ><i class="fa fa-table fa-4x"></i></div>
-        <h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Statistics">Statistics</semantic-link></h2>  
-        <p>A suite of aggregation queries offering an overview over various aspects of the dataspace.</p>
-      </bs-col>
-      <bs-col sm="3">
-        <div style="text-align:center" ><i class="fa fa-flask fa-4x"></i></div>
-        <h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Docs/Notebooks">Data Notebooks</semantic-link></h2>
-        <p>Connect to the dataset via a Jupyter Notebook and do your own processing.</p>
-      </bs-col>
-      <bs-col sm="3">
-        <div style="text-align:center" ><i class="fa fa-asterisk fa-4x"></i></div>
-        <h2 style="text-align:center"><semantic-link  iri="http://parthenos.acdh.oeaw.ac.at/Curation">Curation</semantic-link></h2>
-        <p>Collection of custom pages to run experiments on or to showcase data quality aspects of the dataset.</p>
-      </bs-col>
-    </bs-row> 
+   
+      <semantic-table query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {
+       ("Statistics" "http://parthenos.acdh.oeaw.ac.at/Statistics" "" "table" "A suite of aggregation queries offering an overview over various aspects of the dataspace.")
+  ("Data Notebooks" "http://parthenos.acdh.oeaw.ac.at/Docs/Notebooks" "" "flask" "Connect to the dataset via a Jupyter Notebook and do your own processing.")
+  ("Curation" "http://parthenos.acdh.oeaw.ac.at/Curation" "" "asterisk" "Collection of custom pages to run experiments on or to showcase data quality aspects of the dataset.")
+  
+       } } '        
+                    tuple-template='{{>p:panelFrontpage}}'
+           options='{"showFilter": false}'          >
+      
+      </semantic-table>
+      </bs-row>
+  
 
   </div>
 
