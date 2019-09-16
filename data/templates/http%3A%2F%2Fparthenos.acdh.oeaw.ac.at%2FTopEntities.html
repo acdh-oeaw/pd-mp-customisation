@@ -14,17 +14,18 @@
     <h1> Parthenos Top Entities</h1>
  <p>This page offers direct access to the handcrafted part of the dataset, aiming to capture top-level entities, which where not explicitly registered in any of the sources.</p>
   
-<h2>Actors</h2>
+    
+    <h2>Actors</h2>
     <semantic-table 
     query='SELECT ?s ?l ?t   WHERE {
+  GRAPH ?record { ?s rdf:type ?t. ?s rdfs:label ?l }
+  ?t rdfs:subClassOf* crm:E39_Actor.
   GRAPH <http://www.d-net.research-infrastructures.eu/provenance/graph> {
     ?record <http://www.d-net.research-infrastructures.eu/provenance/collectedFrom> ?api.
     ?api <http://www.d-net.research-infrastructures.eu/provenance/isApiOf> ?source.
+    FILTER(STRSTARTS(?source, "PARTHENOS"))    
   }
-  FILTER(STRSTARTS(?source, "PARTHENOS"))
-   ?t rdfs:subClassOf* crm:E39_Actor.
-  GRAPH ?record { ?s rdf:type ?t. ?s rdfs:label ?l }
-}'
+} LIMIT 100'
 ></semantic-table>
     
 <h2>Services</h2>
@@ -38,7 +39,7 @@
    ?t rdfs:subClassOf* pe:PE1_Service.
   GRAPH ?record { ?s rdf:type ?t.  ?s rdfs:label ?l. }
   OPTIONAL {?s pe:PP28_has_designated_access_point ?url }
-}'
+} LIMIT 100'
 ></semantic-table>
 
     
@@ -52,10 +53,52 @@
   FILTER(STRSTARTS(?source, "PARTHENOS"))
    ?t rdfs:subClassOf* pe:PE18_Dataset.
   GRAPH ?record { ?s rdf:type ?t.  ?s rdfs:label ?l.}
-}'
+} LIMIT 100'
 ></semantic-table>
 
-  </div>
+  <h2>Types</h2>
+    <p>Overview of number of instances per class under Parthenos Top Entities. (Clicking on the number will open and invoke a corresponding SPARQL query.)</p>
+    <semantic-table 
+    query='PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+
+                SELECT ?t (count (distinct ?s) as ?cnt) WHERE {
+                  GRAPH ?record { ?s rdf:type ?t. }
+
+                  GRAPH <http://www.d-net.research-infrastructures.eu/provenance/graph> {
+                    ?record <http://www.d-net.research-infrastructures.eu/provenance/collectedFrom> ?api.
+                    ?api <http://www.d-net.research-infrastructures.eu/provenance/isApiOf> ?source.
+                    FILTER(STRSTARTS(?source, "PARTHENOS"))    
+                     }
+                        }
+                GROUP BY ?t
+                ORDER BY DESC(?cnt)'
+ 			column-configuration='[
+               {"variableName":"t", "displayName":"Class"}, 
+ 							{	"displayName": "Instances", 
+    						"cellTemplate": "{{>sparqlCell maintype=t.value cnt=cnt.value}}" 
+    						}
+             ]'
+           >
+              <template id="sparqlCell" >
+                <div><mp-link target="_blank" url="/sparql" urlqueryparam-query='PREFIX acdh: <http://acdh.oeaw.ac.at/>
+                    SELECT DISTINCT ?s ?label ?maintype WHERE {                           
+                           BIND (<{{maintype}}> as ?maintype).
+                                    GRAPH ?g { ?s a ?maintype .}
+                      							OPTIONAL { ?s rdfs:label ?label }
+                                    GRAPH <http://www.d-net.research-infrastructures.eu/provenance/graph> { 
+                              ?g <http://www.d-net.research-infrastructures.eu/provenance/collectedFrom> ?source .
+                              ?source <http://www.d-net.research-infrastructures.eu/provenance/isApiOf> ?sourceLabel .
+                                        FILTER (STRSTARTS(?sourceLabel, "PARTHENOS"))
+                            }
+                                }										
+                    LIMIT 10'>{{cnt}}</mp-link></div>
+              </template>
+    
+    </semantic-table>
+   
+    
   
 </div>
+
+  </div>
 

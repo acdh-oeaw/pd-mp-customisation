@@ -1,0 +1,230 @@
+<ol class="page-breadcrumb">
+  <li>
+    <mp-link title="Home" url="/">Home</mp-link>
+  </li>
+   <li class="active">
+    <mp-label iri='[[this]]'></mp-label>
+  </li>
+</ol>
+
+<div class="page">
+  <div class="page__header">
+    <div class='page__header-thumbnail'>
+      <h2><i class="fa fa-search fa-2x"></i></h2>
+    </div>
+    <div class='page__header-body'>
+      <h2>Advanced Search</h2>
+      <p>Semantic Search using query builder based on fundamental categories and relations. <semantic-link iri="p:DocsMainFeatures">More information</semantic-link> [TODO: link not working right (#search_querybuilder), see <a href="https://metaphacts.atlassian.net/servicedesk/customer/portal/4/MS-108">MP:MS-108</a>]</p>
+    </div>
+  </div>
+  <div class="page__body">          
+    
+    <semantic-search 
+                
+      relations = '{
+                   "<http://parthenos.acdh.oeaw.ac.at/hasCurated>": [
+                     {
+                       "kind": "resource",
+                       "queryPattern": "
+                       {
+                     ?__value__ pe:PP13i_is_volatile_dataset_curated_by|pe:PP11i_is_volatile_digital_object_curated_by ?curating_service.
+             ?curating_service a pe:PE17_Curated_Data_E-Service .
+                  ?curating_service pe:PP2_provided_by $subject.
+                       }
+                       "
+                     }
+                   ],
+                   "<http://parthenos.acdh.oeaw.ac.at/hosts>": [
+                     {
+                       "kind": "resource",
+                       "queryPattern": "
+                       {
+                   ?__value__ pe:PP8i_is_dataset_hosted_by ?service.                   
+                       }
+                       "
+                     }
+                   ],
+                   
+                   "<http://parthenos.acdh.oeaw.ac.at/isPartOf>": [
+                     {
+                       "kind": "resource",
+                       "queryPattern": "
+                       {                   
+                   $subject pe:PP23i_is_dataset_part_of|^pe:PP23_has_dataset_part ?__value__ .
+                       }
+                       "
+                     }
+                   ],
+                    
+                   "<http://parthenos.acdh.oeaw.ac.at/hasMember>": [
+                     {
+                       "kind": "resource",
+                       "queryPattern": "
+                       {                   
+                    $subject crm:P107_has_current_or_former_member|^crm:P107i_is_current_or_former_member_of ?__value__ .
+                       }
+                       "
+                     }
+                   ],
+                    "<http://parthenos.acdh.oeaw.ac.at/isMemberOf>": [
+                     {
+                       "kind": "resource",
+                       "queryPattern": "
+                       {                   
+                    $subject ^crm:P107_has_current_or_former_member|crm:P107i_is_current_or_former_member_of ?__value__ .
+                       }
+                       "
+                     }
+                   ]
+                 }'
+                     
+                     search-profile='{ 
+                      "categories": [{
+                                       "iri": "<http://www.w3.org/2004/02/skos/core#Concept>",
+                                       "label": "Concept"
+                                     },
+                                   	{
+                                       "iri": "<http://www.w3.org/2000/01/rdf-schema#Class>",
+                                       "label": "Class"
+                                     },
+                                     {
+                                       "iri": "<http://www.cidoc-crm.org/cidoc-crm/E39_Actor>",
+                                       "label": "Actor",
+                    									 "thumbnail":"user"
+                                     },                    
+                                     {
+                                       "iri": "<http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE18_Dataset>",
+                                       "label": "Dataset",
+                                       "thumbnail": "circle"
+                                     },
+                                     {
+                                       "iri": "<http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE1_Service>",
+                                       "label": "Service",
+                                       "thumbnail": "angle-double-right"
+                                     },
+                                     {
+                                       "iri": "<http://www.cidoc-crm.org/cidoc-crm/E53_Place>",
+                                       "label": "Place",
+                                       "thumbnail": "map-marker"
+                                     }
+                                  ],
+                            "relations": [{
+                                     "iri": "<http://parthenos.acdh.oeaw.ac.at/hasCurated>",
+                                     "label": "hasCurated",
+                                     "hasDomain": "<http://www.cidoc-crm.org/cidoc-crm/E39_Actor>",
+                                     "hasRange": "<http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE18_Dataset>"                                     
+                                   },
+                                     {
+                                     "iri": "<http://parthenos.acdh.oeaw.ac.at/hosts>",
+                                     "label": "hosts",
+                                     "hasDomain": "<http://www.cidoc-crm.org/cidoc-crm/E39_Actor>",
+                                     "hasRange": "<http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE18_Dataset>"                                     
+                                   },
+                                     {
+                                     "iri": "<http://parthenos.acdh.oeaw.ac.at/isPartOf>",
+                                     "label": "is part of",
+                                     "hasDomain": "<http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE18_Dataset>",
+                                     "hasRange": "<http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE18_Dataset>"                                     
+                                   },
+                                     {
+                                     "iri": "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>",
+                                     "label": "type",
+                                     "hasDomain": "<http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE18_Dataset>",
+                                     "hasRange": "<http://www.w3.org/2000/01/rdf-schema#Class>"
+                                   }, 
+                                   {
+                                     "iri": "<http://www.cidoc-crm.org/cidoc-crm/P129_is_about>",
+                                     "label": "about",
+                                     "hasDomain": "<http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE18_Dataset>",
+                                     "hasRange": "<http://www.w3.org/2004/02/skos/core#Concept>"
+                                   },
+                                   {
+                                     "iri": "<http://parthenos.acdh.oeaw.ac.at/hasMember>",
+                                     "label": "has member",
+                                     "hasDomain": "<http://www.cidoc-crm.org/cidoc-crm/E39_Actor>",
+                                     "hasRange": "<http://www.cidoc-crm.org/cidoc-crm/E39_Actor>"
+                                   },
+                                     {
+                                     "iri": "<http://parthenos.acdh.oeaw.ac.at/isMemberOf>",
+                                     "label": "is member",
+                                     "hasDomain": "<http://www.cidoc-crm.org/cidoc-crm/E39_Actor>",
+                                     "hasRange": "<http://www.cidoc-crm.org/cidoc-crm/E39_Actor>"
+                                   }
+                                     
+                                   ]
+                      
+                    }'
+                     
+                    
+    >
+   <semantic-search-query-keyword
+    domain='<http://www.w3.org/2000/01/rdf-schema#Resource>'
+    query='
+   prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>
+prefix pe: <http://parthenos.d4science.org/CRMext/CRMpe.rdfs/>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+      PREFIX bds: <http://www.bigdata.com/rdf/search#>
+      SELECT DISTINCT ?suggestion  WHERE {
+        ?suggestion (<http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by>/rdfs:label|rdfs:label|skos:prefLabel) ?label.
+        ?suggestion a ?type.
+          FILTER (?type NOT IN (crm:E41_Appellation, crm:E54_Dimension, pe:PE29_Access_Point, crm:E51_Contact_Point, crm:E35_Title, crm:E30_Right, crm:E65_Creation, <http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs/D7_Digital_Machine_Event>))          
+        SERVICE <http://www.bigdata.com/rdf/search#search> {
+          ?label bds:search ?__uservar__.
+          ?label bds:relevance ?score.
+          # ?label bds:minRelevance "0.5".
+          ?label bds:matchAllTerms "true".
+        }
+      }
+      ORDER BY DESC(?score)
+    '
+                                   search-term-variable="__uservar__" 
+                                 escape-lucene-syntax=false
+  ></semantic-search-query-keyword>
+  <semantic-search-query-builder
+    category-view-template='<div class="" style="display: flex; align-items: center;"><div class="semantic-search__class-selector-item"><i class="fa fa-{{thumbnail}} fa-2x"></i></div><span>{{label}}</span></div>'                          
+  		></semantic-search-query-builder>
+   
+               <div data-flex-layout="row stretch-stretch">
+               <div data-flex-self="size-1of3" style="flex: 0 0 20px;">
+  
+  <semantic-search-facet > </semantic-search-facet>
+</div>
+  <semantic-search-result-holder>
+        <div data-flex-self="md-full">
+          <semantic-search-result>
+            <mp-sparql-result-counts id='query-count'
+                                     query="SELECT DISTINCT * {}"
+                                     template='{{#if hasLimit}} <bs-alert bs-style="warning">
+                                               Showing {{numberOfResults}} of {{totalNumberOfResults}} matches. <strong>Please, refine your search.</strong> </bs-alert>
+                                               {{else}}<span> found {{numberOfResults}} matches </span>{{/if}}'>
+            </mp-sparql-result-counts>
+          </semantic-search-result>
+          
+           <semantic-search-result>
+                <semantic-table id='table-result'
+                                query='SELECT DISTINCT ?subject WHERE {}'
+                                options='{"showFilter":false, "resultsPerPage":10'
+                                 column-configuration='[
+  	{"variableName": "subject", "displayName": "Subject"}, 
+  	{
+  	"displayName": "Type", 
+  	"cellTemplate": "{{> type-collapse-template}}" 
+  	} ]'
+                >
+             <template id="type-collapse-template">
+    <div>	      
+    	<semantic-query query="SELECT ?type WHERE { <{{subject.value}}> a ?type}"></semantic-query>
+    </div>
+  </template>
+                </semantic-table>
+              </semantic-search-result>
+    </div>
+    </semantic-search-result-holder>
+                 </div>
+   </semantic-search>
+    
+  </div>
+  
+  
+</div>
+

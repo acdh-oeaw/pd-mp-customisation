@@ -1,0 +1,39 @@
+<!-- semantic table for containsPlace - may deliver back a lot of data -->
+    <semantic-query
+          query="
+                 SELECT (count(distinct ?value) as ?cnt) WHERE {
+                   ?value  <http://www.cidoc-crm.org/cidoc-crm/P89_falls_within> <[[this]]>                 
+                } 
+                LIMIT 1"
+           template='{{> template_containsPlace}}'
+         >
+      <template id='template_containsPlace'>
+        {{#each bindings}}
+        {{#ifCond cnt.value ">" 0}}
+        <dl class="clearfix">
+          <dt style="float: left; padding-right: 10px; width: 190px;">contains Places</dt>
+           <dd style="margin-left: 190px"> <span><mp-link url="/sparql" urlqueryparam-query='SELECT ?contained_places  WHERE {
+  												?contained_places  <http://www.cidoc-crm.org/cidoc-crm/P89_falls_within> <[[this]]>                 
+                }
+                 LIMIT 100'>{{cnt.value}} values</mp-link>, showing 
+            {{#ifCond cnt.value ">" 100}}100 {{else}} {{cnt.value}} {{/ifCond}}:</span>             
+          <semantic-table
+            query="
+              SELECT ?value WHERE {
+                ?value  <http://www.cidoc-crm.org/cidoc-crm/P89_falls_within> <[[this]]>.
+                	?value rdfs:label ?label .
+                } 
+                ORDER BY ?label
+                LIMIT 100"
+            column-configuration='[
+              {"variableName": "value", "displayName": "Contains"}
+              ]'
+            number-of-displayed-rows=10
+            options='{"showFilter": true}'
+          ></semantic-table>
+          </dd>
+        </dl>
+        {{/ifCond}}
+        {{/each}}
+      </template>
+    </semantic-query>

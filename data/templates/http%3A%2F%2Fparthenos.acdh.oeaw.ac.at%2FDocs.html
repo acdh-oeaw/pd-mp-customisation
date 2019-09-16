@@ -16,12 +16,24 @@
         <!-- <img width="80" style="margin:10px" src="https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" />  -->
         <i class="fa fa-book fa-4x"></i>
       </bs-col>
-      <bs-col sm="6" >
+      <bs-col sm="11" >
         <div>
           <h1>Documentation</h1>
             
           <p>These pages inform about the functionality of the application and various aspects of the dataset</p>
 
+      <semantic-table query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {
+       ("How do I use it?" "http://parthenos.acdh.oeaw.ac.at/DocsMainFeatures" "" "book" "Main features explained.")
+  ("Tell me more" "http://parthenos.acdh.oeaw.ac.at/Docs/Notebooks" "" "book" "More details")
+  ("What is in the data?" "http://parthenos.acdh.oeaw.ac.at/Curation" "" "database" "")
+  ("Technical stuff" "http://parthenos.acdh.oeaw.ac.at/DocsDeveloper" "" "terminal" ".")
+  
+       } } '        
+                    tuple-template='{{>p:panelFrontpage}}'
+           options='{"showFilter": false}'          >
+      
+      </semantic-table>
+          
           
           <h2>Application</h2>
           <p>PARTHENOS Discovery is a customisation of the semantic knowledge management platform <a href="https://www.metaphacts.com/product">Metaphactory</a>. It operates solely on top of a SPARQL endpoint and allows end users to visualize and explore the data in a user-friendly, highly customisable manner. PARTHENOS Discovery is considered complementary to the Joint Resource Registry, in that both operate on - and give access to - the same dataspace.</p>

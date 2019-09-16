@@ -1,0 +1,39 @@
+<!-- semantic table for index_of - may deliver back a lot of data -->
+    <semantic-query
+          query="
+                 SELECT (count(distinct ?value) as ?cnt) WHERE {
+                <[[this]]> pe:PP41_is_index_of|^pe:PP41i_is_indexed_by ?value .                
+                } 
+                LIMIT 1"
+           template='{{> template_index_of}}'
+         >
+      <template id='template_index_of'>
+        {{#each bindings}}
+        {{#ifCond cnt.value ">" 0}}
+        <dl class="clearfix">
+          <dt style="float: left; padding-right: 10px; width: 190px;">Is Index of</dt>
+           <dd style="margin-left: 190px"> <span><mp-link url="/sparql" urlqueryparam-query='SELECT ?indexed_items  WHERE {
+                <[[this]]> pe:PP41_is_index_of|^pe:PP41i_is_indexed_by ?indexed_items.
+                }
+                 LIMIT 100'>{{cnt.value}} values</mp-link>, showing 
+            {{#ifCond cnt.value ">" 100}}100 {{else}} {{cnt.value}} {{/ifCond}}:</span>             
+          <semantic-table
+            query="
+              SELECT ?value WHERE {
+                <[[this]]> pe:PP41_is_index_of|^pe:PP41i_is_indexed_by ?value .
+                	?value rdfs:label ?label .
+                } 
+                ORDER BY ?label
+                LIMIT 100"
+            column-configuration='[
+              {"variableName": "value", "displayName": "Indexed"}
+              ]'
+            number-of-displayed-rows=10
+            options='{"showFilter": true}'
+          ></semantic-table>
+          </dd>
+        </dl>
+        {{/ifCond}}
+        {{/each}}
+      </template>
+    </semantic-query>

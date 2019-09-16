@@ -1,0 +1,90 @@
+<!--
+https://parthenos.acdh-dev.oeaw.ac.at/resource/?uri=Template%3Ahttp%3A%2F%2Fwww.cidoc-crm.org%2Fcidoc-crm%2FE53_Place
+-->
+
+<ol class="page-breadcrumb">
+  <li>
+    <mp-link title="Home" url="/">Home</mp-link>
+  </li>
+  <li class="active">
+    <mp-label iri='[[this]]'></mp-label>
+  </li>
+</ol>
+
+<div class="page">
+	[[#if (ask "ASK { {SELECT * WHERE {?? ?p ?o}LIMIT 1}UNION {SELECT * WHERE {?s ?? ?o}LIMIT 1}UNION {SELECT * WHERE {?s ?p ??}LIMIT 1}UNION{ {SELECT * WHERE {?a ?p ?o. FILTER(??=<Template:http://www.w3.org/2000/01/rdf-schema#Resource> )} LIMIT 1} } }")]]
+    <div class='page__header-navtabs'>
+      [[> Platform:DefaultResourceHeader]]
+    </div>
+    <bs-tabs id="tabs" class='page__body-navtabs' unmount-on-exit=true>
+      <bs-tab event-key="1" title="Minimal metadata">
+        
+          <mp-field-visualization
+                  subject='[[this]]'
+                  fields='[[fieldDefinitions
+                  					hasCoordinates="https://parthenos.acdh.oeaw.ac.at/fieldDefinition/Coordinates"
+                              fallsWithin="http://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/fallsWithin"                              
+                              isResidenceOf="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/isResidenceOf"
+                               hasResidence="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/hasResidence"
+                               ]]'
+                  template='{{> Platform:FieldsVisualization subject="[[this]]" [[#if asserted]]guess="true"[[/if]]}}'
+          ></mp-field-visualization>
+			<!-- semantic table for containsPlaces - may deliver back a lot of data -->
+        [[> "https://parthenos.acdh-dev.oeaw.ac.at/resource/templates/Object/field_containsPlaces"]]
+        
+			</bs-tab>
+      <bs-tab event-key="2" title="Source (Raw triples)">
+        [[> Platform:SourceStatements]]
+      </bs-tab>
+      <bs-tab event-key="3" title="Viewer">
+        <iframe width="100%" height="1000" src="https://rdfvisualizer.acdh-dev.oeaw.ac.at/?resource=[[this]]" />
+      </bs-tab>
+      <bs-tab event-key="4" title="Map">
+
+
+
+        [[#if (ask " ASK { FILTER EXISTS{  ?? ?is_identified_by ?coordinates . { ?coordinates <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.cidoc-crm.org/cidoc-crm/E47_Spatial_Coordinates> } union { ?coordinates <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.cidoc-crm.org/cidoc-crm/E45_Address> } } } ") ]]
+
+ 			<mp-field-visualization
+                  subject='[[this]]'
+                  fields='[[fieldDefinitions
+                  					hasCoordinates="https://parthenos.acdh.oeaw.ac.at/fieldDefinition/Coordinates"          
+                               ]]'
+                  template='{{> Platform:FieldsVisualization subject="[[this]]" [[#if asserted]]guess="true"[[/if]]}}'
+          ></mp-field-visualization>
+          
+          <semantic-map id='maps-result'
+
+          query='
+          SELECT ?wkt ?description ?link WHERE {
+
+            ?? <http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by> ?instance_coordinates .
+            ?instance_coordinates a crm:E47_Spatial_Coordinates;
+                                    rdfs:label ?coord_literal.
+
+            bind ( ?coord_literal as ?description )
+            bind ( ?? as ?link )
+            bind ( ?coord_literal as ?wkt )            
+          }'
+
+          
+          ></semantic-map>
+
+        [[else]]
+          <h3>Instance has no location identifier</h3>
+        [[/if]]
+
+      </bs-tab>
+      [[> "http://www.metaphacts.com/resource/LinksToOtherDatabases" eventKey='2']]
+    </bs-tabs>
+  [[else]]
+  <div class='page__body'>
+    <p>
+      It seems that no entity with IRI <code>"[[this]]"</code> in any subject, predicate or object position is known in the knowledge graph. Also no static application page with this identifier can be found.
+    </p>
+    <p>
+      Click on the edit button (<i class="fa fa-pencil"></i>) in the top right of this page (<i>only visibile if the respective ACL permissions are being granted to you</i>) to create a new, static application page with this identifier.
+    </p>
+  </div>
+  [[/if]]
+</div>

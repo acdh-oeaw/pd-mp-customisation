@@ -1,0 +1,72 @@
+<ol class="page-breadcrumb">
+  <li>
+    <mp-link title="Home" url="/">Home</mp-link>
+  </li>
+  <li class="active">
+    <mp-label iri='[[this]]'></mp-label>
+  </li>
+</ol>
+
+<div class="page">
+	[[#if (ask "ASK { {SELECT * WHERE {?? ?p ?o}LIMIT 1}UNION {SELECT * WHERE {?s ?? ?o}LIMIT 1}UNION {SELECT * WHERE {?s ?p ??}LIMIT 1}UNION{ {SELECT * WHERE {?a ?p ?o. FILTER(??=<Template:http://www.w3.org/2000/01/rdf-schema#Resource> )} LIMIT 1} } }")]]
+    <div class='page__header-navtabs'>
+      [[> Platform:DefaultResourceHeader]]
+    </div>
+    <bs-tabs id="tabs" class='page__body-navtabs' unmount-on-exit=true>
+      <bs-tab event-key="1" title="Map">
+ 
+          <mp-field-visualization
+                  subject='[[this]]'
+                  fields='[[fieldDefinitions
+                              hasType="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/hasType" 
+                              identifiesPlace="https://parthenos.acdh.oeaw.ac.at/fieldDefinition/identifiesPlace"          
+                              ]]' 
+                              
+                    template='{{> Platform:FieldsVisualization subject="[[this]]" [[#if asserted]]guess="true"[[/if]]}}'>
+                              </mp-field-visualization>
+      
+        <!-- heuristic hoping that the coordinates in the label are valied, if there are brackets. 
+no serious validation! -->
+[[#if (ask "ASK { SELECT * WHERE {?? rdfs:label ?label. FILTER (regex(str(?label) , '\\(.*\\)') ) } LIMIT 1 }")]]
+        
+<semantic-map
+  query='
+    SELECT ?wkt ?description ?link WHERE {
+      ?? rdfs:label ?label.
+      OPTIONAL {?place <http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by> ??; rdfs:label ?place_label.}
+      BIND (coalesce(?place_label,?label) as ?description )
+      BIND (?label as ?wkt )      
+      BIND (coalesce(?place,??) as ?link )
+      }
+    
+  '
+></semantic-map>        
+        <!-- tuple-template='<b>{{description.value}}</b><br><a href="https://wikidata.metaphacts.com/resource/?uri={{link.value}}" target="_blank">Open in wikidata</a>' -->
+  [[else]]
+    <p>
+      The entity does not contain full geocoordinates information.
+    </p>
+  [[/if]]      
+			</bs-tab>
+      <bs-tab event-key="2" title="Source (Raw triples)">
+        [[> Platform:SourceStatements]]
+      </bs-tab>
+        <bs-tab event-key="3" title="Viewer">          
+        <iframe width="100%" height="1000" src="https://rdfvisualizer.acdh-dev.oeaw.ac.at/?resource=[[this]]" />                     
+      </bs-tab>
+      [[> "http://www.metaphacts.com/resource/LinksToOtherDatabases" eventKey='2']]
+    </bs-tabs>
+  [[else]]
+  <div class='page__body'>
+    <p>
+      It seems that no entity with IRI <code>"[[this]]"</code> in any subject, predicate or object position is known in the knowledge graph. Also no static application page with this identifier can be found.
+    </p>
+    <p>
+      Click on the edit button (<i class="fa fa-pencil"></i>) in the top right of this page (<i>only visibile if the respective ACL permissions are being granted to you</i>) to create a new, static application page with this identifier.
+    </p>
+  </div>
+  [[/if]]
+</div>
+
+
+
