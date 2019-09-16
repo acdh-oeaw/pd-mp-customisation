@@ -1,0 +1,26 @@
+
+<http://parthenos.acdh.oeaw.ac.at/fieldDefinition/providedBy/context> {
+  _:genid-d4275bc140934ff09c24f513f58feb8c-151C4CB6CA0BE47930C886CB6FD93A08 a <http://spinrdf.org/sp#Query>;
+    <http://spinrdf.org/sp#text> "INSERT { $subject <http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PP2_provided_by>  $value} WHERE {}" .
+  
+  _:genid-d4275bc140934ff09c24f513f58feb8c-9CE9CF178D471E993085B4C7E84A5675 a <http://spinrdf.org/sp#Query>;
+    <http://spinrdf.org/sp#text> """SELECT ?value ?label WHERE {
+  $subject <http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PP2_provided_by> ?value.
+  ?value rdfs:label ?label
+}""" .
+  
+  <http://parthenos.acdh.oeaw.ac.at/fieldDefinition/providedBy> a <http://www.metaphacts.com/ontology/fields#Field>;
+    <http://www.w3.org/2000/01/rdf-schema#label> "provided by";
+    <http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-d4275bc140934ff09c24f513f58feb8c-151C4CB6CA0BE47930C886CB6FD93A08;
+    <http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-d4275bc140934ff09c24f513f58feb8c-9CE9CF178D471E993085B4C7E84A5675;
+    <http://www.metaphacts.com/ontology/fields#domain> <http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE18_Dataset>;
+    <http://www.metaphacts.com/ontology/fields#xsdDatatype> <http://www.w3.org/2001/XMLSchema#anyURI>;
+    a <http://www.w3.org/ns/prov#Entity>;
+    <http://www.w3.org/ns/prov#wasAttributedTo> <http://www.metaphacts.com/resource/user/admin>;
+    <http://www.w3.org/ns/prov#generatedAtTime> "2019-08-20T23:30:19.071Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+  
+  <http://www.metaphacts.com/ontologies/platform#fieldDefinitionContainer> <http://www.w3.org/ns/ldp#contains>
+      <http://parthenos.acdh.oeaw.ac.at/fieldDefinition/providedBy> .
+  
+  <http://parthenos.acdh.oeaw.ac.at/fieldDefinition/providedBy> a <http://www.w3.org/ns/ldp#Resource> .
+}

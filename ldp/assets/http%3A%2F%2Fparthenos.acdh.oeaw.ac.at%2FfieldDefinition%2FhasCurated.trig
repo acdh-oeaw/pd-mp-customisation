@@ -1,0 +1,44 @@
+
+<http://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasCurated/context> {
+  <http://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasCurated> a <http://www.metaphacts.com/ontology/fields#Field>;
+    <http://www.w3.org/2000/01/rdf-schema#label> "hasCurated";
+    <http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-d4275bc140934ff09c24f513f58feb8c-9A148BC94EB4C5D0EEB4B70E2EA5100C;
+    <http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-d4275bc140934ff09c24f513f58feb8c-C33D449177CEA1DD9BCF4DF1FACCCE05;
+    <http://www.metaphacts.com/ontology/fields#domain> <http://www.cidoc-crm.org/cidoc-crm/E39_Actor>;
+    <http://www.metaphacts.com/ontology/fields#xsdDatatype> <http://www.w3.org/2001/XMLSchema#anyURI>;
+    <http://www.metaphacts.com/ontology/fields#range> <http://parthenos.d4science.org/CRMext/CRMpe.rdfs/PE18_Dataset>;
+    <http://www.metaphacts.com/ontology/fields#autosuggestionPattern> _:genid-d4275bc140934ff09c24f513f58feb8c-FB4D2524FE2D34950F43C48923B598B1 .
+  
+  _:genid-d4275bc140934ff09c24f513f58feb8c-FB4D2524FE2D34950F43C48923B598B1 a <http://spinrdf.org/sp#Query>;
+    <http://spinrdf.org/sp#text> """SELECT ?value ?type ?label WHERE {
+  ?value rdfs:label ?label .
+  FILTER REGEX(STR(?label), \"?token\")
+      ?value a ?type
+      {?type rdfs:subClassOf pe:PE18_Dataset.}
+} LIMIT 10
+     """ .
+  
+  _:genid-d4275bc140934ff09c24f513f58feb8c-C33D449177CEA1DD9BCF4DF1FACCCE05 a <http://spinrdf.org/sp#Query>;
+    <http://spinrdf.org/sp#text> """SELECT ?value WHERE {
+  ?value pe:PP13i_is_volatile_dataset_curated_by|pe:PP11i_is_volatile_digital_object_curated_by ?curating_service.
+             ?curating_service a pe:PE17_Curated_Data_E-Service .
+                  ?curating_service pe:PP2_provided_by $subject.
+}
+""" .
+  
+  _:genid-d4275bc140934ff09c24f513f58feb8c-9A148BC94EB4C5D0EEB4B70E2EA5100C a <http://spinrdf.org/sp#Query>;
+    <http://spinrdf.org/sp#text> """INSERT { 
+  ?value pe:PP13i_is_volatile_dataset_curated_by ?curating_service.            
+                  ?curating_service pe:PP2_provided_by $subject.
+} WHERE {}
+""" .
+  
+  <http://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasCurated> a <http://www.w3.org/ns/prov#Entity>;
+    <http://www.w3.org/ns/prov#wasAttributedTo> <http://www.metaphacts.com/resource/user/admin>;
+    <http://www.w3.org/ns/prov#generatedAtTime> "2019-08-20T23:30:19.077Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+  
+  <http://www.metaphacts.com/ontologies/platform#fieldDefinitionContainer> <http://www.w3.org/ns/ldp#contains>
+      <http://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasCurated> .
+  
+  <http://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasCurated> a <http://www.w3.org/ns/ldp#Resource> .
+}
