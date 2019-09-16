@@ -1,0 +1,55 @@
+<ol class="page-breadcrumb">
+  <li>
+    <mp-link title="Home" url="/">Home</mp-link>
+  </li>
+  <li class="active">
+    <mp-label iri='[[this]]'>Images</mp-label>
+  </li>
+</ol>
+
+
+<div class="page">
+ 
+  <div class="page__body">
+    <h1> Images </h1>
+    <p>This is dedicated search page for records with images.</p>
+
+    <div class="clearfix" >
+       <semantic-query
+          query="
+              SELECT (count(distinct ?image) as ?cnt) WHERE {
+               ?subject crm:P138i_has_representation $image. ?image a crm:E38_Image. }
+                LIMIT 1"
+           template='{{> template-result-count}}'
+         >
+         <template id="template-result-count" >
+             {{#each bindings}}
+          <span>
+            <mp-link url="/sparql" urlqueryparam-query='SELECT ?subject ?label ?image WHERE { ?subject crm:P138i_has_representation ?image; rdfs:label ?label. ?image a crm:E38_Image. } LIMIT 10'>{{cnt.value}}</mp-link> entries with images, showing 
+            [[#if (urlParam "limit") ]]
+            {{#ifCond cnt.value ">" [[urlParam "limit"]]}}[[urlParam "limit"]] {{else}} {{cnt.value}} {{/ifCond}}
+           	[[else]]
+            {{#ifCond cnt.value ">" 200}}200 {{else}} {{cnt.value}} {{/ifCond}}
+         		[[/if]]
+           (show <a href='?limit=500'>500</a>&nbsp;<a href='?limit=1000'>1000</a>)
+           </span>
+        	{{/each}}
+         </template>
+         </semantic-query>
+      
+      <semantic-table id="image-table"  query='SELECT ?subject ?label ?image WHERE { ?subject crm:P138i_has_representation ?image; rdfs:label ?label. ?image a crm:E38_Image. } LIMIT [[#if (urlParam "limit") ]] [[urlParam "limit"]] [[else]] 200 [[/if]]'
+                 options='{"showFilter":true, "resultsPerPage":50}'
+        		tuple-template='{{>resultTemplate}}'        
+                      
+      >
+        <template id='resultTemplate'>
+          <div style="float:left;width:200px;height:250px; overflow:hidden" class="panel panel-default text-center" title="{{label.value}}">
+            <div class="panel-body"><img src="{{image.value}}" style="height:150px;"/></div>
+            <div class="panel-footer" style="position: relative"><semantic-link iri="{{subject.value}}" >{{label.value}}</semantic-link></div>
+          </div>       
+        </template>
+      </semantic-table>
+    </div> 
+  </div> 
+  </div>
+    

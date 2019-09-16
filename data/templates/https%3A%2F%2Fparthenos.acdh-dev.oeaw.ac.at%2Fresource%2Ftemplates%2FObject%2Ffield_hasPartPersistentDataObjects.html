@@ -1,0 +1,39 @@
+<!-- semantic table for hasPartPersistentDataObjects - may deliver back a lot of data -->
+    <semantic-query
+          query="
+              SELECT (count(distinct ?value) as ?cnt) WHERE {
+                <[[this]]> pe:PP23_has_dataset_part|^pe:PP23i_is_dataset_part_of ?value .
+                }
+                LIMIT 1"
+           template='{{> template_has_part}}'
+         >
+      <template id='template_has_part'>
+        {{#each bindings}}
+        {{#ifCond cnt.value ">" 0}}
+        <dl class="clearfix">
+          <dt style="float: left; padding-right: 10px; width: 190px;">Has Part (Persistent Data Objects)</dt>          
+          <dd style="margin-left: 190px"> <span><mp-link url="/sparql" urlqueryparam-query='SELECT ?partOf  WHERE {
+                <[[this]]> pe:PP23_has_dataset_part|^pe:PP23i_is_dataset_part_of ?partOf .
+                }
+                 LIMIT 100'>{{cnt.value}} values</mp-link>, showing 
+            {{#ifCond cnt.value ">" 100}}100 {{else}} {{cnt.value}} {{/ifCond}}:</span>
+            
+          <semantic-table
+            query="
+              SELECT ?value ?tt WHERE {
+                <[[this]]> pe:PP23_has_dataset_part|^pe:PP23i_is_dataset_part_of ?value .                
+                ?value a ?tt .
+                }                 
+                LIMIT 100"
+            column-configuration='[
+              {"variableName": "value", "displayName": "Persistent Data Object"}
+              ]'
+            number-of-displayed-rows=10
+            options='{"showFilter": false}'
+          ></semantic-table>
+          </dd>
+        </dl>
+        {{/ifCond}}
+        {{/each}}
+      </template>
+    </semantic-query>
