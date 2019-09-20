@@ -37,7 +37,7 @@ VALUES (?type ?icon ?label ?order) {
     <div class="panel panel-default text-center" title="{{maintype.value}}">
             <div class="panel-body">
               <div><i class="fa fa-{{icon.value}} fa-4x"></i></div>
-              <h3>{{label.value}}</h3>
+              <h3><a href="/resource/p:Search?type={{type.value}}">{{label.value}}</a></h3>
       			</div>
               <div class="panel-footer" >
               <span><semantic-link iri="{{type.value}}"><i class="fa fa-question"></i> model</semantic-link> 

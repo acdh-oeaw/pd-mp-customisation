@@ -16,25 +16,12 @@
         <!-- <img width="80" style="margin:10px" src="https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" />  -->
         <i class="fa fa-book fa-4x"></i>
       </bs-col>
-      <bs-col sm="11" >
+      <bs-col sm="8">
         <div>
           <h1>Documentation</h1>
             
           <p>These pages inform about the functionality of the application and various aspects of the dataset</p>
 
-      <semantic-table query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {
-       ("How do I use it?" "http://parthenos.acdh.oeaw.ac.at/DocsMainFeatures" "" "book" "Main features explained.")
-  ("Tell me more" "http://parthenos.acdh.oeaw.ac.at/Docs/Notebooks" "" "book" "More details")
-  ("What is in the data?" "http://parthenos.acdh.oeaw.ac.at/Curation" "" "database" "")
-  ("Technical stuff" "http://parthenos.acdh.oeaw.ac.at/DocsDeveloper" "" "terminal" ".")
-  
-       } } '        
-                    tuple-template='{{>p:panelFrontpage}}'
-           options='{"showFilter": false}'          >
-      
-      </semantic-table>
-          
-          
           <h2>Application</h2>
           <p>PARTHENOS Discovery is a customisation of the semantic knowledge management platform <a href="https://www.metaphacts.com/product">Metaphactory</a>. It operates solely on top of a SPARQL endpoint and allows end users to visualize and explore the data in a user-friendly, highly customisable manner. PARTHENOS Discovery is considered complementary to the Joint Resource Registry, in that both operate on - and give access to - the same dataspace.</p>
           <p>Further information: "metaphactory: A Platform for Knowledge Graph Management" <a href="http://www.semantic-web-journal.net/system/files/swj1950.pdf">http://www.semantic-web-journal.net/system/files/swj1950.pdf</a></p>
@@ -44,15 +31,10 @@
           <p>PARTHENOS Discovery gives access to the metadata records, contributed by its <a href="http://www.parthenos-project.eu/consortium">participating partners</a>, which have been converted into a common semantic model, the <semantic-link title="PARTHENOS Entities Model" uri='[[resolvePrefix "p:DocsModel"]]'>PARTHENOS Entities Model</semantic-link>.</p>
           <p>Under <semantic-link title="Statistics" uri='[[resolvePrefix "p:Statistics"]]'>Statistics</semantic-link> you can get a broad overview of the overall dataset: Which sources contribute what information? How many instances are available per class? How often are certain properties used? etc.</p>
           <p><img alt="Diagram describing the aggregation process" src="https://data.d4science.net/c8PL" /><br /><small>Figure: Diagram of the aggregation process. PARTHENOS Discovery operates on the aggregated and transformed metadata from the individual RIs, which are provided by the central PARTHENOS infrastructure. The datasets are accessed via SPARQL.</small></p>
-
-          <h2>Further documentation</h2>
-          <ul>
-            <li><semantic-link title="PARTHENOS Entities Model" uri='[[resolvePrefix "p:DocsModel"]]'>PARTHENOS Entities Model</semantic-link></li>
-            <li><semantic-link title="Main Features" uri='[[resolvePrefix "p:DocsMainFeatures"]]'>Main Features</semantic-link></li>
-            <li><semantic-link title="Data Notebooks" uri='[[resolvePrefix "p:DocsDataNotebooks"]]'>Data Notebooks</semantic-link></li>
-            <li><semantic-link title="Developer Documentation" uri='[[resolvePrefix "p:DocsDeveloper"]]'>Developer Documentation</semantic-link></li>
-          </ul>
         </div>
+      </bs-col>
+      <bs-col sm="3">
+        [[> p:DocsToC]]
       </bs-col>
     </bs-row>
 
