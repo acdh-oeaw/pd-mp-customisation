@@ -4,7 +4,7 @@
 
     <bs-row>
     	<bs-col sm="1" >
-      	<img width="80" style="margin:10px" src="https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" /> 
+      	<img width="80" style="max-width:100%; margin:10px" src="https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" /> 
       </bs-col>
     	<bs-col sm="8" >
       	<div >
@@ -15,54 +15,41 @@
       <bs-col sm="1" >
       </bs-col>
       <bs-col sm="2" >
-      	<div style="text-align:right; margin-top:4em"> 
-          
-          <div style="float:right; padding: 0 1em;"><i class="fa fa-book fa-4x"></i></div>
-      		<semantic-link title="Documentation" iri='[[resolvePrefix "p:DocsIndex"]]'>Read more</semantic-link> about the application and the dataset
-          
-      	</div>
+        [[> p:LinktoFeedback]]
+        [[> p:LinktoDocs]]      
+        
       </bs-col>
     </bs-row>
 
     <div style="clear:both" />
     <br/>
 	<h2>Explore/Search</h2>  
-    <bs-row>  
-    	<bs-col sm="8" >    	
+    <div>
     		<p>PARTHENOS Discovery application offers multiple options to explore the dataset.<br/>
           You can search by keyword, by semantic relations, by sources or via the underlying model.<br/>           
-    	</bs-col>
-     </bs-row>
-    <bs-row>
-      <bs-col sm="3" >
-        <div class="panel panel-default">
+    </div>
+    
+    <semantic-query query='SELECT * { VALUES(?title ?link ?text) {
+       ("by keyword" "http://parthenos.acdh.oeaw.ac.at/Search" "Keyword search with faceting over selected properties")
+  ("by semantic relations" "http://parthenos.acdh.oeaw.ac.at/SearchAdvanced" "Advanced semantic search using query builder")
+  ("by sources" "http://parthenos.acdh.oeaw.ac.at/Statistics/TopEntitiesSources" "Dataset divided by the contribution from individual sources")
+  ("by model" "http://parthenos.acdh.oeaw.ac.at/ExploreModel" "Explore the data based on the underlying ontology the <semantic-link title=\"PARTHENOS Entities Model\" uri=\"p:DocsModel\">PARTHENOS Entities Model</semantic-link>")
+       } } '        
+        template='{{> resultTemplate}}'        
+      >
+    <template id='resultTemplate'>
+      <div data-flex-layout="row stretch-justify">
+  		{{#each bindings}}
+         <div data-flex-self="size-1of4" style="margin-right:10px" class="panel panel-default">        
          <div class="panel-body">
-        <h3><semantic-link iri="http://parthenos.acdh.oeaw.ac.at/Search">by keyword</semantic-link></h3> 
-       	<p>Keyword search with faceting over selected properties</p>
-          </div></div>
-       </bs-col>
-      <bs-col sm="3" >
-        <div class="panel panel-default">        
-         <div class="panel-body">
-        <h3><semantic-link iri="http://parthenos.acdh.oeaw.ac.at/SearchAdvanced">by semantic relations</semantic-link></h3> 
-       	<p>Advanced semantic search using query builder</p>
+        <h3><semantic-link iri="{{link.value}}">{{title.value}}</semantic-link></h3> 
+       	<p>{{{text.value}}}</p>
            </div></div>
-     </bs-col>      
-      <bs-col sm="3" >
-        <div class="panel panel-default">        
-         <div class="panel-body">
-        <h3><semantic-link iri="http://parthenos.acdh.oeaw.ac.at/Statistics/TopEntitiesSources">by sources</semantic-link></h3>
-       	<p>Dataset divided by the contribution from individual sources</p>
-          </div></div>
-      </bs-col>
-      <bs-col sm="3" >
-        <div class="panel panel-default">        
-         <div class="panel-body">
-        <h3><semantic-link iri="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity">by model</semantic-link></h3>
-       	<p>Explore the data based on the underlying ontology the <semantic-link title="PARTHENOS Entities Model" uri='[[resolvePrefix "p:DocsModel"]]'>PARTHENOS Entities Model</semantic-link></p>
-          </div></div>
-      </bs-col>
-    </bs-row>
+  		{{/each}}
+      </div>
+		</template>
+  </semantic-query>
+
 <bs-row>  
     	<bs-col sm="12" >    	
     		<p>Additionally you can dive into the dataset through one of the main types: actors, datasets, services, software, projects and places.<br/> 
@@ -81,7 +68,7 @@
       
    <semantic-query query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {
        ("Main Entities" "http://parthenos.acdh.oeaw.ac.at/TopEntities" "https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" "" "Browse through the manually crafted dataset of top-level entities like project partners, services and datasets, for which descriptions did not previously exist.")
-  ("Showcases" "http://parthenos.acdh.oeaw.ac.at/Examples" "" "star" "This is a hand curated list of entities-detail views and other specialized pages to highlight specific aspects of the application or the dataset.")
+  ("Showcases" "http://parthenos.acdh.oeaw.ac.at/Showcases" "" "star" "This is a hand curated list of entities-detail views and other specialized pages to highlight specific aspects of the application or the dataset.")
   ("Images" "http://parthenos.acdh.oeaw.ac.at/Images" "" "image" "Browse through records featuring an image representation.")
   ("Places" "http://parthenos.acdh.oeaw.ac.at/Places" "" "map-marker" "Browse through geo-referenced records. (Only available for records with geo-coordinates).")
        } } '        
@@ -90,7 +77,7 @@
     <template id='resultTemplate'>
       <bs-row>
   		{{#each bindings}}
-        [[>p:panelFrontpage height="100"]]
+        [[>p:panelFrontpage height="240"]]
   		{{/each}}
       </bs-row>
 		</template>
@@ -122,7 +109,7 @@
               </div></div>
           </bs-col>
             {{#each bindings}}
-            	[[>p:panelFrontpage]]
+            	[[>p:panelFrontpage height="240"]]
       			{{/each}}          
           </bs-row>
         </template>

@@ -1,17 +1,50 @@
-<div>
-  {{#each fields as |field|}}
-    {{log field}}
-    {{#if field.values}}  
-      	<dt style='float: left; padding-right: 10px; width: 190px;'>{{field.label}}</dt>
-        <dd style='margin-left: 190px;'>
-          {{#each field.values as |value|}}
-          <span>
-                  <a href="{{value.value.value }}"  style="font-size: 12px;" target='_blank'>{{value.value.value}}&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a><br/>
-                
-          </span>
+<!-- semantic table for index_of - may deliver back a lot of data -->
+<dl class="clearfix">   
+<semantic-query
+          query="
+                 SELECT (count(distinct ?value) as ?cnt) WHERE {
+                <[[this]]> (pe:PP8i_is_dataset_hosted_by/pe:PP49_provides_access_point | pe:PP50_accessible_at) ?value .                
+                } 
+                LIMIT 1"
+           template='{{> template_index_of}}'
+         >
+      <template id='template_index_of'>
+        <div>
+        {{#each bindings}}
+        {{#ifCond cnt.value ">" 0}}
+        
+          <dt style="float: left; padding-right: 10px; width: 190px;">accessible at</dt>
+           <dd style="margin-left: 190px"> <span><mp-link url="/sparql" urlqueryparam-query='SELECT ?items  WHERE {
+                <[[this]]> (pe:PP8i_is_dataset_hosted_by/pe:PP49_provides_access_point | pe:PP50_accessible_at) ?items.
+                }
+                 LIMIT 100'>{{cnt.value}} values</mp-link>, showing 
+            {{#ifCond cnt.value ">" 100}}100 {{else}} {{cnt.value}} {{/ifCond}}:</span>             
+          </dd>
+        {{/ifCond}}
+        {{/each}}
+        </div>
+      </template>
+    </semantic-query>
+  <dd style="margin-left: 190px">
+    <!-- it seems that the passing of parameters in nested templates does not work right.
+therefore the table is moved outside of the ifCond of the upper query -->
+ <semantic-table
+            query="
+              SELECT ?link WHERE {
+                <[[this]]> (pe:PP8i_is_dataset_hosted_by/pe:PP49_provides_access_point | pe:PP50_accessible_at) ?link.                	
+                }                 
+                LIMIT 100"     
+      column-configuration='[ {
+    "displayName": "Link", "cellTemplate": "{{> linkValue}}" 
+    } ]'
+            number-of-displayed-rows=10
+            options='{"showFilter": false, "showTableHeading":false}'
+            
+          >
+            <template id="linkValue">
+              <div><a href="{{link.value}}"  style="font-size: 12px;" target="_blank">{{link.value}}&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a></div>
+</template>
+             </semantic-table>
+        </dl>
 
-          {{/each}}
-        </dd>
-    {{/if}}
-  {{/each}}
-</div>
+

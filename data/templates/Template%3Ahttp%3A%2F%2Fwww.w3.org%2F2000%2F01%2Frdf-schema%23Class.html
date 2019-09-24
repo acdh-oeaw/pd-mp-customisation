@@ -135,19 +135,29 @@
     
     <bs-tab event-key="5" title="Instances">
       <semantic-query query='SELECT (COUNT(*) as ?number) WHERE { {SELECT ?Instance WHERE{ {?Instance rdf:type ??.} UNION {?Instance rdf:type/rdfs:subClassOf+ ??.} FILTER(ISIRI(?Instance))}   LIMIT 1000 } }'
-      	template='{{#each bindings}}<bs-alert bs-style="info"><strong>{{number.value}}</strong> instances. The table below shows maximum 1000. </bs-alert>{{/each}}'>
+      	template='{{#each bindings}}<bs-alert bs-style="info"><strong>{{number.value}}</strong> instances. The table below shows maximum 100. </bs-alert>{{/each}}'> 
       </semantic-query>
+      <mp-link url="/sparql" urlqueryparam-query='SELECT DISTINCT ?Instance ?type ?Relation WHERE {
+      		{
+        		?Instance rdf:type ??. BIND("direct" as ?Relation)            
+        	} UNION {
+        		?Instance rdf:type ?type . ?type rdfs:subClassOf+ ??.
+        		BIND("inferred" as ?Relation)          
+        	}
+        	FILTER(ISIRI(?Instance))
+        } LIMIT 100'>SPARQL</mp-link>
+      
       <semantic-table query='SELECT DISTINCT ?Instance ?type ?Relation WHERE {
       		{
         		?Instance rdf:type ??. BIND("direct" as ?Relation)
             ?Instance rdfs:label ?label.
         	} UNION {
         		?Instance rdf:type ?type . ?type rdfs:subClassOf+ ??.
-        		BIND("inferred" as ?Relation)
+        		BIND("inferred" as ?Relation)            
             ?Instance rdfs:label ?label.
         	}
         	FILTER(ISIRI(?Instance))
-        } LIMIT 1000'
+        } LIMIT 100'
         options='{"showTableHeading":false, "filterPlaceholderText":"Filter Individuals"}'
         no-result-template='<i>No individuals of rdf:type "<mp-label iri="[[this]]"></mp-label>". Blank nodes are not considered.</i>'>
       </semantic-table>

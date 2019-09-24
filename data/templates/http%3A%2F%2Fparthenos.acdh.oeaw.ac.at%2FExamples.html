@@ -17,8 +17,10 @@
                     query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {
   ("Parthenos Consortium" "http://parthenos.d4science.org/handle/Parthenos/REG/Actor/D1953717-1D39-3A6B-B8FC-6092C1DCC402" "https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" "" "A representation of the consortium of the Parthenos Project itself. As a PE25_RI_Consortium a subclass of Actor.")
   ("Items with images" "[[resolvePrefix "p:Images"]]" "" "camera" "A list with items that provide images")
-  ("Service: Nakala" "http://parthenos.d4science.org/handle/Parthenos/REG/Service/3E80F492-C030-39DB-B404-A41FA8A2D898" "" "database" "An exemplary service item: Nakala by Huma-Num")
-  ("Example2" "http://parthenos.acdh.oeaw.ac.at/Examples" "" "star" "Here comes another examples.")  
+  ("Dataset: Metashare" "http://parthenos.d4science.org/handle/Parthenos/REG/s4xd151s3m0m" "" "database" "A dataset from Metashare, that acts as a collection. It includes a list  of further associated datasets.")
+  ("Service: Nakala" "http://parthenos.d4science.org/handle/Parthenos/REG/Service/3E80F492-C030-39DB-B404-A41FA8A2D898" "" "database" "An exemplary service item: Nakala by Huma-Num. It gives you a link to the service itself (Online Access Point)")
+  ("Thesaurus term: pico:opere_d_arte_visiva" "http://culturaitalia.it/pico/thesaurus/4.1#opere_d_arte_visiva" "" "database" "Integration of a thesaurus term: show all datasets that are annotated with `pico:opere_d_arte_visiva´ (delivered by Cultura Italia)")
+  ("Index: PARTHENOS Policy Wizard" "http://parthenos.d4science.org/handle/Parthenos/REG/Dataset/3A51D710-86E4-399D-8021-1AC2CB2F5752" "" "database" "Curated list of material that is referenced in the PARTHENOS Policy Wizard. It is possible to choose an item from the Indexed-List and - if available - have a link to the resource. Information on the PARTHENOS Policy Wizard and the tool itself can be found here: http://www.parthenos-project.eu/portal/wizard")
 } } '        
                     template='{{> resultTemplate}}'
                     >
@@ -34,57 +36,58 @@
     <h2>Overviews &amp; Statistics</h2>
     <ul>
       <li>
-        <semantic-link  iri="http://culturaitalia.it/pico/thesaurus/4.1#opere_d_arte_visiva">Thesaurus term: <code>pico:opere_d_arte_visiva</code> with custom listing classified instances.</semantic-link>    
+        <del>[we use it already as example] <semantic-link iri="http://culturaitalia.it/pico/thesaurus/4.1#opere_d_arte_visiva">Thesaurus term: <code>pico:opere_d_arte_visiva</code> with custom listing classified instances.</semantic-link></del>
       </li>
       <li>
-        <semantic-link  iri="p:Images">Show items with images</semantic-link>    
+        <del>[we use it already as example]<semantic-link iri="p:Images">Show items with images</semantic-link></del>
       </li>      
     </ul>
   
     <h2>Detail Pages</h2>
     <ul>
       <li>
-        <semantic-link  iri="http://parthenos.d4science.org/handle/Parthenos/REG/ubj4prec2q7o">Parthenos Consortium [PE25_RI_Consortium]</semantic-link>    
+        <del>[we use it already as example] <semantic-link  iri="http://parthenos.d4science.org/handle/Parthenos/REG/ubj4prec2q7o">Parthenos Consortium [PE25_RI_Consortium]</semantic-link></del>
       </li>
 
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/Parthenos/REG/s4xd151s3m0m">Metashare Dataset</semantic-link>
+        <del>[we use it already as example]<semantic-link iri="http://parthenos.d4science.org/handle/Parthenos/REG/s4xd151s3m0m">Metashare Dataset</semantic-link></del>
       </li>
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/LRE/LRECatalog/Dataset/9DE2B65D-AB37-3701-8BF3-61BC09133325">Example Dataset: DK-CLARIN Movin Corpus</semantic-link>
+        <del>[is not very interesting, as it does not act as a collection - may be only interesting because of the type/hosting-fields]<semantic-link iri="http://parthenos.d4science.org/handle/LRE/LRECatalog/Dataset/9DE2B65D-AB37-3701-8BF3-61BC09133325">Example Dataset: DK-CLARIN Movin Corpus</semantic-link></del>
       </li>
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/Culturaitalia/ICCUMDI/Dataset/89D41306-D622-372B-A1F9-05749C9F0916">Example Dataset: Collezione del Museo del Costume e della Moda siciliana (PE24_Volatile_Dataset)</semantic-link>: Showing an image (but having encoding problems)
+        <del>[does have coding-problems, therefore don't use as example]<semantic-link iri="http://parthenos.d4science.org/handle/Culturaitalia/ICCUMDI/Dataset/89D41306-D622-372B-A1F9-05749C9F0916">Example Dataset: Collezione del Museo del Costume e della Moda siciliana (PE24_Volatile_Dataset)</semantic-link>: Showing an image (but having encoding problems)</del>
       </li>
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/Parthenos/REG/Dataset/7D8C01E0-0CFD-38A7-B806-4FB3D4FB76EB">Example Dataset: Nakala Dataset (PE24_Volatile_Dataset)</semantic-link>
+        <del>[not a very good title; but it has nice fields: encoding type/schema/format/temporal coverage - think about taking it besides the dumb title]<semantic-link iri="http://parthenos.d4science.org/handle/Parthenos/REG/Dataset/7D8C01E0-0CFD-38A7-B806-4FB3D4FB76EB">Example Dataset: Nakala Dataset (PE24_Volatile_Dataset)</semantic-link></del>
       </li>
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/Parthenos/REG/1huzyzt4krnef">Example Dataset: Dyas Catalogue Dataset (PE24_Volatile_Dataset)</semantic-link>: Takes some time but covers a lot of fields (temporal, spatial coverage, etc.)
+        <del>[don't know why, but the fields on temporal, spatial coverage, etc. is not available anymore]<semantic-link iri="http://parthenos.d4science.org/handle/Parthenos/REG/1huzyzt4krnef">Example Dataset: Dyas Catalogue Dataset (PE24_Volatile_Dataset)</semantic-link>: Takes some time but covers a lot of fields (temporal, spatial coverage, etc.)</del>
       </li>
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/Clarin/VLO/rhje58hfza04">Example Dataset: http://hdl.handle.net/11221/90D2-0310-7084-F-9@md=cmdi (PE24_Volatile_Dataset)</semantic-link>: CLARIN dataset
+        <del>[not findable anymore (could it be, that they went lost? because I found it last week) - searching for an alternative CLARIN dataset?]
+        <semantic-link iri="https://parthenos.acdh-dev.oeaw.ac.at/resource/?uri=http%3A%2F%2Fparthenos.d4science.org%2Fhandle%2FClarin%2FVLO%2FDataset%2F1CE5A67E-A0F8-3E9D-A2C4-ACACDF5305A5">Example Dataset: http://hdl.handle.net/11221/90D2-0310-7084-F-9@md=cmdi (PE24_Volatile_Dataset)</semantic-link>: CLARIN dataset</del>
       </li>
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/Parthenos/REG/u8dico90b6ep">Example Service: DYAS Organizations and Collections Registries</semantic-link>    
+        <semantic-link iri="http://parthenos.d4science.org/handle/Parthenos/REG/Service/4028F438-38E8-3B9C-8EBA-E4B660421913">Example Service: DYAS Organizations and Collections Registries</semantic-link>    
       </li>
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/Culturaitalia/ICCUMDI/1hre7kx7cwg8m">Example Dataset with Has Part (Persistent Data Object): Collezione archeologica Museo delle Civilta preclassiche della Murgia meridionale</semantic-link>    
+        <del>[not very interesting, because the hasParts are not giving any additional information - not even a title is available]<semantic-link iri="http://parthenos.d4science.org/handle/Culturaitalia/ICCUMDI/Dataset/75BB5160-C664-3AB4-A8BF-B0937AC64B66">Example Dataset with Has Part (Persistent Data Object): Collezione archeologica Museo delle Civilta preclassiche della Murgia meridionale</semantic-link></del>
       </li>
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/Parthenos/REG/Dataset/Parthenos%20Policy%20Wizard%20Dataset">Example Dataset with Is Index of: Parthenos Wizard</semantic-link>    
+        <del>[added as an example] <semantic-link iri="http://parthenos.d4science.org/handle/Parthenos/REG/Dataset/3A51D710-86E4-399D-8021-1AC2CB2F5752">Example Dataset with Is Index of: Parthenos Wizard [need to add Accessed, so that there is a link to the cited standards</semantic-link></del>
       </li>
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/Culturaitalia/ICCUMDI/t87duwkxe983">Dataset with temporal coverage (timespan)</semantic-link>    
+        <del>[not findable anymore - search for an alternative dataset with temporal coverage]<semantic-link iri="http://parthenos.d4science.org/handle/Culturaitalia/ICCUMDI/t87duwkxe983">Dataset with temporal coverage (timespan)</semantic-link></del>
       </li>
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/Ariadne/AriadnePortal/ts1vhr52ti06">Dataset with date created and modified (Publication and Modification event) as well as temporal coverage (period)</semantic-link>    
+        <del>[not findable anymore - search for an alternative: same as above for temporal coverage (timespan)]<semantic-link iri="http://parthenos.d4science.org/handle/Ariadne/AriadnePortal/ts1vhr52ti06">Dataset with date created and modified (Publication and Modification event) as well as temporal coverage (period)</semantic-link></del>
       </li>      
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/EHRI/PORTAL/1iauu7kwswgh0">EHRI dataset - creation Event (date, carried out by)</semantic-link>
+        <del>[not findable anymore - search for an alternative]<semantic-link iri="http://parthenos.d4science.org/handle/EHRI/PORTAL/1iauu7kwswgh0">EHRI dataset - creation Event (date, carried out by)</semantic-link></del>
       </li>
       <li>
-        <semantic-link iri="http://parthenos.d4science.org/handle/Ariadne/AriadnePortal/trzob39u2an6 ">Ariadne record with some sensible properties (isAbout, dateCreated, rights)</semantic-link>
+        <del>[not findable anymore - search for an alternative]<semantic-link iri="http://parthenos.d4science.org/handle/Ariadne/AriadnePortal/trzob39u2an6 ">Ariadne record with some sensible properties (isAbout, dateCreated, rights)</semantic-link></del>
       </li>
 
     </ul>

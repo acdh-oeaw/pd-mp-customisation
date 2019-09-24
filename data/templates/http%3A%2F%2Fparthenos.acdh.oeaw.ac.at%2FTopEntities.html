@@ -14,7 +14,11 @@
     <h1> Parthenos Top Entities</h1>
  <p>This page offers direct access to the handcrafted part of the dataset, aiming to capture entities, which where not explicitly registered in any of the sources, but are important for the coherence of the overall dataset. These are for example the actors of the PARTHENOS consortium, i.e. the research infrastructures, the PARTHENOS project consortium itself, as well as various datasets and services, especially the catalogue services which serve as source for the metadata collected from individual partners (e.g. CLARIN VLO metadata catalogue, LRE Map, <semantic-link iri="http://parthenos.d4science.org/handle/Parthenos/REG/Service/3E80F492-C030-39DB-B404-A41FA8A2D898 ">Nakala</semantic-link>)</p> 
     
-    <h2>Actors</h2>
+    
+    
+    <h2>Actors 
+    | [[singleValueFromSelect "PREFIX acdh: <http://acdh.oeaw.ac.at/> SELECT (SUM(?actorcnt) as ?cnt_p) WHERE { ?aggactor a acdh:Aggregate; acdh:hasClass <http://www.cidoc-crm.org/cidoc-crm/E39_Actor>; acdh:hasSource ?src; acdh:hasValue ?actorcnt.  FILTER (STRSTARTS(?src,'PARTHENOS'))}" ]] |  
+      </h2>
     <semantic-table 
     query='SELECT ?s ?l ?t   WHERE {
   GRAPH ?record { ?s rdf:type ?t. ?s rdfs:label ?l }
@@ -27,7 +31,8 @@
 } LIMIT 100'
 ></semantic-table>
     
-<h2>Services</h2>
+<h2>Services
+    | [[singleValueFromSelect "PREFIX acdh: <http://acdh.oeaw.ac.at/> SELECT (SUM(?actorcnt) as ?cnt_p) WHERE { ?aggactor a acdh:Aggregate; acdh:hasClass pe:PE1_Service; acdh:hasSource ?src; acdh:hasValue ?actorcnt.  FILTER (STRSTARTS(?src,'PARTHENOS'))}" ]] |  </h2>
     <semantic-table 
     query='SELECT ?s ?l ?url ?t  WHERE {
   GRAPH <http://www.d-net.research-infrastructures.eu/provenance/graph> {
@@ -42,7 +47,9 @@
 ></semantic-table>
 
     
-<h2>Datasets</h2>
+<h2>Datasets
+  | [[singleValueFromSelect "PREFIX acdh: <http://acdh.oeaw.ac.at/> SELECT (SUM(?actorcnt) as ?cnt_p) WHERE { ?aggactor a acdh:Aggregate; acdh:hasClass pe:PE18_Dataset; acdh:hasSource ?src; acdh:hasValue ?actorcnt.  FILTER (STRSTARTS(?src,'PARTHENOS'))}" ]] | 
+    </h2>
     <semantic-table 
     query='SELECT ?s ?t  ?l WHERE {
   GRAPH <http://www.d-net.research-infrastructures.eu/provenance/graph> {

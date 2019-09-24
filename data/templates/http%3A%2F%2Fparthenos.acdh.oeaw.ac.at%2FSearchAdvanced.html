@@ -3,20 +3,23 @@
     <mp-link title="Home" url="/">Home</mp-link>
   </li>
    <li class="active">
-    <mp-label iri='[[this]]'></mp-label>
+    Advanced Search
   </li>
 </ol>
 
 <div class="page">
-  <div class="page__header">
-    <div class='page__header-thumbnail'>
-      <h2><i class="fa fa-search fa-2x"></i></h2>
+  <div class="page__header">    
+     <div data-flex-layout="row top-center">    
+   <div><i class="fa fa-search fa-4x"></i>
     </div>
-    <div class='page__header-body'>
+    <div data-flex-self="size-x1">
       <h2>Advanced Search</h2>
-      <p>Semantic Search using query builder based on fundamental categories and relations. <semantic-link iri="p:DocsMainFeatures">More information</semantic-link> [TODO: link not working right (#search_querybuilder), see <a href="https://metaphacts.atlassian.net/servicedesk/customer/portal/4/MS-108">MP:MS-108</a>]</p>
+      <p>Semantic search using query builder based on fundamental categories and relations.</p>
+      </div>
+    <div>[[> p:LinktoDocs doclink="/resource/p:DocsMainFeatures#search_querybuilder"]]</div>
+     </div>  
     </div>
-  </div>
+  
   <div class="page__body">          
     
     <semantic-search 

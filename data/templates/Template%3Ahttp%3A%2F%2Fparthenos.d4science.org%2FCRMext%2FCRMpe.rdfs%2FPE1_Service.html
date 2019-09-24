@@ -33,12 +33,20 @@
                           curatesDigitalHolding="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/curatesDigitalHolding"
                           curatesVolatileDataset="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/curatesVolatileDataset"
                           hasPreservationActivity="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/hasPreservationActivity"
-                          hasOnlineAccessPoint="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/hasOnlineAccessPoint"
                           hasProtocolType="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/hasProtocolType"
                           hasAccessPoint="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/hasAccessPoint"
-                           ]]'
+                      ]]'
               template='{{> Platform:FieldsVisualization subject="[[this]]" [[#if asserted]]guess="true"[[/if]]}}'
             ></mp-field-visualization>
+        <!-- External links -->
+        <mp-field-visualization
+						subject='[[this]]'
+            fields='[[fieldDefinitions                         
+            		hasOnlineAccessPoint="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/hasOnlineAccessPoint"
+            ]]'
+            template='{{> p:FieldVisualizationLink subject="[[this]]" [[#if asserted]]guess="true"[[/if]]}}'
+				></mp-field-visualization>
+
 			</bs-tab>
       <bs-tab event-key="2" title="Source (Raw triples)">
         [[> Platform:SourceStatements]]

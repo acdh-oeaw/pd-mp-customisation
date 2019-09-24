@@ -22,51 +22,74 @@
       <bs-col sm="8">
         <div>
           <h1>Main Features</h1>
-            <bs-alert bs-style="warning"><strong>Being worked on. See <a href="https://docs.google.com/document/d/14hbh9kWKQAaBk7QMg1aG66wH5i9b8KVJmwQzjl8rFoM/edit#" >PD User Texts gdoc</a>.</strong></bs-alert>
-          <p>This page informs about main features of PARTHENOS disovery.</p>
+            
+          <p>This page gives you an overview of the main features of PARTHENOS Discovery and how to use it.</p>
     
-          <p>There are three main modes to explore the dataset:</p>
+          <p>The application offer multiple options to explore the dataset:</p>
+          
           <ul>
-            <li><a href="#search">Search</a></li>
-            <li><a href="#explore">Explore via the underlying model/ontology</a></li>
-            <li><a href="#detail">Custom detail views for main entities</a></li>
+            <li><a href="#search_keyword">Keyword search with facets</a></li>            
+            <li><a href="#search_querybuilder">Search based on semantic relations between entities (Query builder)</a></li>
+            <li><a href="#explore_source">Explore by sources</a> - Overview of the dataset divided by the provenance of the records </li>
+            <li><a href="#explore_model">Explore via the underlying model</a></li>
+            
+            <li><a href="#search_sparql">SPARQL</a> - standard query language for RDF data, full expressive power at the cost of having to learn a query language</li>
+            <li><a href="#detail">Custom detail views </a> allows for lateral navigation, jumping between related entities</li>
           </ul>
 
-          <h2 id="search">Search</h2>
-          <p>PARTHENOS Discovery offers multiple modes of searching and exploring the underlying dataset:<p>
-          <ul>
-            <li><a href="#search_fulltext">Full-text search</a></li>
-            <li><a href="#search_faceted">Faceted search</a></li>
-            <li><a href="#search_querybuilder">Search based on the relations between entities (Query builder)</a></li>
-            <li><a href="#search_sparql">SPARQL</a></li>
-          </ul>
+          <h2>Your Feedback - Help improve the application and the data</h2>
+          [[> p:LinktoFeedback]]
+          <p>We aim to further develop the application, as well as to continuously work on the quality of data. Therefore we welcome any feedback both regarding the functionality (bugs, feature requests), and regarding the data. For this purpose we have set up a <a href="https://github.com/acdh-oeaw/pd-labs">github repository pd-labs</a> and introduced a feedback button on the top right of every page that allows you to submit an issue in the repository contextual to given page. (The link to current page is automatically copied to the submission form for the issue.)</p>
+            
+          <h2>Options to search and explore</h2>
+          <h3 id="search_keyword"><semantic-link iri="p:Search" >Keyword search with facets</semantic-link></h3>
+          <p>This is the basic "google-like" search method, returning records matching the search term. Some notes of the usage:
+          </p>
+            <ul>
+              <li><p>By default the search matches on full tokens not parts of a word. To allow for partial match you need to suffix the search term with asterisk. Search query:</p>
+          <pre>corp*</pre>
+                <p>
+          will match <em>corpus</em> but also <em>corpora</em> and any other words starting with <em>corp</em>.
+                </p>
+              </li>
+              <li>
+                <p>
+                If searching with multiple terms, only items are returned that match all of the terms. Example:</p>
+                <pre>corpus health</pre>
+              </li>
+          </ul>          
+          <p>
+            The potentially large result set may be further narrowed down through the use of so-called <strong>facets</strong>, a feature well-known from online shopping catalogues. Facets divide the result set along selected dimensions or fields, e.g. by type, by the source, or by the spatial coverage of the items in the result set. The available values of one facet including the number of matching items are listed in a sidebar on the left. By clicking on one of these values the result set will be filtered to items matching given value.
+            </p>
 
-          <h3 id="search_fulltext">Full-text search</h3>
-          <p>This method, used by most search engines, searches for matching text within data items. Its usefulness may be limited by the large numbers of results returned, some of which may not be relevant, but its advantage is that it works directly on the content and does not require any metadata. A more detailed explanation can be found <a href="https://en.wikipedia.org/wiki/Full-text_search">here</a>.</p>
+          <h3 id="search_querybuilder"><semantic-link iri="p:SearchAdvanced" >Search based on relations between entities (Query builder)</semantic-link></h3>
+          <p>
+            The query builder is a customizable UI component featured by Metaphactory supporting the users to formulate more complex queries based on relations between entities in an user-friendly, intuitive manner. The customization is needed to adapt the component to the specifics of ther underlying data model, but it mainly allows to abstract from internal intricacies and detail of the data model, by exposing only the most pertinent entities (in case of PARTHENOS Entities Model: <code>Actor, Dataset, Software, Service, Place</code>) and relations between these (e.g. <code>Dataset createdBy Actor</code> or <code>Actor memberOf Actor/Group</code>). Conceptually, this approach is based on the idea of <em>Fundamental Categories and Relationships</em> for querying CIDOC CRM based repositories, introduced by Tzompanaki and Doerr (2012)[1]. Metaphactory implements this concept consistently throughout the application, by introducing <a href="#docs-features-fields" >"Fields", further described in a separate section</a>. More details on the configuration and functionality of the Query builder can be found on the help page of <a href="https://help.metaphacts.com/resource/Help:SemanticSearch">Metaphacts SemanticSearch</a>.
+          </p>
+          <div >
+           <img alt="Screenshot of sample query + result in the query builder" src="https://parthenos.acdh.oeaw.ac.at/images/screen_SearchAdvanced_QueryBuilder_sampleResult.PNG" />
+            <p>Screenshot illustrating the functioning of the query builder: Search for actors who curated a specific dataset (in this case the Parthenos Policy Wizard Dataset)</p>
+          </div>
+          
 
-          <h3 id="search_faceted">Faceted search</h3>
-          <p>Faceted search provides a more targeted search method by making use of specific data fields, i.e. Entities and Sub-classes, to narrow down the returned results.  Aspects such as defined time periods, geographical location and matching concepts (e.g. female = woman = women) can be exploited by faceted search where these exist in the underlying data model and appear in the metadata. A simple example of faceted search are online shopping catalogues where several filters can be applied to narrow down the available products, e.g. as used by Amazon. Metaphacts, the faceted search facility used for PARTHENOS Discovery, makes use of knowledge graphs (and allied technologies RDF, RDFS & OWL, SPARQL and SKOS) to enable end users to explore the PARTHENOS dataset by applying filters through a navigation interface to obtain data of interest. Further information about faceted search can be found here. A practical demo of faceted search in action can be explored in ResearchSpace which is the discovery application developed on top of Metaphacts used by the British Museum <a href="https://public.researchspace.org/resource/Start">here</a>.</p>
-
-          <h3 id="search_querybuilder">Search based on relations between entities (Query builder)</h3>
-          <p>See a detailed desciption on the help page of <a href="https://help.metaphacts.com/resource/Help:SemanticSearch">Metaphacts SemanticSearch</a>.</p>
-
-          <h3 id="search_sparql">SPARQL</h3>
-          <p><a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a> is the language for querying RDF data (<a href="https://www.w3.org/TR/sparql11-query/">specification</a>). It requires some practice to master, but allows its user to query the data for any custom complex patterns. In Metaphactory, all the data displayed to the user is retrieved from the underlying triplestore via predefined SPARQL queries.<br />
-          In many places in the user interface, the underlying SPARQL query is linked, allowing the user to run the query separately (in a dedicated generic <a title="SPARQL-query interface" href="/sparql">SPARQL-query interface</a>) and to adjust it further on demand. One very simple example of this is the option to adjust the size of the results set (with the keyword "LIMIT"):<br />
-          When listing items in the user interface, the underlying queries are mostly restricted to 100 up to 1000 items for practical and performance reasons. When the user wants to see more items, this can be done by running the SPARQL query separately with the LIMIT adjusted accordingly.</p>
-
-          <h2 id="explore">Explore the data via the underlying model</h2>
-          <p>Specific to an RDF-based knowledge graph, is that the model underlying the data (the <a href="https://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a>) is represented in the same form as the data itself. Thus a corresponding database (called "<a href="https://en.wikipedia.org/wiki/Triplestore">triplestore</a>") and any applications operating on RDF-graphs can handle both the data and the model. This means that the entities of the model (called "classes" and "properties") can be explored in much the same way as the instance data.<br />
-          In PARTHENOS Discovery we took advantage of this feature providing views for the classes and properties of the model that feature the definition of given entity, its relation to other entities of the model (e.g. subclasses and superclasses) as well as its usage, i.e. showing sample entities of given class.<br />
-          For example, you can explore the class <semantic-link title="Home" uri='[[resolvePrefix "crm:E39_Actor"]]'>Actor</semantic-link> and in the tab "Instances" you see listed instances or individuals of type Actor. The tab "Usage" summarizes the relations or properties instances of Actor are described with. So for example the following table row:</p>
+          <h2 id="explore_source"><semantic-link iri='http://parthenos.acdh.oeaw.ac.at/Statistics/TopEntitiesSources'> Explore the data based on the provenance (source)</semantic-link></h2>
+          <p>This is a special view of the dataset, forming a matrix, dividing the dataset along two dimensions: source of the records, main type of the entity, informing about how many entities of given type are being contributed  by each of the data providers. The numbers in the table lead to a corresponding SPARQL query, listing entities of given type from given source.
+          </p>
+          
+          <h2 id="explore_model">Explore the data via the underlying model</h2>
+          <p>Specific to an RDF-based knowledge graph, is that the model underlying the data (the <a href="https://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a>) is represented in the same form as the data itself. Thus a corresponding database (called "<a href="https://en.wikipedia.org/wiki/Triplestore">triplestore</a>") and any applications operating on RDF-graphs can handle both the data and the model. This means that the entities of the model (called "classes" and "properties" or "predicates") can be explored in much the same way as the instance data, i.e. the individual described datasets, actors, services etc.</p>
+          <p>
+          In PARTHENOS Discovery we took advantage of this feature providing views for the classes and properties of the model that feature the definition of given entity, its relation to other entities of the model (e.g. subclasses and superclasses) as well as its usage, i.e. showing sample entities of given class.</p>
+          <p>
+          For example, you can explore the class <semantic-link title="Actor" uri='[[resolvePrefix "crm:E39_Actor"]]'>Actor</semantic-link> and in the tab "Instances" you see listed instances or individuals of type <em>Actor</em>. The tab "Usage" summarizes the relations or properties instances of Actor are described with. So for example the following table row:</p>
           <table class="table">
             <tbody>
               <tr class="standard-row">
                 <td>
-                  <span><semantic-link title="Home" uri='[[resolvePrefix "crm:P76_has_contact_point"]]'>has contact point</semantic-link></span>
+                  <span><semantic-link title="has contact pint" uri='[[resolvePrefix "crm:P76_has_contact_point"]]'>has contact point</semantic-link></span>
                 </td>
                 <td>
-                  <span><semantic-link title="Home" uri='[[resolvePrefix "crm:E45_Address"]]'>Address</semantic-link></span>
+                  <span><semantic-link title="Address" uri='[[resolvePrefix "crm:E45_Address"]]'>Address</semantic-link></span>
                 </td>
                 <td>
                   <span><a href="/resource/p:StPOt?st=http://www.cidoc-crm.org/cidoc-crm/E39_Actor&ot=http://www.cidoc-crm.org/cidoc-crm/E45_Address&p=http://www.cidoc-crm.org/cidoc-crm/P76_has_contact_point">32582</a></span>
@@ -76,12 +99,32 @@
           </table>
           <p>This means that in 32582 cases Place instances have a property “has contact point” with an Address. When you click on the number you get the list of the corresponding Place-Address pairs.</p>
 
+          <h3 id="search_sparql"><a title="SPARQL-query interface" href="/sparql">SPARQL</a></h3>
+          <p><a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a> is the language for querying RDF data (<a href="https://www.w3.org/TR/sparql11-query/">specification</a>). It requires some practice to master, but allows its user to query the data for any custom complex patterns. In Metaphactory, all the data displayed to the user is retrieved from the underlying triplestore via predefined SPARQL queries.<br />
+          In many places in the user interface, the underlying SPARQL query is linked, allowing the user to run the query separately (in a dedicated generic <a title="SPARQL-query interface" href="/sparql">SPARQL-query interface</a>) and to adjust it further on demand. One very simple example of this is the option to adjust the size of the result set (with the keyword <code>LIMIT</code>):<br />
+          When listing items in the user interface, the underlying queries are mostly restricted to 100 up to 1000 items for practical and performance reasons. When the user wants to see more items, this can be done by running the SPARQL query separately with the LIMIT adjusted accordingly.</p>
+          
           <h2 id="detail">Detail Views</h2>
-          <p>Via "detail views" you can explore each entity in the dataset in detail.<br />
+          <p>While various means for exploration of and search in the dataset are necessary to find your way through the data space, in the end the most relevant information is the detailed description of individual resources. Detail Views allow you to inspect the available information about individual entities in the dataset, roughly corresponding to a metadata record or a landing page of a resource.<p>          
+            <p>
           Next to a generic view (tab "Source statements") which lists all the properties of a given entity, for the main types custom views are available, which take into account the specifics of given type. For example, for Places there is a separate tab with a map, where the places are located on the geographical map (provided the corresponding spatial coordinates have been provided).<br />
           If there is an image representation for a given entity, it is also displayed in the header as a thumbnail.<br />
           In the tab "minimal metadata", most relevant properties of given entity, customized per type are displayed for quick overview.</p>
     
+        <h3>Templates &amp; Fields</h3>
+          <p>Metaphactory allows the presentation of data in manifold ways, based on a powerful templating mechanism. The logic which template is used for rendering of which entity is governed by the type (Class) of the corresponding entity, respecting also the class hierarchy. This means that a template for an instance of a given class is applied to all instances of all subclasses as long as there is no more specific template for one of the subclasses.</p>
+          <p>
+            More information on the <a href="https://help.metaphacts.com/resource/Help:TemplateAndApplicationPages">templating mechanism of Metaphactory</a>
+          </p>
+            
+        <p>
+          The templating mechanism is accompanied by so-called <em>Fields</em>. Fields in Metaphactory are a means to hide the internal complexity of the underlying data model behind structures known and understandable by the normal user. Essentially this is an implementation of the concept of Fundamental Categories and Fundamental Relations [1]. In practice this means, the fields offer a transparent abstraction layer over the underlying data.          
+        </p>
+          <p>
+            More information on the <a href="https://help.metaphacts.com/resource/Help:SemanticForm">definition of fields in Metaphactory help page</a>.
+          </p>
+          <hr/>
+          <p>[1] Tzompanaki K. and Doerr M. (2012) Fundamental Categories and Relationships for querying CIDOC CRM based repositories. Technical Report ICS-FORTH/TR-429, April 2012. <a href="http://www.cidoc-crm.org/sites/default/files/TechnicalReport429_April2012.pdf">http://www.cidoc-crm.org/sites/default/files/TechnicalReport429_April2012.pdf</a></p>
         </div>
       </bs-col>
       <bs-col sm="3">

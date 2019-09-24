@@ -41,15 +41,19 @@
                           isAbout="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/isAbout"
                           temporalCoverageTimeSpan="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/temporalCoverageTimeSpan"
                           isIndexedBy="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/isIndexedBy"
-                          isMetadataFor="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/isMetadataFor"                                         
+                          isMetadataFor="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/isMetadataFor"
+                          hasMetadata="http://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/hasMetadata"
                           IsAccessPointProvidedBy="https://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/IsAccessPointProvidedBy"
+                          hasSchema="http://parthenos.acdh-dev.oeaw.ac.at/fieldDefinition/hasSchema"
                            ]]'
               template='{{> Platform:FieldsVisualization subject="[[this]]" [[#if asserted]]guess="true"[[/if]]}}'
             ></mp-field-visualization>
+        
         <!-- semantic table for hasPartPersistentDataObjects - may deliver back a lot of data  -->
         [[> "https://parthenos.acdh-dev.oeaw.ac.at/resource/templates/Object/field_hasPartPersistentDataObjects"]]
         <!-- semantic table for index_of - may deliver back a lot of data -->
         [[> "https://parthenos.acdh-dev.oeaw.ac.at/resource/templates/Object/field_isIndexOf"]]
+        [[> "https://parthenos.acdh-dev.oeaw.ac.at/resource/templates/Object/field_isSchemaFor"]]        
 			</bs-tab>
       <bs-tab event-key="2" title="Source (Raw triples)">
         [[> Platform:SourceStatements]]
