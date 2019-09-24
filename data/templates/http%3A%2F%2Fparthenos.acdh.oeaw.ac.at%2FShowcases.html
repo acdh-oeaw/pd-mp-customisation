@@ -1,0 +1,65 @@
+<ol class="page-breadcrumb">
+  <li>
+    <semantic-link title="Home" uri='[[resolvePrefix "p:Start"]]'>Home</semantic-link>
+  </li>
+  <li class="active">
+    Showcases
+  </li>
+</ol>
+
+<div class="page">
+
+	<div class="page__body">
+
+ 		<h1><i class="fa fa-star"></i>Showcases</h1>
+    <p>On this page we single out distinct entities that are good examples of their respective Class or demonstrated certain salient aspects (relation between entities)</p>
+
+  	<semantic-query
+                    query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {
+  ("Parthenos Consortium" "http://parthenos.d4science.org/handle/Parthenos/REG/Actor/D1953717-1D39-3A6B-B8FC-6092C1DCC402" "https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" "" "A representation of the consortium of the Parthenos Project itself. As a PE25_RI_Consortium - a subclass of Actor.")
+  ("Dataset: Metashare" "http://parthenos.d4science.org/handle/Parthenos/REG/s4xd151s3m0m" "" "circle" "A dataset from Metashare, that acts as a collection. It includes a list of further associated datasets.")
+  ("Nakala Service" "http://parthenos.d4science.org/handle/Parthenos/REG/Service/3E80F492-C030-39DB-B404-A41FA8A2D898" "" "angle-double-right" "An exemplary service item: Nakala by Huma-Num. Features a link to the service itself (Online Access Point)")
+  ("Nakala Dataset" "http://parthenos.d4science.org/handle/Parthenos/REG/Service/3E80F492-C030-39DB-B404-A41FA8A2D898" "" "circle" "Dataset representing the whole content of Nakala by Huma-Num. It features properties: encoding type, schema/format, temporal coverage.")
+  ("Thesaurus term" "http://culturaitalia.it/pico/thesaurus/4.1#opere_d_arte_visiva" "" "tag" "Many records are categorized according to some thesaurus. Looking at the thesaurus term one can see all datasets that are annotated with the term. (delivered by Cultura Italia)")
+  ("PARTHENOS Policy Wizard" "http://parthenos.d4science.org/handle/Parthenos/REG/Dataset/3A51D710-86E4-399D-8021-1AC2CB2F5752" "" "circle" "Curated list of materials of the <a href=\"http://www.parthenos-project.eu/portal/wizard\">PARTHENOS Policy Wizard</a>. Individual items point to the corresponding resource.")
+  ("CLARIN metadata record" "http://parthenos.d4science.org/handle/Clarin/VLO/Dataset/1CE5A67E-A0F8-3E9D-A2C4-ACACDF5305A5" "" "circle" "Representation of a CLARIN CMDI record, with underlying CMDI profile (schema) and link to the described resource (is metadata for).")
+  ("Curated Data E-Service" "http://parthenos.d4science.org/handle/Parthenos/REG/Service/4028F438-38E8-3B9C-8EBA-E4B660421913" "" "angle-double-right" "Example Service: DYAS Organizations and Collections Registries - hosting a dataset.")
+  ("Entity with Image" "http://parthenos.d4science.org/handle/Culturalitalia/ICCUCI/Actor/B65972A5-8370-3EBE-A46B-152D85B17F1E" "" "image" "Entry for a museum from CulturaItalia featuring an image.")
+}                                     
+                                    } '        
+                    template='{{> resultTemplate}}'
+                    >
+      <template id='resultTemplate'>
+        <bs-row>
+          {{#each bindings}}
+          [[>p:panelFrontpage height="300"]]
+          {{/each}}
+        </bs-row>
+      </template>
+    </semantic-query>
+  
+    
+    <h2>Detail Pages</h2>
+    <ul>
+   
+      <li>
+        <del>[added as an example] <semantic-link iri="http://parthenos.d4science.org/handle/Parthenos/REG/Dataset/3A51D710-86E4-399D-8021-1AC2CB2F5752">Example Dataset with Is Index of: Parthenos Wizard [need to add Accessed, so that there is a link to the cited standards</semantic-link></del>
+      </li>
+      <li>
+        <del>[not findable anymore - search for an alternative dataset with temporal coverage]<semantic-link iri="http://parthenos.d4science.org/handle/Culturaitalia/ICCUMDI/t87duwkxe983">Dataset with temporal coverage (timespan)</semantic-link></del>
+      </li>
+      <li>
+        <del>[not findable anymore - search for an alternative: same as above for temporal coverage (timespan)]<semantic-link iri="http://parthenos.d4science.org/handle/Ariadne/AriadnePortal/ts1vhr52ti06">Dataset with date created and modified (Publication and Modification event) as well as temporal coverage (period)</semantic-link></del>
+      </li>      
+      <li>
+        <del>[not findable anymore - search for an alternative]<semantic-link iri="http://parthenos.d4science.org/handle/EHRI/PORTAL/1iauu7kwswgh0">EHRI dataset - creation Event (date, carried out by)</semantic-link></del>
+      </li>
+      <li>
+        <del>[not findable anymore - search for an alternative]<semantic-link iri="http://parthenos.d4science.org/handle/Ariadne/AriadnePortal/trzob39u2an6 ">Ariadne record with some sensible properties (isAbout, dateCreated, rights)</semantic-link></del>
+      </li>
+
+    </ul>
+
+  </div>
+
+</div>

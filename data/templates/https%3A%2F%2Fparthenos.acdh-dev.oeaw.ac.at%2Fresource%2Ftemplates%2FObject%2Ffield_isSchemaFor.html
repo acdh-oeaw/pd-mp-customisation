@@ -1,0 +1,37 @@
+<!-- semantic table for index_of - may deliver back a lot of data -->
+    <semantic-query
+          query="
+                 SELECT (count(distinct ?value) as ?cnt) WHERE {
+                ?value crmdig:L11i_was_output_of/crmdig:L23_used_software_or_firmware <[[this]]>  .                
+                } 
+                LIMIT 1"
+           template='{{> template_index_of}}'
+         >
+      <template id='template_index_of'>
+        {{#each bindings}}
+        {{#ifCond cnt.value ">" 0}}
+        <dl class="clearfix">
+          <dt style="float: left; padding-right: 10px; width: 190px;">Is schema for</dt>
+           <dd style="margin-left: 190px"> <span><mp-link url="/sparql" urlqueryparam-query='SELECT ?items  WHERE {
+                ?items crmdig:L11i_was_output_of/crmdig:L23_used_software_or_firmware <[[this]]>
+                }
+                 LIMIT 100'>{{cnt.value}} values</mp-link>, showing 
+            {{#ifCond cnt.value ">" 100}}100 {{else}} {{cnt.value}} {{/ifCond}}:</span>             
+          <semantic-table
+            query="
+              SELECT ?value WHERE {
+                ?value crmdig:L11i_was_output_of/crmdig:L23_used_software_or_firmware <[[this]]>.                	
+                }                 
+                LIMIT 100"
+            column-configuration='[
+              {"variableName": "value", "displayName": "Instances"}
+              ]'
+            number-of-displayed-rows=10
+            options='{"showFilter": true}'
+          ></semantic-table>
+          </dd>
+        </dl>
+        {{/ifCond}}
+        {{/each}}
+      </template>
+    </semantic-query>
