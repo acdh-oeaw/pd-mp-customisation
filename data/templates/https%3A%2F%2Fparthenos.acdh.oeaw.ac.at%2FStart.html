@@ -30,10 +30,10 @@
     </div>
     
     <semantic-query query='SELECT * { VALUES(?title ?link ?text) {
-       ("by keyword" "http://parthenos.acdh.oeaw.ac.at/Search" "Keyword search with faceting over selected properties")
-  ("by semantic relations" "http://parthenos.acdh.oeaw.ac.at/SearchAdvanced" "Advanced semantic search using query builder")
-  ("by sources" "http://parthenos.acdh.oeaw.ac.at/Statistics/TopEntitiesSources" "Dataset divided by the contribution from individual sources")
-  ("by model" "http://parthenos.acdh.oeaw.ac.at/ExploreModel" "Explore the data based on the underlying ontology the <semantic-link title=\"PARTHENOS Entities Model\" uri=\"p:DocsModel\">PARTHENOS Entities Model</semantic-link>")
+       ("by keyword" "https://parthenos.acdh.oeaw.ac.at/Search" "Keyword search with faceting over selected properties")
+  ("by semantic relations" "https://parthenos.acdh.oeaw.ac.at/SearchAdvanced" "Advanced semantic search using query builder")
+  ("by sources" "https://parthenos.acdh.oeaw.ac.at/Statistics/TopEntitiesSources" "Dataset divided by the contribution from individual sources")
+  ("by model" "https://parthenos.acdh.oeaw.ac.at/ExploreModel" "Explore the data based on the underlying ontology the <semantic-link title=\"PARTHENOS Entities Model\" uri=\"p:DocsModel\">PARTHENOS Entities Model</semantic-link>")
        } } '        
         template='{{> resultTemplate}}'        
       >
@@ -67,10 +67,10 @@
     <h2>Highlights</h2>  
       
    <semantic-query query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {
-       ("Main Entities" "http://parthenos.acdh.oeaw.ac.at/TopEntities" "https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" "" "Browse through the manually crafted dataset of top-level entities like project partners, services and datasets, for which descriptions did not previously exist.")
-  ("Showcases" "http://parthenos.acdh.oeaw.ac.at/Showcases" "" "star" "This is a hand curated list of entities-detail views and other specialized pages to highlight specific aspects of the application or the dataset.")
-  ("Images" "http://parthenos.acdh.oeaw.ac.at/Images" "" "image" "Browse through records featuring an image representation.")
-  ("Places" "http://parthenos.acdh.oeaw.ac.at/Places" "" "map-marker" "Browse through geo-referenced records. (Only available for records with geo-coordinates).")
+       ("Main Entities" "https://parthenos.acdh.oeaw.ac.at/TopEntities" "https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" "" "Browse through the manually crafted dataset of top-level entities like project partners, services and datasets, for which descriptions did not previously exist.")
+  ("Showcases" "https://parthenos.acdh.oeaw.ac.at/Showcases" "" "star" "This is a hand curated list of entities-detail views and other specialized pages to highlight specific aspects of the application or the dataset.")
+  ("Images" "https://parthenos.acdh.oeaw.ac.at/Images" "" "image" "Browse through records featuring an image representation.")
+  ("Places" "https://parthenos.acdh.oeaw.ac.at/Places" "" "map-marker" "Browse through geo-referenced records. (Only available for records with geo-coordinates).")
        } } '        
         template='{{> resultTemplate}}'        
       >
@@ -90,9 +90,9 @@
     <p>Here are a few more advanced options to explore and experiment with the dataset.</p>
     
       <semantic-query query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {
-       ("Statistics" "http://parthenos.acdh.oeaw.ac.at/Statistics" "" "table" "A suite of aggregation queries offering an overview over various aspects of the dataspace.")
-  ("Data Notebooks" "http://parthenos.acdh.oeaw.ac.at/DocsDataNotebooks" "" "flask" "Connect to the dataset via a Jupyter Notebook and do your own processing.")
-  ("Curation" "http://parthenos.acdh.oeaw.ac.at/Curation" "" "asterisk" "Collection of custom pages to run experiments on or to showcase data quality aspects of the dataset.")
+       ("Statistics" "https://parthenos.acdh.oeaw.ac.at/Statistics" "" "table" "A suite of aggregation queries offering an overview over various aspects of the dataspace.")
+  ("Data Notebooks" "https://parthenos.acdh.oeaw.ac.at/DocsDataNotebooks" "" "flask" "Connect to the dataset via a Jupyter Notebook and do your own processing.")
+  ("Curation" "https://parthenos.acdh.oeaw.ac.at/Curation" "" "asterisk" "Collection of custom pages to run experiments on or to showcase data quality aspects of the dataset.")
   
        } } '        
                          template='{{> resultTemplate}}'        
