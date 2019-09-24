@@ -1,0 +1,133 @@
+
+<ol class="page-breadcrumb">
+  <li>
+    <mp-link title="Home" url="/">Home</mp-link>
+  </li>
+   <li class="active">
+    <mp-label iri='[[this]]'></mp-label>
+  </li>
+</ol>
+
+<div class="page">
+  <div class="page__header">
+    <div class='page__header-thumbnail'>
+      <h2><i class="fa fa-search fa-2x"></i></h2>
+    </div>
+    <div class='page__header-body'>
+      <h2>Places</h2>
+      <p>Explore georeferenced Places.</p>
+    </div>
+  </div>
+  <div class="page__body">
+    [[#if (urlParam "fallsWithin") ]] 
+    	restricted to <semantic-link iri='[[urlParam "fallsWithin"]]'></semantic-link>.
+          [[else]]          
+          [[/if]]        
+  
+ <semantic-search >
+  
+   
+  <semantic-search-query-keyword
+    domain='<http://www.w3.org/2000/01/rdf-schema#Resource>'
+    query='
+   prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>
+prefix pe: <http://parthenos.d4science.org/CRMext/CRMpe.rdfs/>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+      PREFIX bds: <http://www.bigdata.com/rdf/search#>
+      SELECT DISTINCT ?suggestion ?label ?score WHERE {
+        ?suggestion (<http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by>/rdfs:label|rdfs:label|skos:prefLabel) ?label.
+        ?suggestion a crm:E53_Place.
+        [[#if (urlParam "fallsWithin") ]] ?suggestion crm:P89_falls_within <[[urlParam "fallsWithin"]]>.
+          [[else]]          
+          [[/if]]        
+        SERVICE <http://www.bigdata.com/rdf/search#search> {
+          ?label bds:search ?__uservar__.
+          ?label bds:relevance ?score.
+          ?label bds:minRelevance "0.2".
+          ?label bds:matchAllTerms "true".
+        }
+      }
+      ORDER BY DESC(?score)
+    '
+                                   search-term-variable="__uservar__" 
+                                 escape-lucene-syntax=false
+  ></semantic-search-query-keyword>
+   
+<bs-row>
+    <bs-col sm="4">
+  <bs-tabs>
+    <bs-tab event-key="1" title="Regions">
+      	<semantic-table id='falls-within-facet'
+                                query='SELECT ?placeB (count (DISTINCT ?placeA) as ?cnt)  WHERE {  ?placeA crm:P89_falls_within ?placeB .
+																						} GROUP BY ?placeB  ORDER BY DESC(?cnt)'
+                                options='{"showFilter":true, "resultsPerPage":20}'
+                                   column-configuration='[
+                                     {"variableName": "placeB", "displayName": "Region"},
+                                     {
+                                      "displayName": "Count Items", 
+                                      "cellTemplate": "{{> falls-within-link-template}}" 
+                                      }]'
+                                                  >
+                                               <template id="falls-within-link-template">
+                                      <div>	      
+                                        <a href="https://parthenos.acdh.oeaw.ac.at/resource/?uri=p:Places&fallsWithin={{placeB.value}}" >{{cnt.value}}</a>
+                                      </div>
+                                    </template>
+                                      >
+                </semantic-table>
+    </bs-tab>
+    <bs-tab event-key="2" title="Results">         
+          <semantic-search-result>
+            <mp-sparql-result-counts id='query-count'
+                                     query="SELECT DISTINCT ?subject {}"
+                                     template='{{#if hasLimit}} <bs-alert bs-style="warning">
+                                               Showing {{numberOfResults}} of {{totalNumberOfResults}} matches. <strong>Please, refine your search.</strong> </bs-alert>
+                                               {{else}}<span> found {{numberOfResults}} matches </span>{{/if}}'>
+            </mp-sparql-result-counts>
+          </semantic-search-result>
+					
+          
+            <semantic-search-result>
+                <semantic-table id='table-result'
+                                query='SELECT DISTINCT ?subject ?coord_literal WHERE {  OPTIONAL {?suggestion <http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by> ?instance_coordinates .  			
+            ?instance_coordinates a crm:E47_Spatial_Coordinates;
+                                    rdfs:label ?coord_literal. } }'
+                                options='{"showFilter":false, "resultsPerPage":10}'
+                                   column-configuration='[
+                                      {"variableName": "subject", "displayName": "Subject"},
+                                      {"variableName": "coord_literal", "displayName": "Coordinates"}
+                                      ]' >
+                                                  
+                </semantic-table>
+					</semantic-search-result>
+      </bs-tab>
+  </bs-tabs>
+  </bs-col>
+    <bs-col sm="8">
+      <semantic-search-result>
+      <semantic-map
+              id='maps-result'
+              query='PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+										SELECT ?wkt ?description ?link WHERE {
+            ?suggestion <http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by> ?instance_coordinates .  			
+            ?instance_coordinates a crm:E47_Spatial_Coordinates;
+                                    rdfs:label ?coord_literal.
+
+            bind ( ?suggestion as ?link )
+						bind ( ?coord_literal as ?description )            
+            bind ( ?coord_literal as ?wkt )   
+           FILTER (STRSTARTS(?coord_literal,"PO"))
+          }
+  LIMIT 1000'
+          
+              >
+              </semantic-map>   
+        </semantic-search-result>
+  </bs-col>
+</bs-row>
+    
+</semantic-search>      
+  </div>
+  
+</div>
+

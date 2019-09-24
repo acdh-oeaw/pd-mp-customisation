@@ -1,0 +1,55 @@
+<ol class="page-breadcrumb">
+  <li>
+    <semantic-link title="Home" uri='[[resolvePrefix "p:Start"]]'>Home</semantic-link>
+  </li>
+  <li class="active">
+    Documentation
+  </li>
+</ol>
+
+<div class="page">
+
+  <div class="page__body">
+
+    <bs-row>
+      <bs-col sm="1" style="padding-top:10px">
+        <!-- <img width="80" style="margin:10px" src="https://parthenos-stats.acdh.oeaw.ac.at/pd_assets/parthenos_logo.png" />  -->
+        <i class="fa fa-book fa-4x"></i>
+      </bs-col>
+      <bs-col sm="11" >
+        <div>
+          <h1>Documentation - Overview</h1>
+            
+          <p>Guides on the functionality of the application and various aspects of the dataset. If you are new to PARTHENOS Discovery start with <semantic-link title="How do I use it?" uri='[[resolvePrefix "p:DocsMainFeatures"]]'>"How do I use it?"</semantic-link></p>
+
+          <div style="padding-top: 2em;">
+          	<h2>For beginners</h2>            
+            <semantic-table query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {
+                ("How do I use it?" "[[resolvePrefix "p:DocsMainFeatures"]]" "" "book" "Explaining main features of PARTHENOS Discovery like search functionality.")
+                ("What is in the data?" "[[resolvePrefix "p:Examples"]]" "" "database" "A list of exemplary datasets as a starting point for discovery.")
+              } } '
+              tuple-template='{{>p:panelFrontpage}}'
+              options='{"showFilter": false}'>
+            </semantic-table>
+          </div>
+          
+          <div style="padding-top: 2em;">
+          	<h2>For advanced users</h2>
+            <semantic-table query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {
+  							("Tell me more" "[[resolvePrefix "p:Docs"]]" "" "book" "Giving background details on the application and the data set.")
+  							("PARTHENOS Entities Model" "[[resolvePrefix "p:DocsModel"]]" "" "book" "Explaining the PARTHENOS Entities Model, an extention of CIDOC CRM.")
+  							("Working with data notebooks" "[[resolvePrefix "p:DocsDataNotebooks"]]" "" "database" "How to discover the data with Jupyter notebooks using SPARQL.")
+                ("Technical stuff" "[[resolvePrefix "p:DocsDeveloper"]]" "" "terminal" "Information on the technical background of PARTHENOS Discovery.")
+              } } '
+              tuple-template='{{>p:panelFrontpage}}'
+              options='{"showFilter": false}'>
+            </semantic-table>
+          </div>
+
+  			</div>
+      </bs-col>
+    </bs-row>
+
+	</div>
+
+</div>

@@ -13,40 +13,19 @@
       [[> Platform:DefaultResourceHeader]]
     </div>
     <bs-tabs id="tabs" class='page__body-navtabs' unmount-on-exit=true>
-      <bs-tab event-key="1" title="Map">
- 
-          <mp-field-visualization
-                  subject='[[this]]'
-                  fields='[[fieldDefinitions
-                              hasType="https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasType" 
-                              identifiesPlace="https://parthenos.acdh.oeaw.ac.at/fieldDefinition/identifiesPlace"          
-                              ]]' 
-                              
-                    template='{{> Platform:FieldsVisualization subject="[[this]]" [[#if asserted]]guess="true"[[/if]]}}'>
-                              </mp-field-visualization>
-      
-        <!-- heuristic hoping that the coordinates in the label are valied, if there are brackets. 
-no serious validation! -->
-[[#if (ask "ASK { SELECT * WHERE {?? rdfs:label ?label. FILTER (regex(str(?label) , '\\(.*\\)') ) } LIMIT 1 }")]]
+      <bs-tab event-key="1" title="Minimal metadata">
+      <mp-field-visualization
+              subject='[[this]]'
+              fields='[[fieldDefinitions 
+                          hasID="https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasID"
+                          hasTitle="https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasTitle"
+                          hasType="https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasType"
+                          maintainingTeam="https://parthenos.acdh.oeaw.ac.at/fieldDefinition/maintainingTeam"
+                          projectOutput="https://parthenos.acdh.oeaw.ac.at/fieldDefinition/projectOutput"
+                      ]]'
+              template='{{> Platform:FieldsVisualization subject="[[this]]" [[#if asserted]]guess="true"[[/if]]}}'
+            ></mp-field-visualization>
         
-<semantic-map
-  query='
-    SELECT ?wkt ?description ?link WHERE {
-      ?? rdfs:label ?label.
-      OPTIONAL {?place <http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by> ??; rdfs:label ?place_label.}
-      BIND (coalesce(?place_label,?label) as ?description )
-      BIND (?label as ?wkt )      
-      BIND (coalesce(?place,??) as ?link )
-      }
-    
-  '
-></semantic-map>        
-        <!-- tuple-template='<b>{{description.value}}</b><br><a href="https://wikidata.metaphacts.com/resource/?uri={{link.value}}" target="_blank">Open in wikidata</a>' -->
-  [[else]]
-    <p>
-      The entity does not contain full geocoordinates information.
-    </p>
-  [[/if]]      
 			</bs-tab>
       <bs-tab event-key="2" title="Source (Raw triples)">
         [[> Platform:SourceStatements]]
@@ -67,6 +46,3 @@ no serious validation! -->
   </div>
   [[/if]]
 </div>
-
-
-

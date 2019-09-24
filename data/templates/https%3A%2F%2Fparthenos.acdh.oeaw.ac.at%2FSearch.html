@@ -1,8 +1,6 @@
 <!-- 
-https://parthenos.acdh-dev.oeaw.ac.at/resource/p:Search?action=edit 
+https://parthenos.acdh.oeaw.ac.at/resource/p:Search?action=edit 
 -->
-[[urlParam "__uservar__"]]
-
 
 <ol class="page-breadcrumb">
   <li>
@@ -14,16 +12,33 @@ https://parthenos.acdh-dev.oeaw.ac.at/resource/p:Search?action=edit
 </ol>
 
 <div class="page">
-  <div class="page__header">
-    <div class='page__header-thumbnail'>
-      <h2><i class="fa fa-search fa-2x"></i></h2>
+    <div class="page__header">    
+     <div data-flex-layout="row top-center">    
+   <div><i class="fa fa-search fa-4x"></i>
     </div>
-    <div class='page__header-body'>
-      <h2>Places</h2>
-      <p>Explore georeferenced Places.</p>
+    <div data-flex-self="size-x1">
+       <h2>Search
+        [[#if (urlParam "type") ]]
+       for <semantic-link iri="[[urlParam "type"]]" ></semantic-link>
+      [[else]]
+      
+      [[/if]]
+      </h2>      
+       <p>Full-text search with faceting.
+        [[#if (urlParam "type") ]]
+       Restricted to instances of the class <semantic-link iri="[[urlParam "type"]]" ></semantic-link> and its subclasses.
+      [[else]]
+      [[/if]]
+      </p>
+      </div>
+    <div>[[> p:LinktoDocs doclink="/resource/p:DocsMainFeatures#search_keyword"]]</div>
+     </div>  
     </div>
-  </div>
+
   <div class="page__body">
+<!--
+<p> <b>Note:</b> currently  searching in <code>P1_is_identified_by/rdfs:label|rdfs:label|skos:prefLabel</code>. Auxiliary classes like Appletion, Event are ignored. Faceting by type.</p>
+    -->
     
  <semantic-search 
                    relations = '{
@@ -161,34 +176,9 @@ prefix skos: <http://www.w3.org/2004/02/skos/core#>
     </semantic-search-result-holder>
                  </div>
    </semantic-search>
-
-    
-       <semantic-map
-              id='maps-result'
-              query='PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-										SELECT ?wkt ?description ?link WHERE {
-            ?place <http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by> ?instance_coordinates .
-  			?place a crm:E53_Place.
-            ?instance_coordinates a crm:E47_Spatial_Coordinates;
-                                    rdfs:label ?coord_literal.
-
-            bind ( ?place as ?link )
-						bind ( ?coord_literal as ?description )            
-            bind ( ?coord_literal as ?wkt )            
-          }
-  LIMIT 1000'
-          
-              >
-              </semantic-map>
     
   </div>
-  <!--
-    tuple-template='
-              <br>
-              <a href="https://parthenos.acdh-dev.oeaw.ac.at/resource/?uri={{link.value}}" target="_blank">
-                {{description.value}}
-              </a>'
--->
+  
   
 </div>
 

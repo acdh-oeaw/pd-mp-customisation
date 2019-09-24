@@ -1,0 +1,1658 @@
+@prefix sp: <http://spinrdf.org/sp#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix Help: <http://help.metaphacts.com/resource/> .
+@prefix matteo: <http://parthenos.acdh.oeaw.ac.at/matteo/> .
+@prefix User: <http://www.metaphacts.com/resource/user/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix : <http://www.metaphacts.com/resource/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/> .
+@prefix Admin: <http://www.metaphacts.com/resource/admin/> .
+@prefix crmdig: <http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs/> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix p: <http://parthenos.acdh.oeaw.ac.at/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rsp: <http://www.researchspace.org/resource/> .
+@prefix Platform: <http://www.metaphacts.com/ontologies/platform#> .
+@prefix pe: <http://parthenos.d4science.org/CRMext/CRMpe.rdfs/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rso: <http://www.researchspace.org/ontology/> .
+@prefix go: <http://parthenos.acdh.oeaw.ac.at/go/> .
+
+
+<http://www.metaphacts.com/ontologies/platform#fieldDefinitionContainer/context> {
+	Platform:fieldDefinitionContainer a <http://www.w3.org/ns/ldp#Container> , <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> ;
+		rdfs:comment "Container to store field definitions." ;
+		rdfs:label "Field Definition Container" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2018-10-12T12:02:04.884Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin .
+	
+	[] <http://www.w3.org/ns/ldp#contains> Platform:fieldDefinitionContainer .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasEmail/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasEmail> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasEmail> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Email" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-02-01T03:46:35.752Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-321b721943664b269bbff2214b220eb6-6fouab ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-321b721943664b269bbff2214b220eb6-kl0c ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E39_Actor ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-321b721943664b269bbff2214b220eb6-6fouab a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-321b721943664b269bbff2214b220eb6-kl0c a sp:Query ;
+		sp:text """SELECT DISTINCT ?value WHERE {
+  $subject crm:P76_has_contact_point ?contact .
+  ?contact a crm:E51_Contact_Point ;
+    rdfs:label ?value ;
+    crm:P2_has_type ?contact_type .
+  ?contact_type a crm:E55_Type ;
+     rdfs:label ?ctlabel.
+      FILTER (?ctlabel IN (\"email\", \"Email\"))
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasPhone/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasPhone> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasPhone> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Phone" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-04-11T13:59:29.914Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-a59f4ed0b3bf49809f3e38a775532ea6-gtps2j ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-a59f4ed0b3bf49809f3e38a775532ea6-o417z ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E39_Actor ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-a59f4ed0b3bf49809f3e38a775532ea6-gtps2j a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-a59f4ed0b3bf49809f3e38a775532ea6-o417z a sp:Query ;
+		sp:text """SELECT DISTINCT ?value WHERE {
+  $subject crm:P76_has_contact_point ?contact .
+  ?contact a crm:E51_Contact_Point ;
+    rdfs:label ?value ;
+    crm:P2_has_type ?contact_type .
+  ?contact_type a crm:E55_Type ;
+    rdfs:label ?label .
+  FILTER (?label = \"Phone\")
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasDescription/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasDescription> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasDescription> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Description" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-24T17:32:00.148Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-6df3f83a292d44dbac05e8f1872066cd-lx31ns ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-6df3f83a292d44dbac05e8f1872066cd-zmkjto ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-6df3f83a292d44dbac05e8f1872066cd-lx31ns a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-6df3f83a292d44dbac05e8f1872066cd-zmkjto a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P3_has_note ?value .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasType/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasType> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasType> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Type" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-06-28T09:05:50.925Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-debbb16fd26045e79d4555577aa07960-39tc97 ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-debbb16fd26045e79d4555577aa07960-zgwrkj ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-debbb16fd26045e79d4555577aa07960-39tc97 a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-debbb16fd26045e79d4555577aa07960-zgwrkj a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P2_has_type ?value .
+  ?value a crm:E55_Type .    
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasAppellation/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasAppellation> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasAppellation> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Appellation" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-24T15:32:49.116Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-61088a266c28484386cb23964266b23f-20xeqs ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-61088a266c28484386cb23964266b23f-g2vfnt ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E39_Actor ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-61088a266c28484386cb23964266b23f-20xeqs a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-61088a266c28484386cb23964266b23f-g2vfnt a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P1_is_identified_by ?value .
+  ?value a crm:E41_Appellation .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasAddresses/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasAddresses> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasAddresses> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Addresses" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-02-18T11:46:15.744Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-46cbc8c30f40443eba6c41e43abd3c96-cl0i4 ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-46cbc8c30f40443eba6c41e43abd3c96-ymxpkh ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E39_Actor ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-46cbc8c30f40443eba6c41e43abd3c96-cl0i4 a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-46cbc8c30f40443eba6c41e43abd3c96-ymxpkh a sp:Query ;
+		sp:text """SELECT DISTINCT ?value WHERE {
+  $subject crm:P76_has_contact_point ?contact .
+  ?contact a crm:E45_Address ;
+    rdfs:label ?value ;
+    crm:P2_has_type ?contact_type .
+  ?contact_type a crm:E55_Type .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/providesServices/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/providesServices> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/providesServices> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Provides Services" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-24T11:43:37.934Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-6e78df4666ab472ba353156a9340643c-muqvnm ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-6e78df4666ab472ba353156a9340643c-nj0oy4k ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E39_Actor ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI ;
+		<http://www.metaphacts.com/ontology/fields#range> pe:PE1_Service .
+	
+	_:genid-6e78df4666ab472ba353156a9340643c-muqvnm a sp:Query ;
+		sp:text "INSERT { $subject pe:PP2i_provides $value} WHERE {}" .
+	
+	_:genid-6e78df4666ab472ba353156a9340643c-nj0oy4k a sp:Query ;
+		sp:text """SELECT DISTINCT ?value WHERE {
+  $subject ^pe:PP2_provided_by | pe:PP2i_provides ?value .  
+  
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasMemberGroup/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasMemberGroup> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasMemberGroup> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Has Member" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-08-24T13:48:31.641Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-2b11e535353c4729abecf1d89836432a-rvhhht ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-2b11e535353c4729abecf1d89836432a-0g31l5 ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E74_Group ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI ;
+		<http://www.metaphacts.com/ontology/fields#range> crm:E39_Actor .
+	
+	_:genid-2b11e535353c4729abecf1d89836432a-0g31l5 a sp:Query ;
+		sp:text """SELECT DISTINCT ?value WHERE {
+  $subject crm:P107_has_current_or_former_member|^crm:P107i_is_current_or_former_member_of ?value .
+}""" .
+	
+	_:genid-2b11e535353c4729abecf1d89836432a-rvhhht a sp:Query ;
+		sp:text "INSERT { $subject crm:P107_has_current_or_former_member $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isMemberOfGroup/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isMemberOfGroup> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isMemberOfGroup> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Is Member Of" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-22T21:48:46.511Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-66acf8f017ec4ed9b2c93c0cb91db9ba-9gmq2q ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-66acf8f017ec4ed9b2c93c0cb91db9ba-m6e266 ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E39_Actor ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI ;
+		<http://www.metaphacts.com/ontology/fields#range> crm:E74_Group .
+	
+	_:genid-66acf8f017ec4ed9b2c93c0cb91db9ba-9gmq2q a sp:Query ;
+		sp:text """INSERT {
+  ?value crm:P107_has_current_or_former_member $subject .
+} WHERE {}
+""" .
+	
+	_:genid-66acf8f017ec4ed9b2c93c0cb91db9ba-m6e266 a sp:Query ;
+		sp:text """SELECT DISTINCT ?value WHERE {
+  $subject crm:P107i_is_current_or_former_member_of|^crm:P107_has_current_or_former_member ?value .
+  
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasID/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasID> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasID> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "ID" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-24T17:05:09.359Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-f6608a067ae4448288589c2d7483acf7-j79b5g ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-f6608a067ae4448288589c2d7483acf7-sbi02 ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-f6608a067ae4448288589c2d7483acf7-j79b5g a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-f6608a067ae4448288589c2d7483acf7-sbi02 a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P1_is_identified_by ?value .
+  ?value a crm:E42_Identifier .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasCompetence/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasCompetence> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasCompetence> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Competence" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-24T16:43:28.650Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-91e90baab884422da4df178644faf5d4-pkdbiy ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-91e90baab884422da4df178644faf5d4-1x7rrf ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-91e90baab884422da4df178644faf5d4-1x7rrf a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject pe:PP45_has_competency ?value .
+  ?value a pe:PE36_Competency_Type .
+}""" .
+	
+	_:genid-91e90baab884422da4df178644faf5d4-pkdbiy a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasWebsite/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasWebsite> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasWebsite> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Website" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-25T10:58:59.239Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-2f802736a88d4c3481ff828f9114a876-x891p ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-2f802736a88d4c3481ff828f9114a876-2cbhk ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E39_Actor ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-2f802736a88d4c3481ff828f9114a876-2cbhk a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P76_has_contact_point ?value .
+  ?value a pe:PE29_Access_Point .
+}""" .
+	
+	_:genid-2f802736a88d4c3481ff828f9114a876-x891p a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasTitle/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasTitle> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasTitle> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Title" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-25T11:02:41.719Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-6769f5779714413b9fc97a64f97e6fbb-jz9crb ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-6769f5779714413b9fc97a64f97e6fbb-7bqj1r ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-6769f5779714413b9fc97a64f97e6fbb-7bqj1r a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P1_is_identified_by ?value .
+  ?value a crm:E41_Appellation .
+}""" .
+	
+	_:genid-6769f5779714413b9fc97a64f97e6fbb-jz9crb a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isProvidedBy/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isProvidedBy> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isProvidedBy> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Provided by" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-19T14:11:48.135Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-adfdf93adb684842b136926dd75848ef-5st0uqp ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-adfdf93adb684842b136926dd75848ef-97kkb ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-adfdf93adb684842b136926dd75848ef-5st0uqp a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-adfdf93adb684842b136926dd75848ef-97kkb a sp:Query ;
+		sp:text """SELECT DISTINCT ?value WHERE {
+  $subject pe:PP2_provided_by ?value .
+  ?tg rdfs:subClassOf* crm:E74_Group .
+  ?value a ?tg .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasDeclarativeTime/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasDeclarativeTime> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasDeclarativeTime> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Declared Begin/End of operation" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-25T11:30:33.357Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-77683fc5d2c742db8553a3ae1c5cc43d-ncmihs ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-77683fc5d2c742db8553a3ae1c5cc43d-mzcc7 ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:date .
+	
+	_:genid-77683fc5d2c742db8553a3ae1c5cc43d-mzcc7 a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject pe:PP42_has_declarative_time ?value .
+}""" .
+	
+	_:genid-77683fc5d2c742db8553a3ae1c5cc43d-ncmihs a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasRights/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasRights> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasRights> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Conditions of Use/Rights" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-25T12:08:49.916Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-4f40475b452645f7a98383af8751768a-ujgxfr ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-4f40475b452645f7a98383af8751768a-mumds ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-4f40475b452645f7a98383af8751768a-mumds a sp:Query ;
+		sp:text """SELECT ?value ?label WHERE {
+  $subject crm:P16_used_specific_object ?right .
+  ?right a crm:E30_Right ;
+    crm:P2_has_type ?value .
+  ?value a crm:E55_Type ;
+    rdfs:label ?label .
+}""" .
+	
+	_:genid-4f40475b452645f7a98383af8751768a-ujgxfr a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasRightsText/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasRightsText> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasRightsText> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Conditions of Use/Rights Text" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-25T12:11:13.056Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-4ad627909a68451f9de2eea4f631b17b-bxpstw ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-4ad627909a68451f9de2eea4f631b17b-x2aowe ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-4ad627909a68451f9de2eea4f631b17b-bxpstw a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-4ad627909a68451f9de2eea4f631b17b-x2aowe a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P16_used_specific_object ?right .
+  ?right a crm:E30_Right ;
+    crm:P3_has_note ?value .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasContactPerson/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasContactPerson> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasContactPerson> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Contact Person" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-25T12:48:17.655Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-8b9935b7bc154217915fd345d409d6bd-twm62v ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-8b9935b7bc154217915fd345d409d6bd-ruwi1z ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-8b9935b7bc154217915fd345d409d6bd-ruwi1z a sp:Query ;
+		sp:text """SELECT DISTINCT ?value WHERE {
+  $subject pe:PP2_provided_by ?group .
+  ?tg rdfs:subClassOf* crm:E74_Group .
+  ?group a ?tg ;
+    crm:P107_has_current_or_former_member ?value .
+  ?value a crm:E21_Person .
+}""" .
+	
+	_:genid-8b9935b7bc154217915fd345d409d6bd-twm62v a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasPreservationActivity/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasPreservationActivity> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasPreservationActivity> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Preservation Activity Type" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-25T13:34:56.717Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-cda3632ef49e414b9f069bdcf84d2383-ccwcb3 ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-cda3632ef49e414b9f069bdcf84d2383-v45ooi ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-cda3632ef49e414b9f069bdcf84d2383-ccwcb3 a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-cda3632ef49e414b9f069bdcf84d2383-v45ooi a sp:Query ;
+		sp:text """SELECT ?value ?label WHERE {
+  $subject crm:P32_used_general_technique ?value .
+  ?value a crm:E55_Type ;
+    crm:P3_has_note ?label .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasOnlineAccessPoint/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasOnlineAccessPoint> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasOnlineAccessPoint> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Online Access Point" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-25T13:43:48.031Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-4b06d7d86605420282126c64f293adf5-fojlda ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-4b06d7d86605420282126c64f293adf5-tmcybg ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-4b06d7d86605420282126c64f293adf5-fojlda a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-4b06d7d86605420282126c64f293adf5-tmcybg a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject pe:PP28_has_designated_access_point ?value .
+  ?value a pe:PE29_Access_Point .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasProtocolType/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasProtocolType> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasProtocolType> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Protocol Type" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-25T13:53:56.977Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-b98ee23c259745179cc6c78e401b9be5-z4ds6 ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-b98ee23c259745179cc6c78e401b9be5-kua0ap ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-b98ee23c259745179cc6c78e401b9be5-kua0ap a sp:Query ;
+		sp:text """SELECT ?value ?label WHERE {
+  $subject pe:PP47_has_protocol_type ?value .
+  ?value a pe:PE37_Protocol_Type ;
+     rdfs:label ?label .
+}""" .
+	
+	_:genid-b98ee23c259745179cc6c78e401b9be5-z4ds6 a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasAccessPoint/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasAccessPoint> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasAccessPoint> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Provides Access Point" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-08-23T14:24:34.542Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-06ea3642e325439d9c608abdf6e3de77-gyqd53 ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-06ea3642e325439d9c608abdf6e3de77-8wdz7 ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-06ea3642e325439d9c608abdf6e3de77-8wdz7 a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject pe:PP49_provides_access_point ?value .
+  ?value a pe:PE29_Access_Point .
+}""" .
+	
+	_:genid-06ea3642e325439d9c608abdf6e3de77-gyqd53 a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatesDigitalHolding/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatesDigitalHolding> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatesDigitalHolding> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Curates Digital Holding" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-28T12:03:12.962Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-bed48bc7292a475c9801f80f32f017a6-8z4kul ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-bed48bc7292a475c9801f80f32f017a6-xhvgdd ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-bed48bc7292a475c9801f80f32f017a6-8z4kul a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-bed48bc7292a475c9801f80f32f017a6-xhvgdd a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject ^pe:PP11i_is_volatile_digital_object_curated_by ?value .
+  ?tv rdfs:subClassOf* pe:PE20_Volatile_Digital_Object .
+  ?value a ?tv .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hostsObject/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hostsObject> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hostsObject> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Hosts Object" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-28T12:25:37.898Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-9203b7cb2f854d59b541503353a772b4-6mxq1t ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-9203b7cb2f854d59b541503353a772b4-xyl1yy ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-9203b7cb2f854d59b541503353a772b4-6mxq1t a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-9203b7cb2f854d59b541503353a772b4-xyl1yy a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject ^pe:PP4i_is_object_hosted_by ?value .
+  ?to rdfs:subClassOf* crm:E70_Thing .
+  ?value a ?to .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hostsDigitalObject/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hostsDigitalObject> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hostsDigitalObject> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Hosts Digital Object" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-28T12:41:53.861Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-dd1c2694137e48c38934cc52f17f82ea-4qtef ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-dd1c2694137e48c38934cc52f17f82ea-z5jqrj ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI ;
+		<http://www.metaphacts.com/ontology/fields#askPattern> _:genid-dd1c2694137e48c38934cc52f17f82ea-n9dm6p .
+	
+	_:genid-dd1c2694137e48c38934cc52f17f82ea-4qtef a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-dd1c2694137e48c38934cc52f17f82ea-n9dm6p a sp:Query ;
+		sp:text "ASK {}" .
+	
+	_:genid-dd1c2694137e48c38934cc52f17f82ea-z5jqrj a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject ^pe:PP6i_is_digital_object_hosted_by ?value .
+  ?to rdfs:subClassOf* crmdig:D1_Digital_Object .
+  ?value a ?to .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hostsDataset/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hostsDataset> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hostsDataset> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Hosts Dataset" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-28T13:03:55.277Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-2df90960739444bbab5f97bee85f5f72-c2wzba ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-2df90960739444bbab5f97bee85f5f72-jxgleh ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-2df90960739444bbab5f97bee85f5f72-c2wzba a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-2df90960739444bbab5f97bee85f5f72-jxgleh a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject ^pe:PP8i_is_dataset_hosted_by ?value .
+  ?to rdfs:subClassOf* pe:PE18_Dataset .
+  ?value a ?to .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curates/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curates> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curates> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Curates" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-28T13:57:48.624Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-5c68d3a0cc8e4b82a307475ec1698e78-clwm05 ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-5c68d3a0cc8e4b82a307475ec1698e78-4vh725 ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-5c68d3a0cc8e4b82a307475ec1698e78-4vh725 a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject ^pe:PP32i_is_curated_by ?value .
+  ?to rdfs:subClassOf* pe:PE32_Curated_Thing .
+  ?value a ?to .
+}""" .
+	
+	_:genid-5c68d3a0cc8e4b82a307475ec1698e78-clwm05 a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasPart/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasPart> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasPart> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "has part (physical objects)" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-02-05T12:52:00.843Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-124267338993407eaab9d4081e413b4f-g9c4eg ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-124267338993407eaab9d4081e413b4f-zqsec ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-124267338993407eaab9d4081e413b4f-g9c4eg a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-124267338993407eaab9d4081e413b4f-zqsec a sp:Query ;
+		sp:text """SELECT ?value  WHERE {
+  $subject crm:P46_is_composed_of ?value.
+      ?tt rdfs:subClassOf* crm:E18_Physical_Thing.
+  	?value a ?tt.
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSnapshot/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSnapshot> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSnapshot> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Has Snapshot " ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-28T16:39:41.475Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-57753b8cf4414c629e7bf5ed48a1587d-5jthpb ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-57753b8cf4414c629e7bf5ed48a1587d-dc6ay ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-57753b8cf4414c629e7bf5ed48a1587d-5jthpb a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-57753b8cf4414c629e7bf5ed48a1587d-dc6ay a sp:Query ;
+		sp:text """SELECT ?value  WHERE {
+  $subject pe:PP24_has_dataset_snapshot ?value.
+      ?value a pe:PE22_Persistent_Dataset.
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatedBy/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatedBy> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatedBy> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Curated by" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-28T17:18:37.539Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-84325816b767464aba1eb4a6035d9b31-7q4wlq ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-84325816b767464aba1eb4a6035d9b31-10so7g ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-84325816b767464aba1eb4a6035d9b31-10so7g a sp:Query ;
+		sp:text """SELECT ?value  WHERE {
+  $subject crm:P147i_was_curated_by ?value.
+      ?value a crm:E87_Curation_Activity.
+}""" .
+	
+	_:genid-84325816b767464aba1eb4a6035d9b31-7q4wlq a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatesVolatileDataset/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatesVolatileDataset> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatesVolatileDataset> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Curates Volatile Dataset" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-29T10:06:33.965Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-bd3a7c98893448babf4cc6da557a0fa7-dta43 ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-bd3a7c98893448babf4cc6da557a0fa7-pvyo0a ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-bd3a7c98893448babf4cc6da557a0fa7-dta43 a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-bd3a7c98893448babf4cc6da557a0fa7-pvyo0a a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject ^pe:PP13i_is_volatile_dataset_curated_by ?value .
+  ?tv rdfs:subClassOf* pe:PE24_Volatile_Dataset .
+  ?value a ?tv .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatedByDigitalService/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatedByDigitalService> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatedByDigitalService> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Curated by" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-29T15:22:31.749Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-1ecd5e86f58143e3984d067ae9159871-3uq9b ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-1ecd5e86f58143e3984d067ae9159871-ly2zh ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-1ecd5e86f58143e3984d067ae9159871-3uq9b a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-1ecd5e86f58143e3984d067ae9159871-ly2zh a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject pe:PP11i_is_volatile_digital_object_curated_by ?value .
+  ?ts rdfs:subClassOf* pe:PE10_Digital_Curating_Service .
+  ?value a ?ts .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatedByDataService/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatedByDataService> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/curatedByDataService> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Curated by" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-01-29T15:29:20.458Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-14d78df6776e4e6eb3fcf6ba5c6ccbcf-5z3xna ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-14d78df6776e4e6eb3fcf6ba5c6ccbcf-74vfh ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-14d78df6776e4e6eb3fcf6ba5c6ccbcf-5z3xna a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-14d78df6776e4e6eb3fcf6ba5c6ccbcf-74vfh a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject pe:PP13i_is_volatile_dataset_curated_by ?value .
+  ?tv rdfs:subClassOf* pe:PE12_Data_Curating_Service .
+  ?value a ?tv .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hostedByDataService/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hostedByDataService> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hostedByDataService> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Dataset hosted by" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-08-21T00:38:51.090Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-e44dd866244a4f9e8e51ba5a0610986d-e1wz5e ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-e44dd866244a4f9e8e51ba5a0610986d-z51pgi ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-e44dd866244a4f9e8e51ba5a0610986d-e1wz5e a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-e44dd866244a4f9e8e51ba5a0610986d-z51pgi a sp:Query ;
+		sp:text """SELECT ?value ?label WHERE {
+  $subject pe:PP8i_is_dataset_hosted_by ?value .
+  ?ts rdfs:subClassOf* pe:PE7_Data_Hosting_Service .
+  ?value a ?ts .
+      ?value rdfs:label ?label
+}
+      """ .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasEncodingType/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasEncodingType> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasEncodingType> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Encoding Type" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-08-24T14:04:40.890Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-2dc93e688ffb4040b874425bfb86896d-x2lujk ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-2dc93e688ffb4040b874425bfb86896d-7tnlrx ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-2dc93e688ffb4040b874425bfb86896d-7tnlrx a sp:Query ;
+		sp:text """SELECT ?value ?label WHERE {
+  $subject crmdig:L11i_was_output_of ?event .
+  ?event a crmdig:D7_Digital_Machine_Event ;
+     crm:P33_used_specific_technique ?tech .
+  ?tech a crm:E29_Design_or_Procedure ;
+     crm:P2_has_type ?value .
+  ?value rdfs:label ?label .
+}""" .
+	
+	_:genid-2dc93e688ffb4040b874425bfb86896d-x2lujk a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSchemaOrFormat/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSchemaOrFormat> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSchemaOrFormat> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Schema/Format" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-24T00:03:26.367Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-dbe78a67ad7a47af8517e8d4fffe89ad-tq3t1j ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-dbe78a67ad7a47af8517e8d4fffe89ad-pvmnql ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-dbe78a67ad7a47af8517e8d4fffe89ad-pvmnql a sp:Query ;
+		sp:text """SELECT ?value ?label WHERE {
+  $subject crmdig:L11i_was_output_of ?event .
+  ?event a crmdig:D7_Digital_Machine_Event ;
+    crmdig:L23_used_software_or_firmware ?value .
+  ?value a pe:PE38_Schema ;
+    rdfs:label ?label .
+}""" .
+	
+	_:genid-dbe78a67ad7a47af8517e8d4fffe89ad-tq3t1j a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/datasetCreatedBy/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/datasetCreatedBy> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/datasetCreatedBy> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Created by" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-04-25T02:05:08.520Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-a62c1e94a4ec4f638a3959113a996adb-s9chcv ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-a62c1e94a4ec4f638a3959113a996adb-aeyt8y ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI ;
+		<http://www.metaphacts.com/ontology/fields#range> crm:E39_Actor .
+	
+	_:genid-a62c1e94a4ec4f638a3959113a996adb-aeyt8y a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject  (crmdig:L11i_was_output_of|crm:P94i_was_created_by) ?event .
+  ?event a crmdig:D7_Digital_Machine_Event ;
+     crm:P14_carried_out_by ?value.    
+}
+""" .
+	
+	_:genid-a62c1e94a4ec4f638a3959113a996adb-s9chcv a sp:Query ;
+		sp:text """INSERT { $subject crm:P94i_was_created_by ?event .
+  ?event a crmdig:D7_Digital_Machine_Event ;
+      crm:P14_carried_out_by $value} WHERE {}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/sourceProvider/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/sourceProvider> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/sourceProvider> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "source Provider" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-02-05T10:25:56.887Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-7980f68274454b05ad12a800809dca99-lk2gph ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-7980f68274454b05ad12a800809dca99-z7uf1 ;
+		<http://www.metaphacts.com/ontology/fields#maxOccurs> "1" .
+	
+	_:genid-7980f68274454b05ad12a800809dca99-lk2gph a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-7980f68274454b05ad12a800809dca99-z7uf1 a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  { SELECT DISTINCT ?g WHERE {  GRAPH ?g { $subject ?predicate ?o.} }}
+ GRAPH <http://www.d-net.research-infrastructures.eu/provenance/graph> {?g <http://www.d-net.research-infrastructures.eu/provenance/collectedFrom> ?api . ?api <http://www.d-net.research-infrastructures.eu/provenance/isApiOf>	 ?value. }
+} """ .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/container/fieldDefinitionContainer/sourceAPI/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/container/fieldDefinitionContainer/sourceAPI> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/container/fieldDefinitionContainer/sourceAPI> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "source API" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-02-04T21:07:16.185Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-5ad635341f7c465c9f4deeaf705b17f1-fszbef ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-5ad635341f7c465c9f4deeaf705b17f1-vf9bjc .
+	
+	_:genid-5ad635341f7c465c9f4deeaf705b17f1-fszbef a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-5ad635341f7c465c9f4deeaf705b17f1-vf9bjc a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  { SELECT DISTINCT ?g WHERE {  GRAPH ?g { $subject ?predicate ?o.} }}
+ GRAPH <http://www.d-net.research-infrastructures.eu/provenance/graph> {?g <http://www.d-net.research-infrastructures.eu/provenance/collectedFrom> ?value. }
+} """ .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/dateCreated/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/dateCreated> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/dateCreated> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "dateCreated" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-04-25T00:58:45.081Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-e76d52db9e8d4413bf689000abf08e81-pqbou ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-e76d52db9e8d4413bf689000abf08e81-gc47do ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:date .
+	
+	_:genid-e76d52db9e8d4413bf689000abf08e81-gc47do a sp:Query ;
+		sp:text """SELECT $value  WHERE {
+   { $subject 
+      <http://www.cidoc-crm.org/cidoc-crm/P94i_was_created_by>/<http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span> $value.
+    FILTER(isLiteral($value))
+  } 
+ UNION {
+    $subject 
+  <http://www.cidoc-crm.org/cidoc-crm/P94i_was_created_by>/<http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span>/(<http://www.cidoc-crm.org/cidoc-crm/P82_at_some_time_within>|    <http://www.cidoc-crm.org/cidoc-crm/P81_ongoing_throughout>)  $value .
+}
+}""" .
+	
+	_:genid-e76d52db9e8d4413bf689000abf08e81-pqbou a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/temporalCoverage/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/temporalCoverage> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/temporalCoverage> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Temporal Coverage (period)" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-04-25T00:30:24.795Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-5336b12743c64a3c9334425cf9edf3f7-1y4k8m ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-5336b12743c64a3c9334425cf9edf3f7-mfucbi ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-5336b12743c64a3c9334425cf9edf3f7-1y4k8m a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-5336b12743c64a3c9334425cf9edf3f7-mfucbi a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P129_is_about ?value .
+       ?value a crm:E4_Period.
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/accessibleAt/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/accessibleAt> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/accessibleAt> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "accessible at" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-24T12:22:07.716Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-6c58584dcfac4139afb1a9b37fa2e037-0iuu7m ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-6c58584dcfac4139afb1a9b37fa2e037-36a6hm ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-6c58584dcfac4139afb1a9b37fa2e037-0iuu7m a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-6c58584dcfac4139afb1a9b37fa2e037-36a6hm a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject (pe:PP8i_is_dataset_hosted_by/pe:PP49_provides_access_point | pe:PP50_accessible_at) ?value .
+  ?value a pe:PE29_Access_Point.
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/digitalObjectHostedBy/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/digitalObjectHostedBy> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/digitalObjectHostedBy> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Digital object hosted by" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-02-05T10:12:19.423Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-db3eda5230ad4793bc5fd6579e8350a5-lpt8o ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-db3eda5230ad4793bc5fd6579e8350a5-80h3ll ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-db3eda5230ad4793bc5fd6579e8350a5-80h3ll a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject pe:PP6i_is_digital_object_hosted_by ?value .
+  ?tt rdfs:subClassOf* pe:PE5_Digital_Hosting_Service .
+  ?value a ?tt .
+}""" .
+	
+	_:genid-db3eda5230ad4793bc5fd6579e8350a5-lpt8o a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSubject/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSubject> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSubject> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Subject" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-05-09T02:01:19.705Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-9c6b662a57e345dbaab0f2967b730e07-ygi6xv ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-9c6b662a57e345dbaab0f2967b730e07-ms572 ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-9c6b662a57e345dbaab0f2967b730e07-ms572 a sp:Query ;
+		sp:text """SELECT ?value  WHERE {
+  $subject crm:P129_is_about ?value .
+  ?tt rdfs:subClassOf* crm:E55_Type .
+  ?value a ?tt .
+} # very inefficient duplicated with isAbout field""" .
+	
+	_:genid-9c6b662a57e345dbaab0f2967b730e07-ygi6xv a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSpatialCoverage/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSpatialCoverage> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSpatialCoverage> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Spatial Coverage" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-23T12:11:11.100Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-8b5ffbd53ca945ff8af40cb97288aac7-85p6lk ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-8b5ffbd53ca945ff8af40cb97288aac7-4z6wn ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-8b5ffbd53ca945ff8af40cb97288aac7-4z6wn a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P129_is_about ?value .
+  ?value a crm:E53_Place .
+}""" .
+	
+	_:genid-8b5ffbd53ca945ff8af40cb97288aac7-85p6lk a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasRight/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasRight> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasRight> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Right" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-08-21T01:28:10.548Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-28805f0762e54238a1dd2faa40adb579-h8wvzo ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-28805f0762e54238a1dd2faa40adb579-oo5m1f ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-28805f0762e54238a1dd2faa40adb579-h8wvzo a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-28805f0762e54238a1dd2faa40adb579-oo5m1f a sp:Query ;
+		sp:text """SELECT ?value  WHERE {
+  $subject crm:P104_is_subject_to ?value .
+  ?value a crm:E30_Right.
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isIndexOf/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isIndexOf> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isIndexOf> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Is Index Of" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-02-05T18:09:47.540Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-90cbbec0634244d29bd4f25578e6e048-0qi5b ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-90cbbec0634244d29bd4f25578e6e048-x1f31c ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-90cbbec0634244d29bd4f25578e6e048-0qi5b a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-90cbbec0634244d29bd4f25578e6e048-x1f31c a sp:Query ;
+		sp:text """SELECT DISTINCT ?value WHERE {
+  $subject pe:PP41_is_index_of|^pe:PP41i_is_indexed_by ?value .
+  ?tt rdfs:subClassOf* crmdig:D1_Digital_Object .
+  ?value a ?tt .
+}
+LIMIT 10""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isAbout/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isAbout> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isAbout> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Is About" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-04-25T00:31:56.444Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-dbd630c4344f4db989d88263e25909e7-datgf ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-dbd630c4344f4db989d88263e25909e7-da7dro ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI ;
+		<http://www.metaphacts.com/ontology/fields#minOccurs> "0" .
+	
+	_:genid-dbd630c4344f4db989d88263e25909e7-da7dro a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P129_is_about ?value .  
+  FILTER NOT EXISTS {?value a <http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span>.}
+  FILTER NOT EXISTS {?value a <http://www.cidoc-crm.org/cidoc-crm/E4_Period>.}
+}""" .
+	
+	_:genid-dbd630c4344f4db989d88263e25909e7-datgf a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isMetadataFor/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isMetadataFor> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isMetadataFor> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Is Metadata for" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-22T01:44:48.785Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-669103055cfe4e0b94a228c2e4839e68-4i5bi ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-669103055cfe4e0b94a228c2e4839e68-wcnxft ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-669103055cfe4e0b94a228c2e4839e68-4i5bi a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-669103055cfe4e0b94a228c2e4839e68-wcnxft a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject pe:PP39_is_metadata_for ?value .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasPartDigitalObject/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasPartDigitalObject> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasPartDigitalObject> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "has part (persistent data object)" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-02-05T12:53:20.307Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-547e7d25ee72454aa19a52b4d7f15ed1-bbrnl ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-547e7d25ee72454aa19a52b4d7f15ed1-lsmfht ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-547e7d25ee72454aa19a52b4d7f15ed1-bbrnl a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-547e7d25ee72454aa19a52b4d7f15ed1-lsmfht a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject pe:PP23_has_dataset_part|^pe:PP23i_is_dataset_part_of ?value .
+  ?tt rdfs:subClassOf* pe:PE18_Dataset.
+  ?value a ?tt .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isPartOfPersistentDataObject/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isPartOfPersistentDataObject> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isPartOfPersistentDataObject> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "is part of (persistent data object)" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-08-21T00:40:28.854Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-0fae8b85647640f39fd5fa490aab7cbe-wd1zin ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-0fae8b85647640f39fd5fa490aab7cbe-pnxg6t ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-0fae8b85647640f39fd5fa490aab7cbe-pnxg6t a sp:Query ;
+		sp:text """SELECT ?value ?label WHERE {
+  $subject pe:PP23i_is_dataset_part_of|^pe:PP23_has_dataset_part ?value .
+  ?tt rdfs:subClassOf* pe:PE18_Dataset .
+  ?value a ?tt .
+    ?value rdfs:label ?label.
+}""" .
+	
+	_:genid-0fae8b85647640f39fd5fa490aab7cbe-wd1zin a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/containsPlace/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/containsPlace> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/containsPlace> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "containsPlace" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-02-05T14:03:30.499Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-1b4541c74efd4e468e543df097f3d69c-a8uzms ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-1b4541c74efd4e468e543df097f3d69c-0jup5h ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E53_Place ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-1b4541c74efd4e468e543df097f3d69c-0jup5h a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+   ?value <http://www.cidoc-crm.org/cidoc-crm/P89_falls_within> $subject
+}""" .
+	
+	_:genid-1b4541c74efd4e468e543df097f3d69c-a8uzms a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasResidence/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasResidence> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasResidence> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "has location/residence" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-19T14:59:23.421Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-7fefd55986a04647b42415d3413e4ac5-3dm8g ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-7fefd55986a04647b42415d3413e4ac5-731ioq ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-7fefd55986a04647b42415d3413e4ac5-3dm8g a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-7fefd55986a04647b42415d3413e4ac5-731ioq a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P74_has_current_or_former_residence ?value.
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isResidenceOf/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isResidenceOf> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isResidenceOf> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "is location of" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-19T14:54:02.394Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-13b8aa6e37694f2188d4f943318db541-r75zzs ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-13b8aa6e37694f2188d4f943318db541-flcbdn ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-13b8aa6e37694f2188d4f943318db541-flcbdn a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  ?value crm:P74_has_current_or_former_residence $subject.
+}""" .
+	
+	_:genid-13b8aa6e37694f2188d4f943318db541-r75zzs a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isIndexedBy/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isIndexedBy> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isIndexedBy> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Is Indexed by" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-02-05T20:07:13.784Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-83ed04e7601f4689876325d00b53eaab-di6hlg ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-83ed04e7601f4689876325d00b53eaab-vyefjs ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-83ed04e7601f4689876325d00b53eaab-di6hlg a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-83ed04e7601f4689876325d00b53eaab-vyefjs a sp:Query ;
+		sp:text """SELECT DISTINCT ?value WHERE {
+  $subject pe:PP41i_is_indexed_by|^pe:PP41_is_index_of ?value .
+  ?tt rdfs:subClassOf* pe:PE24_Volatile_Dataset .
+  ?value a ?tt .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasRightOwner/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasRightOwner> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasRightOwner> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Right Owner" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-02-06T12:27:52.705Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-ba83154c8cc3430c8a69bdfa57e1ab7a-08ofvg ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-ba83154c8cc3430c8a69bdfa57e1ab7a-6i5ac1 ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-ba83154c8cc3430c8a69bdfa57e1ab7a-08ofvg a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-ba83154c8cc3430c8a69bdfa57e1ab7a-6i5ac1 a sp:Query ;
+		sp:text """SELECT ?value  WHERE {
+  $subject crm:P105_right_held_by ?value .
+  ?ta rdfs:subClassOf* crm:E39_Actor .
+  ?value a ?ta .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/refersTo/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/refersTo> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/refersTo> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Refers to" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-02-06T12:45:22.658Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-7f4768463bf54a77af90b6a822affee2-63l5ng ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-7f4768463bf54a77af90b6a822affee2-tuyhkr ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-7f4768463bf54a77af90b6a822affee2-63l5ng a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-7f4768463bf54a77af90b6a822affee2-tuyhkr a sp:Query ;
+		sp:text """SELECT ?value  WHERE {
+  $subject crm:P67_refers_to ?value .
+  ?tc rdfs:subClassOf* crm:E1_CRM_Entity .
+  ?value a ?tc .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/IsAccessPointProvidedBy/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/IsAccessPointProvidedBy> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/IsAccessPointProvidedBy> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Is Access Point provided by" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-24T12:19:58.391Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-b55847931b14468dadacef4bff95afaf-6oipsm ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-b55847931b14468dadacef4bff95afaf-wdxsnt ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE1_Service ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-b55847931b14468dadacef4bff95afaf-6oipsm a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-b55847931b14468dadacef4bff95afaf-wdxsnt a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject (^pe:PP49_provides_access_point | pe:PP49i_is_access_point_provided_by ) ?value .
+  ?tv rdfs:subClassOf* pe:PE8_E-Service .
+  ?value a ?tv .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/createdActivity/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/createdActivity> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/createdActivity> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Created Activity" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-04-16T14:07:56.680Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-ac38fdd3801f4e6b858465b15296a13b-lzamsh ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-ac38fdd3801f4e6b858465b15296a13b-w96sqg ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E39_Actor ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI ;
+		<http://www.metaphacts.com/ontology/fields#range> crm:E7_Activity .
+	
+	_:genid-ac38fdd3801f4e6b858465b15296a13b-lzamsh a sp:Query ;
+		sp:text "INSERT { $value crm:P14_carried_out_by $subject} WHERE {}" .
+	
+	_:genid-ac38fdd3801f4e6b858465b15296a13b-w96sqg a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P14i_performed | ^crm:P14_carried_out_by ?value .
+  ?value_type rdfs:subClassOf* crm:E7_Activity .
+  ?value a ?value_type .
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasResearchActivities/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasResearchActivities> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasResearchActivities> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "Research Activities" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-08-26T01:35:54.886Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-f99957594f5c401cbe73e8c2b83db793-hk5vvq ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-f99957594f5c401cbe73e8c2b83db793-g8ql6l ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E39_Actor ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI ;
+		<http://www.metaphacts.com/ontology/fields#range> frbroo:F51_Pursuit .
+	
+	_:genid-f99957594f5c401cbe73e8c2b83db793-g8ql6l a sp:Query ;
+		sp:text """SELECT DISTINCT ?value WHERE {
+  $subject crm:P14i_performed ?perf .
+  ?perf a frbroo:F51_Pursuit ;
+    frbroo:R59_had_typical_subject ?value ;    
+}""" .
+	
+	_:genid-f99957594f5c401cbe73e8c2b83db793-hk5vvq a sp:Query ;
+		sp:text "INSERT { $subject crm:P14i_performed ?perf ; frbroo:R59_had_typical_subject $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/temporalCoverageTimeSpan/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/temporalCoverageTimeSpan> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/temporalCoverageTimeSpan> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "temporal Coverage (timespan)" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-04-23T17:33:28.683Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-ea68e0ddc4074dda955d02f66ec62bcc-sy4vzk ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-ea68e0ddc4074dda955d02f66ec62bcc-41qso9 ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E70_Thing ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:string .
+	
+	_:genid-ea68e0ddc4074dda955d02f66ec62bcc-41qso9 a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crm:P129_is_about ?timespan .
+  ?timespan crm:P82_at_some_time_within ?value.
+  ?timespan a crm:E52_Time-Span.
+}""" .
+	
+	_:genid-ea68e0ddc4074dda955d02f66ec62bcc-sy4vzk a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/dateModified/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/dateModified> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/dateModified> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "date Modified" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-23T22:41:20.826Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-b6197df4c1464ad49b953d61aa77a2f7-uq3a3 ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-b6197df4c1464ad49b953d61aa77a2f7-k0njfw .
+	
+	_:genid-b6197df4c1464ad49b953d61aa77a2f7-k0njfw a sp:Query ;
+		sp:text """SELECT $value  WHERE {
+   { $subject 
+  <http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs/L11i_was_output_of>/<http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span> $value.
+    FILTER(isLiteral($value))
+  } 
+ UNION {
+    $subject 
+  <http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs/L11i_was_output_of>/<http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span>/<http://www.cidoc-crm.org/cidoc-crm/P82_at_some_time_within>  $value .
+}
+}""" .
+	
+	_:genid-b6197df4c1464ad49b953d61aa77a2f7-uq3a3 a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/Coordinates/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/Coordinates> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/Coordinates> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "has coordinates" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-18T17:16:22.975Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-ee52a90a721c44f1affa8c6e0a7ba337-voz5zs ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-ee52a90a721c44f1affa8c6e0a7ba337-k9sm89 ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-ee52a90a721c44f1affa8c6e0a7ba337-k9sm89 a sp:Query ;
+		sp:text """SELECT DISTINCT ?value WHERE {
+  $subject crm:P1_is_identified_by ?value .
+  ?value a crm:E47_Spatial_Coordinates .
+}""" .
+	
+	_:genid-ee52a90a721c44f1affa8c6e0a7ba337-voz5zs a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/identifiesPlace/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/identifiesPlace> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/identifiesPlace> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "identifies Place" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-08-21T01:22:23.847Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-033e8b596fe84759b02130ec43954d1d-5932D80FE14949E9BC7E4B001FAFE459 ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-033e8b596fe84759b02130ec43954d1d-3F303D6C8E64C59C43D3F3F5246B4229 ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E47_Spatial_Coordinates ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI ;
+		<http://www.metaphacts.com/ontology/fields#range> crm:E53_Place .
+	
+	_:genid-033e8b596fe84759b02130ec43954d1d-3F303D6C8E64C59C43D3F3F5246B4229 a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+   ?value crm:P1_is_identified_by $subject;
+}""" .
+	
+	_:genid-033e8b596fe84759b02130ec43954d1d-5932D80FE14949E9BC7E4B001FAFE459 a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasCreated/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasCreated> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasCreated> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "has created" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-08-24T14:02:40.108Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-d7bc165a578349a283da234e7b527ac4-hzrbu8 ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-d7bc165a578349a283da234e7b527ac4-l0qdwq ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E39_Actor ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-d7bc165a578349a283da234e7b527ac4-hzrbu8 a sp:Query ;
+		sp:text """INSERT { ?value crm:P94i_was_created_by ?event .
+  ?event a crmdig:D7_Digital_Machine_Event ;
+      crm:P14_carried_out_by $subject} WHERE {}""" .
+	
+	_:genid-d7bc165a578349a283da234e7b527ac4-l0qdwq a sp:Query ;
+		sp:text """SELECT ?value WHERE {  
+  ?value  (crmdig:L11i_was_output_of|crm:P94i_was_created_by) ?event .
+  ?event a crmdig:D7_Digital_Machine_Event ;
+     crm:P14_carried_out_by $subject.    
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isSubjectOf/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isSubjectOf> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/isSubjectOf> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "is Subject of" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-19T08:40:10.149Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-bf9d61c512304aa6bc8cc83710d06f15-632ssu ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-bf9d61c512304aa6bc8cc83710d06f15-amx7bk ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-bf9d61c512304aa6bc8cc83710d06f15-632ssu a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-bf9d61c512304aa6bc8cc83710d06f15-amx7bk a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject ^crm:P129_is_about ?value .  
+  FILTER NOT EXISTS {?value a <http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span>.}
+  FILTER NOT EXISTS {?value a <http://www.cidoc-crm.org/cidoc-crm/E4_Period>.}
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/fallsWithin/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/fallsWithin> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/fallsWithin> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "falls within" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-19T14:39:02.061Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-97569ae0d13a4a628ed8a1589cb0c884-hg8z5p ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-97569ae0d13a4a628ed8a1589cb0c884-ud587 ;
+		<http://www.metaphacts.com/ontology/fields#domain> crm:E53_Place ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI ;
+		<http://www.metaphacts.com/ontology/fields#range> crm:E53_Place .
+	
+	_:genid-97569ae0d13a4a628ed8a1589cb0c884-hg8z5p a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-97569ae0d13a4a628ed8a1589cb0c884-ud587 a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+   $subject crm:P89_falls_within ?value
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSchema/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSchema> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasSchema> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "schema" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-22T01:42:57.428Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-ea059e644ca445389ba2ba685c35e0d8-yojxcf ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-ea059e644ca445389ba2ba685c35e0d8-944rgn ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-ea059e644ca445389ba2ba685c35e0d8-944rgn a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject crmdig:L11i_was_output_of/crmdig:L23_used_software_or_firmware ?value.
+}""" .
+	
+	_:genid-ea059e644ca445389ba2ba685c35e0d8-yojxcf a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasMetadata/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasMetadata> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/hasMetadata> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "has metadata " ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-22T01:48:01.762Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-37298efcd4ce4ac8b8ebdad766812ce2-9fe75e ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-37298efcd4ce4ac8b8ebdad766812ce2-4zaj67 ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-37298efcd4ce4ac8b8ebdad766812ce2-4zaj67 a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+ ?value pe:PP39_is_metadata_for  $subject.
+}""" .
+	
+	_:genid-37298efcd4ce4ac8b8ebdad766812ce2-9fe75e a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/maintainingTeam/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/maintainingTeam> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/maintainingTeam> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "has maintaining team" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-24T11:47:41.523Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-fe359c31a8ad47dc87c6ff9402307ded-knt26c ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-fe359c31a8ad47dc87c6ff9402307ded-wzu17m ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE35_Project ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-fe359c31a8ad47dc87c6ff9402307ded-knt26c a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+	
+	_:genid-fe359c31a8ad47dc87c6ff9402307ded-wzu17m a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  $subject pe:PP44_has_maintaining_team ?value
+}""" .
+}
+
+<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/projectOutput/context> {
+	Platform:fieldDefinitionContainer <http://www.w3.org/ns/ldp#contains> <https://parthenos.acdh.oeaw.ac.at/fieldDefinition/projectOutput> .
+	
+	<https://parthenos.acdh.oeaw.ac.at/fieldDefinition/projectOutput> a <http://www.w3.org/ns/ldp#Resource> , <http://www.w3.org/ns/prov#Entity> , <http://www.metaphacts.com/ontology/fields#Field> ;
+		rdfs:label "project output" ;
+		<http://www.w3.org/ns/prov#generatedAtTime> "2019-09-24T12:01:38.341Z"^^xsd:dateTime ;
+		<http://www.w3.org/ns/prov#wasAttributedTo> User:admin ;
+		<http://www.metaphacts.com/ontology/fields#insertPattern> _:genid-e0a90c46f2ff44cda5ebac078964600b-s6v09g ;
+		<http://www.metaphacts.com/ontology/fields#selectPattern> _:genid-e0a90c46f2ff44cda5ebac078964600b-hyhxypo ;
+		<http://www.metaphacts.com/ontology/fields#domain> pe:PE35_Project ;
+		<http://www.metaphacts.com/ontology/fields#xsdDatatype> xsd:anyURI .
+	
+	_:genid-e0a90c46f2ff44cda5ebac078964600b-hyhxypo a sp:Query ;
+		sp:text """SELECT ?value WHERE {
+  ?value crm:P94i_was_created_by/pe:PP43i_is_project_activity_supported_by
+      $subject.
+}""" .
+	
+	_:genid-e0a90c46f2ff44cda5ebac078964600b-s6v09g a sp:Query ;
+		sp:text "INSERT { $subject ?predicate $value} WHERE {}" .
+}

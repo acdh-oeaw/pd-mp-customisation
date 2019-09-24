@@ -1,0 +1,77 @@
+<ol class="page-breadcrumb">
+  <li>
+    <mp-link title="Home" url="/">Home</mp-link>
+  </li>
+  <li>
+    <mp-link title="Statistics Overview" url="p:Statistics">Statistics</mp-link>
+  </li>          
+  <li class="active">
+    <mp-label iri='[[this]]'>Classes</mp-label>
+  </li>
+</ol>
+
+
+<div class="page">
+   <div class="page__header">    
+     <div data-flex-layout="row top-center">    
+   <div><i class="fa fa-database fa-4x"></i>
+    </div>
+    <div data-flex-self="size-x1">
+      <h2>Overview by sources</h2>
+      <p>This gives an overview on the number of entities divided by the top classes of interest and the providers or sources (the different infrastructures providing data to Parthenos). This overview is further distinguished by the type of identifier (starting with <code>http</code> or <code>urn</code>, (roughly) indicating if the entity was created intentionally in the mapping process, or is an automatically generated entity because required by the PEM. </p>
+      </div>
+    <div>[[> p:LinktoDocs doclink="/resource/p:DocsMainFeatures#explore_source"]]</div>
+     </div>  
+    </div>
+
+  <div class="page__body">
+    
+            <semantic-table
+             query='[[getQueryString "https://parthenos.acdh.oeaw.ac.at/container/queryTemplateContainer/nNqUdqRddmDhzPKmMAJxCVPfvrLqQjQRbjulNFqh" Key='"urn"' ]]'
+             number-of-displayed-rows=50
+             column-configuration='[
+               {"variableName":"src", "displayName":"Source"}, 
+              {"variableName":"key", "displayName":"Key"},                
+    					{	"displayName": "Actors", 
+    						"cellTemplate": "{{>sparqlCell maintype=\"crm:E39_Actor\" cnt=actorcnt.value}}" 
+    						},
+              {	"displayName": "Datasets", 
+    						"cellTemplate": "{{>sparqlCell maintype=\"pe:PE18_Dataset\" cnt=datacnt.value}}" 
+    						},
+              {	"displayName": "Services", 
+    						"cellTemplate": "{{>sparqlCell maintype=\"pe:PE1_Service\" cnt=servicecnt.value}}" 
+    						},
+              {	"displayName": "Software", 
+    						"cellTemplate": "{{>sparqlCell maintype=\"crmdig:D14_Software\" cnt=softwarecnt.value}}" 
+    						},
+              {	"displayName": "Places", 
+    						"cellTemplate": "{{>sparqlCell maintype=\"crm:E53_Place\" cnt=placecnt.value}}" 
+    						},
+              {	"displayName": "Project", 
+    						"cellTemplate": "{{>sparqlCell maintype=\"pe:PE35_Project\" cnt=projectcnt.value}}" 
+    						}
+             ]'
+           >
+              <template id="sparqlCell" >
+                <div><mp-link target="_blank" url="/sparql" urlqueryparam-query='PREFIX acdh: <http://acdh.oeaw.ac.at/>
+                    SELECT DISTINCT ?s ?sourceLabel ?key ?maintype WHERE {
+                           BIND ("{{key.value}}" as ?key ).
+                           BIND ({{maintype}} as ?maintype).
+
+                                    GRAPH ?g { ?s a ?t .}
+                                          ?t rdfs:subClassOf* ?maintype.    
+
+                                              FILTER strstarts(lcase(str(?s)), ?key). 
+                                    GRAPH <http://www.d-net.research-infrastructures.eu/provenance/graph> { 
+                              ?g <http://www.d-net.research-infrastructures.eu/provenance/collectedFrom> ?source .
+                              ?source <http://www.d-net.research-infrastructures.eu/provenance/isApiOf> ?sourceLabel .
+                                        FILTER (?sourceLabel = "{{src.value}}")
+                            }
+                                }										
+                    LIMIT 10'>{{cnt}}</mp-link></div>
+              </template>
+           </semantic-table>
+
+  </div>
+  
+    </div>

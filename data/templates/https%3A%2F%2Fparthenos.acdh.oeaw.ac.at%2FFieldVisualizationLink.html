@@ -1,0 +1,20 @@
+<div>
+  {{#each fields as |field|}}
+	  {{#if field.values}}  
+  		<dt style='float: left; padding-right: 10px; width: 190px;'>{{field.label}}</dt>
+  		<dd style='margin-left: 190px;'>
+        {{log field}}
+    		{{#each field.values as |value|}}
+    		<span>
+          <semantic-if query='ASK { FILTER( SUBSTR("{{{ value.label }}}", 0, 4) != "http") }'
+                       then='<a href="https://{{ value.label }}" target="_blank">{{ value.label }}</a>'
+                       else='<a href="{{ value.label }}" target="_blank">{{ value.label }}</a>'></semantic-if>
+          &nbsp;<i class="fa fa-external-link" aria-hidden="true"></i><br/>
+          [[!-- 2019-09-23 kil: sometimes the delivered links are without http/https-prefix, in such cases it will not show up as a link; therefore test, if it is a valid iri, if not add https; sure, this can also lead to wrong links, but it is a workaround; the solution lies in curation, where links without http/https-prefix shouldn't be allowed --]]
+          {{log value}}
+        </span>
+        {{/each}}
+  		</dd>
+  	{{/if}}
+  {{/each}}
+</div>

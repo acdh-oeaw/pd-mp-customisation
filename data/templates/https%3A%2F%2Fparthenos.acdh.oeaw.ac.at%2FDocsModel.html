@@ -18,28 +18,25 @@
       <bs-col sm="1" style="padding-top:10px">    
         <i class="fa fa-book fa-4x"></i>
       </bs-col>
-      <bs-col sm="6" >
+      <bs-col sm="8">
         <div >
           <h1>PARTHENOS Entities Model</h1>
-          <bs-alert bs-style="warning"><strong>Being worked on. See <a href="https://docs.google.com/document/d/14hbh9kWKQAaBk7QMg1aG66wH5i9b8KVJmwQzjl8rFoM/edit#" >PD User Texts gdoc</a>.</strong></bs-alert>
+         
           <p>This page informs about the data model underlying the application</p>
     
-          <p>The PARTHENOS Entities Model (PEM) is a common semantic model developed in the PARTHENOS project which extends the CIDOC CRM. The PEM is described in further depth in the following document: <a href="https://doi.org/10.5281/zenodo.2575465">PARTHENOS D5.5 Report on the Common Semantic Framework</a>. It is designed to be flexible enough to map the many different types of metadata schemas used throughout the Humanities uniformly.</p>
-          <p><img alt="Graphic shows the classes and relations of the PARTHENOS Entities Model" src="https://data.d4science.net/RN8s" /></p>
+          <p>The PARTHENOS Entities Model (PEM) is a common semantic model developed in the PARTHENOS project which extends the <a href="http://www.cidoc-crm.org/">CIDOC CRM</a>. The PEM is described in further depth in the following document: <a href="https://doi.org/10.5281/zenodo.2575465">PARTHENOS D5.5 Report on the Common Semantic Framework</a>. It is designed to be flexible enough to map the many different types of metadata schemas used throughout the Humanities uniformly.</p>
+          <p><img style="max-width:100%;margin:2em;" alt="Graphic shows the classes and relations of the PARTHENOS Entities Model" src="https://data.d4science.net/RN8s" /></p>
 
           <p>Even though altogether many specific classes are introduced in the overall model, these can be largely categorised under the following main entities:</p>
-          <ul>
-            <li>Actor</li>
-            <li>Dataset</li>
-            <li>Software</li>
-            <li>Service</li>
-            <li>Project</li>
-            <li>(Place)</li>
-          </ul>
+          
+          [[> p:MaintypeOverview reduced="true"]]
+          
           <p>Within the PEM a subset of properties has been identified as so called 'minimal metadata'. "Such minimal metadata requirements are not meant as a 'core' standard but are rather specified precisely to demand the least possible data from aggregated sources while still being able to guarantee a functional management of the data being aggregated." [D5.5]  It is collected with regards to the entities referred to in the PEM for the <a href="https://services.d4science.org/group/parthenos_registry/catalogue">PARTHENOS Joint Resource Registry (JRR)</a> and allows the identification of distinct datasets, software and services. Also, it is vital that datasets can be attributed to the appropriate actors responsible for these objects. The metadata set is kept as light as possible with the goal that all objects represented in the registry are traceable and that their provenance is accounted for.</p>
-          <p>In the overall dataset more information about the described entities is available and can be accessed via the search facilities described here.</p>
-
+          
         </div>
+      </bs-col>
+      <bs-col sm="3">
+        [[> p:DocsToC]]
       </bs-col>
     </bs-row>
 

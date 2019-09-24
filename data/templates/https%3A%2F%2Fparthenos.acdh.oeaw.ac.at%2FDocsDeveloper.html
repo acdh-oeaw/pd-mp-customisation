@@ -1,0 +1,40 @@
+<ol class="page-breadcrumb">
+  <li>
+    <semantic-link title="Home" uri='[[resolvePrefix "p:Start"]]'>Home</semantic-link>
+  </li>
+  <li>
+    <semantic-link title="Documentation - Main Page" uri='[[resolvePrefix "p:Docs"]]'>Documentation</semantic-link>
+  </li>
+  <li class="active">
+    Developer Documentation
+  </li>
+</ol>
+
+<div class="page">
+
+  <div class="page__body">
+
+    <bs-row>
+      <bs-col sm="1" style="padding-top:10px">        
+        <i class="fa fa-terminal fa-4x"></i>
+      </bs-col>
+      <bs-col sm="8">
+        <div>
+          <h1>Developer Documentation</h1>          
+          <p>This page provides technical background information about the application.</p>
+
+          <p>PARTHENOS Discovery is technically a customisation of the <a href="https://www.metaphacts.com/product">Metaphactory</a> knowledge management platform (Version 3.1). Metaphactory allows to explore, navigate through and manage large knowledge graphs, represented as RDF. It operates on top of any SPARQL 1.1 compliant triplestore. Metaphactory provides a customisation mechanism through custom-tailored application and template pages in which predefined components combined with parameterized SPARQL-queries can be used to craft custom views on the data at hand. The set of available components is described in <a href="https://help.metaphacts.com/resource/Help:HTML5Components">Metaphactory help pages</a>.</p>
+          <p>All these custom pages that make up PARTHENOS Discovery are made available in a dedicated GitHub repository: <a href="https://github.com/acdh-oeaw/pd-mp-customisation">https://github.com/acdh-oeaw/pd-mp-customisation</a>.</p>
+       <p>The underlying triplestore is an instance of <a href="https://www.blazegraph.com/">blazegraph</a>, being updated with new data once a week (every Saturday night). The data is provided as RDF dump by projet partner CNR, who is running the infrastructure for large-scale aggregation and transformation <a href="http://www.d-net.research-infrastructures.eu/">d-net</a>. The dumps are available under <a href="https://virtuoso.parthenos.d4science.org/dump/">https://virtuoso.parthenos.d4science.org/dump/</a>.
+         The ingestion into blazegraph takes around 11 hours for 1.46 billion triples (as of 2019-09-22) in <a href="https://wiki.blazegraph.com/wiki/index.php/Bulk_Data_Load" >Bulk Data Load mode</a>.
+       </p>
+          </div>
+      </bs-col>
+      <bs-col sm="3">
+        [[> p:DocsToC]]
+      </bs-col>
+    </bs-row>
+
+  </div>
+
+</div>[

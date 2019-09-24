@@ -30,11 +30,11 @@
     <p>ARIADNE is (not surprisingly) contributing by far the most Place instances. There were issues with the encoding of the spatial coordinates, but these seem to be largely resolved by now.
      
      <dl class="clearfix">
-       https://parthenos.acdh-dev.oeaw.ac.at/container/queryTemplateContainer/test-ent-type-source-count
+       https://parthenos.acdh.oeaw.ac.at/container/queryTemplateContainer/test-ent-type-source-count
        <dt style="float: left; padding-right: 10px; width: 190px;">DEBUG query template (GROUP BY) - <a href="https://metaphacts.atlassian.net/servicedesk/customer/portal/4/MS-65">MS-65</a></dt>
        <dd style="margin-left: 190px;">         
            <semantic-query
-                  query='SELECT (COUNT(?s) as ?cnt) WHERE {[[getQueryString "https://parthenos.acdh-dev.oeaw.ac.at/container/queryTemplateContainer/test-ent-type-source-count" pKey='"http"' pMaintype="<http://www.cidoc-crm.org/cidoc-crm/E53_Place>" pSource='"ARIADNE"' ]] }'
+                  query='SELECT (COUNT(?s) as ?cnt) WHERE {[[getQueryString "https://parthenos.acdh.oeaw.ac.at/container/queryTemplateContainer/test-ent-type-source-count" pKey='"http"' pMaintype="<http://www.cidoc-crm.org/cidoc-crm/E53_Place>" pSource='"ARIADNE"' ]] }'
                   ></semantic-query>
        </dd> 
        
@@ -60,7 +60,7 @@
                                            acdh:hasKey "http";
                                            acdh:hasValue ?cnt.
                          }' ></semantic-query> (                
-                  <mp-link url="/sparql" urlqueryparam-query='[[getQueryString "https://parthenos.acdh-dev.oeaw.ac.at/container/queryTemplateContainer/entities-per-type-and-source" pKey='"http"' pMaintype="<http://www.cidoc-crm.org/cidoc-crm/E53_Place>" pSource='"ARIADNE"' ]]'>SPARQL</mp-link>).
+                  <mp-link url="/sparql" urlqueryparam-query='[[getQueryString "https://parthenos.acdh.oeaw.ac.at/container/queryTemplateContainer/entities-per-type-and-source" pKey='"http"' pMaintype="<http://www.cidoc-crm.org/cidoc-crm/E53_Place>" pSource='"ARIADNE"' ]]'>SPARQL</mp-link>).
        </dd>
         <dt style="float: left; padding-right: 10px; width: 190px;">ARIADNE/Places with urn-uri</dt>
        <dd style="margin-left: 190px;">
@@ -73,7 +73,7 @@
                                            acdh:hasKey "urn";
                                            acdh:hasValue ?cnt.
                          }' ></semantic-query> (                
-                  <mp-link url="/sparql" urlqueryparam-query='[[getQueryString "https://parthenos.acdh-dev.oeaw.ac.at/container/queryTemplateContainer/entities-per-type-and-source" pKey='"urn"' pMaintype="<http://www.cidoc-crm.org/cidoc-crm/E53_Place>" pSource='"ARIADNE"' ]]'>SPARQL</mp-link>).
+                  <mp-link url="/sparql" urlqueryparam-query='[[getQueryString "https://parthenos.acdh.oeaw.ac.at/container/queryTemplateContainer/entities-per-type-and-source" pKey='"urn"' pMaintype="<http://www.cidoc-crm.org/cidoc-crm/E53_Place>" pSource='"ARIADNE"' ]]'>SPARQL</mp-link>).
        </dd>
       </dl>  
 

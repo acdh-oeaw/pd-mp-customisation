@@ -1,5 +1,6 @@
-        <bs-col sm="3" >
-        <div class="panel panel-default" style="height:240px">
+<bs-col sm="3">
+  
+  <div class="panel panel-default" style="height:[[#if height]][[height]][[else]]240[[/if]]px">
          <div class="panel-body">
       	<div style="text-align:center" >
           {{#ifCond image.value "==" ""}}
@@ -9,8 +10,7 @@
           {{/ifCond}}
          </div>
       	<h2 style="text-align:center"><semantic-link  iri="{{link.value}}">{{title.value}}</semantic-link></h2>  
-      	<p>{{text.value}}</p>
+      	<p>{{{text.value}}}</p>
           </div>
         </div>
-    	</bs-col>
-  
+  </bs-col>

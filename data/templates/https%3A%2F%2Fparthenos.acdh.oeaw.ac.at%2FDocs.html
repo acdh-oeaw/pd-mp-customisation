@@ -1,0 +1,53 @@
+<ol class="page-breadcrumb">
+  <li>
+    <semantic-link title="Home" uri='[[resolvePrefix "p:Start"]]'>Home</semantic-link>
+  </li>
+  <li>Documentation</li>
+  
+</ol>
+
+<div class="page">
+
+  <div class="page__body">
+
+    <bs-row>
+      <bs-col sm="1" style="padding-top:10px">        
+        <i class="fa fa-book fa-4x"></i>
+      </bs-col>
+      <bs-col sm="11" >
+        <div>
+          <h1>Documentation overview</h1>
+            
+          <p>Following documentation pages describe various aspects of PARTHENOS Discovery Service. If you are new to PARTHENOS Discovery start with <semantic-link title="How do I use it?" uri='[[resolvePrefix "p:DocsMainFeatures"]]'>How do I use it?</semantic-link></p>
+
+          <div style="padding-top: 2em;">
+          	<h2>Basic</h2>            
+            <semantic-table query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {
+                ("How do I use it?" "[[resolvePrefix "p:DocsMainFeatures"]]" "" "book" "Explaining main features of PARTHENOS Discovery like search functionality.")
+                ("What is in the data?" "[[resolvePrefix "p:DocsData"]]" "" "database" "A list of exemplary datasets as a starting point for discovery.")
+  ("About the application" "[[resolvePrefix "p:DocsApplication"]]" "" "cog" "Giving background details on the application and the data set.")
+              } } '
+              tuple-template='{{>p:panelFrontpage}}'
+              options='{"showFilter": false}'>
+            </semantic-table>
+          </div>
+          
+          <div style="padding-top: 2em;">
+          	<h2>Advanced</h2>
+            <semantic-table query='SELECT * { VALUES(?title ?link ?image ?icon ?text) {  							
+  							("PARTHENOS Entities Model" "[[resolvePrefix "p:DocsModel"]]" "" "sitemap" "Explaining the PARTHENOS Entities Model, an extention of CIDOC CRM.")
+  							("Working with data notebooks" "[[resolvePrefix "p:DocsDataNotebooks"]]" "" "code" "How to discover the data with Jupyter notebooks using SPARQL.")
+                ("Technical stuff" "[[resolvePrefix "p:DocsDeveloper"]]" "" "terminal" "Information on the technical background of PARTHENOS Discovery.")
+              } } '
+              tuple-template='{{>p:panelFrontpage}}'
+              options='{"showFilter": false}'>
+            </semantic-table>
+          </div>
+
+  			</div>
+      </bs-col>
+    </bs-row>
+
+	</div>
+
+</div>
