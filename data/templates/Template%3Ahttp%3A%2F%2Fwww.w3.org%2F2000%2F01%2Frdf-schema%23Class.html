@@ -139,9 +139,9 @@
       </semantic-query>
       <mp-link url="/sparql" urlqueryparam-query='SELECT DISTINCT ?Instance ?type ?Relation WHERE {
       		{
-        		?Instance rdf:type ??. BIND("direct" as ?Relation)            
+        		?Instance rdf:type <[[this]]>. BIND("direct" as ?Relation)            
         	} UNION {
-        		?Instance rdf:type ?type . ?type rdfs:subClassOf+ ??.
+        		?Instance rdf:type ?type . ?type rdfs:subClassOf+ <[[this]]>.
         		BIND("inferred" as ?Relation)          
         	}
         	FILTER(ISIRI(?Instance))
