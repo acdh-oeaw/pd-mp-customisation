@@ -2,3 +2,4 @@ pe = http://parthenos.d4science.org/CRMext/CRMpe.rdfs/
 crm = http://www.cidoc-crm.org/cidoc-crm/
 crmdig = http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs/
 p = https://parthenos.acdh.oeaw.ac.at/
+frbroo = http://iflastandards.info/ns/fr/frbr/frbroo/
